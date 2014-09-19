@@ -1,4 +1,4 @@
-# OSMViz README
+# OSMViz
 
 An OpenStreetMap Visualization Toolkit for Python
 
@@ -25,7 +25,7 @@ tiles that you wish, which may have its own usage policy.
 ## About
 
 OSMViz is a small set of Python tools for retrieving
-and using Mapnik tiles from a Slippy Map server 
+and using Mapnik tiles from a Slippy Map server
 (you may know these as OpenStreetMap images).
 
 ## Requirements
@@ -43,4 +43,4 @@ Or just add the src directory to your PYTHONPATH.
 
 ## Help
 
-See [html/doc.html](html/doc.html)
+See [html/doc.html](https://hugovk.github.io/osmviz/html/doc.html)
