@@ -36,6 +36,7 @@ Basic idea:
 
 import math
 import urllib
+import hashlib
 import os.path as path
 import os
 
@@ -194,6 +195,8 @@ class OSMManager(object):
     server = kwargs.get('server')
     mgr = kwargs.get('image_manager')
     
+    self.cache = None
+    
     if cache: 
       if not os.path.isdir(cache):
         try:
@@ -206,17 +209,31 @@ class OSMManager(object):
         print "Insufficient privileges on cache dir",cache
       else:
         self.cache = cache
+
     if not self.cache:
-      self.cache = "/tmp"
-      print "WARNING: Using /tmp to cache maptiles."
-      if not os.access("/tmp", os.R_OK | os.W_OK):
-        print " ERROR: Insufficient access to /tmp."
+      self.cache = ( os.getenv("TMPDIR")
+                     or os.getenv("TMP")
+                     or os.getenv("TEMP")
+                     or "/tmp" )
+      print "WARNING: Using %s to cache maptiles." % self.cache
+      if not os.access(self.cache, os.R_OK | os.W_OK):
+        print " ERROR: Insufficient access to %s." % self.cache
         raise Exception, "Unable to find/create/use maptile cache directory."
       
-    if server: self.server = server
-    else:      self.server = "http://tile.openstreetmap.org"
+    if server: 
+      self.server = server
+    else:      
+      self.server = "http://tile.openstreetmap.org"
+    
+    # Make a hash of the server URL to use in cached tile filenames.
+    md5 = hashlib.md5()
+    md5.update(self.server)
+    self.cache_prefix =  'osmviz-%s-' % md5.hexdigest()[:5]
 
-    self.manager = mgr
+    if mgr: # Assume it's a valid manager 
+      self.manager = mgr
+    else:
+      raise Exception, "OSMManager.__init__ requires argument image_manager"
 
 
   def getTileCoord(self, lon_deg, lat_deg, zoom):
@@ -248,8 +265,8 @@ class OSMManager(object):
     if it was downloaded. That way we don't have to kill
     the osm server every time the thing runs.
     """
-    params = (zoom,tile_coord[0],tile_coord[1]);
-    return self.cache + "/%d_%d_%d.png" % params
+    params = (self.cache_prefix,zoom,tile_coord[0],tile_coord[1])
+    return path.join(self.cache, "%s%d_%d_%d.png" % params)
 
   def retrieveTileImage(self,tile_coord,zoom):
     """
