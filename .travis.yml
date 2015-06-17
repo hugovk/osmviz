@@ -15,8 +15,13 @@ sudo: false
 
 install:
  - pip install pep8 pyflakes
+ - sudo apt-get build-dep python-pygame
+ - pip install hg+http://bitbucket.org/pygame/pygame
+ - pip install pillow
 
 script:
+ - cd test
+ - ./test.sh
  # Static analysis
  - pyflakes .
 
