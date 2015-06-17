@@ -18,12 +18,15 @@ before_install:
  - sudo apt-get build-dep python-pygame
  - sudo apt-get install python-pygame
 
+sudo: false
+
 install:
  - pip install pep8 pyflakes
  - pip install pillow
 
 script:
- - python test/test_manager.py
+ - cd test
+ - ./test.sh
  # Static analysis
  - pyflakes .
 
