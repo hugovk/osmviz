@@ -13,10 +13,13 @@ python:
 
 sudo: false
 
+before_install:
+ - sudo apt-get update
+ - sudo apt-get build-dep python-pygame
+ - sudo apt-get install python-pygame
+
 install:
  - pip install pep8 pyflakes
- - sudo apt-get build-dep python-pygame
- - pip install hg+http://bitbucket.org/pygame/pygame
  - pip install pillow
 
 script:
