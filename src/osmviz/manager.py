@@ -190,11 +190,27 @@ class OSMManager(object):
                     should be fully qualified, including the protocol.
                     Default "http://tile.openstreetmap.org"
 
+        url - Full URL template from which to retrieve OSM tiles. This should
+                    be fully qualified, including the protocol, and should
+                    contain placeholders for zoom ('{z}'), coordinate x and y
+                    ('{x}' and '{y}'), and optionally scale ('{s}') for hi-dpi
+                    tile retrieval.
+                    Note: when specified, the server parameter is ignored.
+                    Default: server appended with "/{z}/{x}/{y}.png"
+
+        scale - Scale to use for hi-dpi tiles. Note that both url and scale
+                    must be set correctly for correct hi-dpi support. Normal
+                    tiles are 256, hi-dpi tiles are scale times 256 (e.g.,
+                    512 when scale is 2).
+                    Default 1 (regular dpi)
+
         image_manager - ImageManager instance which will be used to do all
                             image manipulation. You must provide this.
         """
         cache = kwargs.get('cache')
         server = kwargs.get('server')
+        url = kwargs.get('url')
+        scale = kwargs.get('scale')
         mgr = kwargs.get('image_manager')
 
         self.cache = None
@@ -223,14 +239,34 @@ class OSMManager(object):
                 raise Exception("Unable to find/create/use maptile cache "
                                 "directory.")
 
-        if server:
-            self.server = server
+        # Get url template, which supports the following fields:
+        #  * {z}: tile zoom level
+        #  * {x}, {y}: coordinate x and y
+        #  * {s}: hidpi scale factor.
+        # Note: hi-dpi is not currently supported by the default OSM tile
+        # servers, but this can look like this, for example:
+        #  * http://server/layer@{s}x/{z}/{x}/{y}.png
+        #  * http://server/layer/{z}/{x}/{y}@{s}x.png (e.g. Mapbox)
+        #  * http://server/layer/{z}/{x}/{y}.png?scale={s} (e.g. Google Maps)
+        if url:
+            self.url = url
+        elif server:
+            self.url = "%s/{z}/{x}/{y}.png" % server
         else:
-            self.server = "http://tile.openstreetmap.org"
+            self.url = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+        # Default scale is 1x. Hi-dpi tiles can be 2x, 3x, 4x or even higher
+        if scale:
+            self.scale = scale
+        else:
+            self.scale = 1
+
+        # Tile size is 256 multiplied by scale
+        self.tile_size = 256 * self.scale
 
         # Make a hash of the server URL to use in cached tile filenames.
         md5 = hashlib.md5()
-        md5.update(self.server.encode("utf-8"))
+        md5.update(self.url.replace('{s}', str(self.scale)).encode("utf-8"))
         self.cache_prefix = 'osmviz-%s-' % md5.hexdigest()[:5]
 
         if mgr:  # Assume it's a valid manager
@@ -257,8 +293,11 @@ class OSMManager(object):
         Given x, y coord of the tile to download, and the zoom level,
         returns the URL from which to download the image.
         """
-        params = (zoom, tile_coord[0], tile_coord[1])
-        return self.server+"/%d/%d/%d.png" % params
+        return self.url \
+            .replace("{z}", str(zoom)) \
+            .replace("{x}", str(tile_coord[0])) \
+            .replace("{y}", str(tile_coord[1])) \
+            .replace("{s}", str(self.scale))
 
     def getLocalTileFilename(self, tile_coord, zoom):
         """
@@ -308,25 +347,24 @@ class OSMManager(object):
         which the tiles cover.
         """
         if not self.manager:
-                raise Exception("No ImageManager was specified, cannot create "
-                                "image.")
+            raise Exception("No ImageManager was specified, cannot create "
+                            "image.")
 
         topleft = minX, minY = self.getTileCoord(minlon, maxlat, zoom)
         maxX, maxY = self.getTileCoord(maxlon, minlat, zoom)
         new_maxlat, new_minlon = self.tileNWLatlon(topleft, zoom)
         new_minlat, new_maxlon = self.tileNWLatlon((maxX+1, maxY+1), zoom)
-        # tiles are 256x256
-        pix_width = (maxX-minX+1)*256
-        pix_height = (maxY-minY+1)*256
+        pix_width = (maxX-minX+1)*self.tile_size
+        pix_height = (maxY-minY+1)*self.tile_size
         self.manager.prepare_image(pix_width, pix_height)
         print "Retrieving %d tiles..." % ((1+maxX-minX)*(1+maxY-minY), )
 
         for x in range(minX, maxX+1):
-                for y in range(minY, maxY+1):
-                        fname = self.retrieveTileImage((x, y), zoom)
-                        x_off = 256*(x-minX)
-                        y_off = 256*(y-minY)
-                        self.manager.paste_image_file(fname, (x_off, y_off))
+            for y in range(minY, maxY+1):
+                fname = self.retrieveTileImage((x, y), zoom)
+                x_off = self.tile_size*(x-minX)
+                y_off = self.tile_size*(y-minY)
+                self.manager.paste_image_file(fname, (x_off, y_off))
         print "... done."
         return (self.manager.getImage(),
                 (new_minlat, new_maxlat, new_minlon, new_maxlon))
