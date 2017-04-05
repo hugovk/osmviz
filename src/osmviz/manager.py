@@ -229,9 +229,7 @@ class OSMManager(object):
             self.server = "http://tile.openstreetmap.org"
 
         # Make a hash of the server URL to use in cached tile filenames.
-        
-        
-        = hashlib.md5()
+        md5 = hashlib.md5()
         md5.update(self.server.encode("utf-8"))
         self.cache_prefix = 'osmviz-%s-' % md5.hexdigest()[:5]
 
