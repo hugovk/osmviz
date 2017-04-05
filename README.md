@@ -1,5 +1,8 @@
 # OSMViz
 
+[![Build Status](https://travis-ci.org/hugovk/osmviz.svg?branch=master)](https://travis-ci.org/hugovk/osmviz)
+[![codecov](https://codecov.io/gh/hugovk/osmviz/branch/master/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
+
 An OpenStreetMap Visualization Toolkit for Python
 
 ## OSMViz License

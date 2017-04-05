@@ -29,12 +29,12 @@ setup(
     author_email='colin.bick@gmail.com',
     url='http://cbick.github.com/osmviz',
     license='MIT',
-    package_dir={'':'src'},
+    package_dir={'': 'src'},
     packages=find_packages(where='src'),
     include_package_data=True,
     use_2to3=True,
     # osmviz actually only requires either PyGame or PIL, not necessarily both
-    requires = (
+    requires=(
        'PyGame',
        'PIL',
     )

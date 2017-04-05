@@ -19,23 +19,25 @@
 # - parse script encoding and allow output in any encoding by using unicode
 #   as intermediate
 
+import cgi
+import cStringIO
+import keyword
+import string
+import sys
+import token
+import tokenize
+
 __version__ = '0.3'
 __date__ = '2005-07-04'
 __license__ = 'GPL'
 __author__ = 'JŸrgen Hermann, Mike Brown, Christopher Arndt'
 
-
-# Imports
-import cgi, string, sys, cStringIO
-import keyword, token, tokenize
-
-
 #############################################################################
-### Python Source Parser (does Hilighting)
+# Python Source Parser (does highlighting)
 #############################################################################
 
 _KEYWORD = token.NT_OFFSET + 1
-_TEXT    = token.NT_OFFSET + 2
+_TEXT = token.NT_OFFSET + 2
 
 _css_classes = {
     token.NUMBER:       'number',
@@ -102,6 +104,7 @@ pre.code {
 
 """
 
+
 class Parser:
     """ Send colored python source.
     """
@@ -122,7 +125,8 @@ class Parser:
         pos = 0
         while 1:
             pos = string.find(self.raw, '\n', pos) + 1
-            if not pos: break
+            if not pos:
+                break
             self.lines.append(pos)
         self.lines.append(len(self.raw))
 
@@ -140,12 +144,12 @@ class Parser:
                 msg, self.raw[self.lines[line]:]))
         self.out.write('\n</pre>')
 
-    def __call__(self, toktype, toktext, (srow,scol), (erow,ecol), line):
+    def __call__(self, toktype, toktext, (srow, scol), (erow, ecol), line):
         """ Token handler.
         """
         if 0:
             print "type", toktype, token.tok_name[toktype], "text", toktext,
-            print "start", srow,scol, "end", erow,ecol, "<br>"
+            print "start", srow, scol, "end", erow, ecol, "<br>"
 
         # calculate new positions
         oldpos = self.pos

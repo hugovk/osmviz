@@ -1,0 +1,40 @@
+language: python
+
+# Supported CPython versions:
+# https://en.wikipedia.org/wiki/CPython#Version_history
+python:
+ - pypy3
+ - pypy
+ - 2.7
+ - 3.6
+ - 3.5
+ - 3.4
+ - 3.3
+
+sudo: false
+
+install:
+ - pip install pep8 pyflakes
+ - pip install pillow
+ - pip install coverage
+
+script:
+ - python setup.py develop
+ - coverage run --include="src/*" test/test_manager.py
+ # Static analysis
+ - pyflakes .
+ - pep8 --statistics --count .
+
+after_success:
+ - coverage report
+ - pip install codecov
+ - codecov
+
+matrix:
+  fast_finish: true
+  allow_failures:
+  - python: pypy3
+  - python: 3.6
+  - python: 3.5
+  - python: 3.4
+  - python: 3.3
