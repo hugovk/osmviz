@@ -4,10 +4,10 @@ setup(
     name='osmviz',
     version='1.0',
     long_description=open('README.md', 'r').read(),
-    packages= find_packages('src'),
-    package_dir = {'': 'src'},
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     zip_safe=False,
-    requires = (
+    requires=(
        'PyGame',
        'PIL',
     )

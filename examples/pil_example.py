@@ -8,8 +8,8 @@ import PIL.Image as Image
 
 imgr = PILImageManager('RGB')
 osm = OSMManager(image_manager=imgr)
-image,bnds = osm.createOSMImage( (30,35,-117,-112), 9 )
+image, bnds = osm.createOSMImage((30, 35, -117, -112), 9)
 wh_ratio = float(image.size[0]) / image.size[1]
-image2 = image.resize( (int(800*wh_ratio),800), Image.ANTIALIAS )
+image2 = image.resize((int(800*wh_ratio), 800), Image.ANTIALIAS)
 del image
 image2.show()
