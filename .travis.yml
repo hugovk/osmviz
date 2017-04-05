@@ -16,16 +16,21 @@ sudo: false
 install:
  - pip install pep8 pyflakes
  - pip install pillow
+ - pip install coverage
 
 script:
- - cd test
- - ./test.sh
+ - coverage run --include="src/*" test/test_manager.py
  # Static analysis
  - pyflakes .
 
 after_script:
  # Static analysis
  - pep8 --statistics --count .
+
+after_success:
+ - coverage report
+ - pip install codecov
+ - codecov
 
 matrix:
   fast_finish: true
