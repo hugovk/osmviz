@@ -15,8 +15,11 @@ sudo: false
 
 install:
  - pip install pep8 pyflakes
+ - pip install pillow
 
 script:
+ - cd test
+ - ./test.sh
  # Static analysis
  - pyflakes .
 
