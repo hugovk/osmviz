@@ -19,6 +19,7 @@ install:
  - pip install coverage
 
 script:
+ - python setup.py develop
  - coverage run --include="src/*" test/test_manager.py
  # Static analysis
  - pyflakes .
