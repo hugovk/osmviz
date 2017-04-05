@@ -29,7 +29,8 @@ def test_sim(route, zoom, image="images/train.png"):
         elif time > time_window[1]:
             return route[-1][:2]
 
-        for (lat1, lon1, time1), (lat2, lon2, time2) in zip(route[:-1], route[1:]):
+        for (lat1, lon1, time1), (lat2, lon2, time2) in zip(
+                route[:-1], route[1:]):
             if time1 < time <= time2:
                 break
 

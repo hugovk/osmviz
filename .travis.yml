@@ -23,9 +23,6 @@ script:
  - coverage run --include="src/*" test/test_manager.py
  # Static analysis
  - pyflakes .
-
-after_script:
- # Static analysis
  - pep8 --statistics --count .
 
 after_success:
