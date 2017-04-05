@@ -1,0 +1,34 @@
+language: python
+
+# Supported CPython versions:
+# https://en.wikipedia.org/wiki/CPython#Version_history
+python:
+ - pypy3
+ - pypy
+ - 2.7
+ - 3.6
+ - 3.5
+ - 3.4
+ - 3.3
+
+sudo: false
+
+install:
+ - pip install pep8 pyflakes
+
+script:
+ # Static analysis
+ - pyflakes .
+
+after_script:
+ # Static analysis
+ - pep8 --statistics --count .
+
+matrix:
+  fast_finish: true
+  allow_failures:
+  - python: pypy3
+  - python: 3.6
+  - python: 3.5
+  - python: 3.4
+  - python: 3.3

@@ -1,6 +1,5 @@
-from osmviz.animation import SimViz, TrackingViz, Simulation
-from osmviz.manager import PygameImageManager, PILImageManager, OSMManager
-import pygame
+from osmviz.animation import TrackingViz, Simulation
+from osmviz.manager import PILImageManager, OSMManager
 import PIL.Image as Image
 
 Inf = float('inf')
@@ -24,7 +23,7 @@ def find_bounds(route):
 
 def test_sim( route, zoom, image="images/train.png" ):
     time_window,bbox = find_bounds(route)
-    
+
     def getLL(time):
         if time <= time_window[0]:
             return route[0][:2]

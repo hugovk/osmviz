@@ -48,7 +48,7 @@ class ImageManager(object):
 
   def __init__(self):
     self.image = None
-  
+
   ### TO BE OVERRIDDEN ###
 
   def paste_image(self,img,xy):
@@ -95,7 +95,7 @@ class ImageManager(object):
 
   def paste_image_file(self,imagef,xy):
     """
-    Given the filename of an image, and the x,y coordinates of the 
+    Given the filename of an image, and the x,y coordinates of the
     location at which to place the top left corner of the contents
     of that image, pastes the image into this object's internal image.
     """
@@ -112,18 +112,18 @@ class ImageManager(object):
 
   def getImage(self):
     """
-    Returns some representation of the internal image. The returned value 
+    Returns some representation of the internal image. The returned value
     is not for use by the OSMManager.
     """
     return self.image
-    
+
 
 
 class PygameImageManager(ImageManager):
   """
   An ImageManager which works with Pygame images.
   """
-  
+
   def __init__(self):
     ImageManager.__init__(self)
     try: import pygame
@@ -162,8 +162,8 @@ class PILImageManager(ImageManager):
     return self.PILImage.new(self.mode,(width,height))
 
   def load_image_file(self,imagef):
-    return self.PILImage.open(imagef);    
-  
+    return self.PILImage.open(imagef);
+
   def paste_image(self,img,xy):
     self.getImage().paste( img,xy )
 
@@ -173,7 +173,7 @@ class OSMManager(object):
   """
   An OSMManager manages the retrieval and storage of Open Street Map
   images. The basic utility is the createOSMImage() method which
-  automatically gets all the images needed, and tiles them together 
+  automatically gets all the images needed, and tiles them together
   into one big image.
   """
   def __init__(self, **kwargs):
@@ -183,7 +183,7 @@ class OSMManager(object):
 
     cache - path (relative or absolute) to directory where tiles downloaded
             from OSM server should be saved. Default "/tmp".
-           
+
     server - URL of OSM server from which to retrieve OSM tiles. This
              should be fully qualified, including the protocol.
              Default "http://tile.openstreetmap.org"
@@ -194,10 +194,10 @@ class OSMManager(object):
     cache = kwargs.get('cache')
     server = kwargs.get('server')
     mgr = kwargs.get('image_manager')
-    
+
     self.cache = None
-    
-    if cache: 
+
+    if cache:
       if not os.path.isdir(cache):
         try:
           os.makedirs(cache, 0766)
@@ -219,18 +219,18 @@ class OSMManager(object):
       if not os.access(self.cache, os.R_OK | os.W_OK):
         print " ERROR: Insufficient access to %s." % self.cache
         raise Exception, "Unable to find/create/use maptile cache directory."
-      
-    if server: 
+
+    if server:
       self.server = server
-    else:      
+    else:
       self.server = "http://tile.openstreetmap.org"
-    
+
     # Make a hash of the server URL to use in cached tile filenames.
     md5 = hashlib.md5()
     md5.update(self.server)
     self.cache_prefix =  'osmviz-%s-' % md5.hexdigest()[:5]
 
-    if mgr: # Assume it's a valid manager 
+    if mgr: # Assume it's a valid manager
       self.manager = mgr
     else:
       raise Exception, "OSMManager.__init__ requires argument image_manager"
@@ -245,8 +245,8 @@ class OSMManager(object):
     lat_rad = lat_deg * math.pi / 180.0
     n = 2.0 ** zoom
     xtile = int((lon_deg + 180.0) / 360.0 * n)
-    ytile = int((1.0 - math.log(math.tan(lat_rad) + 
-                                (1 / math.cos(lat_rad))) 
+    ytile = int((1.0 - math.log(math.tan(lat_rad) +
+                                (1 / math.cos(lat_rad)))
                  / math.pi) / 2.0 * n)
     return(xtile, ytile)
 
@@ -271,7 +271,7 @@ class OSMManager(object):
   def retrieveTileImage(self,tile_coord,zoom):
     """
     Given x,y coord of the tile, and the zoom level,
-    retrieves the file to disk if necessary and 
+    retrieves the file to disk if necessary and
     returns the local filename.
     """
     filename = self.getLocalTileFilename(tile_coord,zoom)
@@ -309,8 +309,8 @@ class OSMManager(object):
     if not self.manager:
       raise Exception, "No ImageManager was specified, cannot create image."
 
-    topleft = minX, minY = self.getTileCoord(minlon, maxlat, zoom);
-    bottomright = maxX, maxY = self.getTileCoord(maxlon, minlat, zoom);
+    topleft = minX, minY = self.getTileCoord(minlon, maxlat, zoom)
+    maxX, maxY = self.getTileCoord(maxlon, minlat, zoom);
     new_maxlat, new_minlon = self.tileNWLatlon( topleft, zoom )
     new_minlat, new_maxlon = self.tileNWLatlon( (maxX+1,maxY+1), zoom )
     # tiles are 256x256
@@ -326,7 +326,7 @@ class OSMManager(object):
         y_off = 256*(y-minY)
         self.manager.paste_image_file( fname, (x_off,y_off) )
     print "... done."
-    return (self.manager.getImage(), 
+    return (self.manager.getImage(),
             (new_minlat, new_maxlat, new_minlon, new_maxlon))
 
 
