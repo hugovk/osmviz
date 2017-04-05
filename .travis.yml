@@ -19,6 +19,9 @@ install:
 script:
  # Static analysis
  - pyflakes .
+
+after_script:
+ # Static analysis
  - pep8 --statistics --count .
 
 matrix:
