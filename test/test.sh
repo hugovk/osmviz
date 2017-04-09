@@ -1,4 +1,4 @@
 #!/bin/bash
 export PYTHONPATH=$PYTHONPATH:../src
-python test_manager.py
-# python test_animation.py
+python functional/test_manager.py
+# python functional/test_animation.py

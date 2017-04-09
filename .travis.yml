@@ -20,7 +20,7 @@ install:
 
 script:
  - python setup.py develop
- - coverage run --include="src/*" test/test_manager.py
+ - coverage run --include="src/*" test/functional/test_manager.py
  # Static analysis
  - pyflakes .
  - pep8 --statistics --count .
