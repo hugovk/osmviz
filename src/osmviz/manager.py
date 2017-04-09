@@ -193,16 +193,17 @@ class OSMManager(object):
         url - Full URL template from which to retrieve OSM tiles. This should
                     be fully qualified, including the protocol, and should
                     contain placeholders for zoom ('{z}'), coordinate x and y
-                    ('{x}' and '{y}'), and optionally scale ('{s}') for hi-dpi
-                    tile retrieval.
+                    ('{x}' and '{y}'), and optionally scale ('{s}') for high-
+                    resolution tile retrieval.
                     Note: when specified, the server parameter is ignored.
-                    Default: server appended with "/{z}/{x}/{y}.png"
+                    Default: server with "/{z}/{x}/{y}.png" appended
 
-        scale - Scale to use for hi-dpi tiles. Note that both url and scale
-                    must be set correctly for correct hi-dpi support. Normal
-                    tiles are 256, hi-dpi tiles are scale times 256 (e.g.,
-                    512 when scale is 2).
-                    Default 1 (regular dpi)
+        scale - Scale to use for high-resolution tiles. Note that both URL and
+                    scale must be set correctly for correct high-resolution
+                    support. Standard tile size is 256 pixels, high-resolution
+                    tiles are scale times 256 pixels (e.g., 512 pixels when
+                    scale is 2).
+                    Default 1 (standard resolution)
 
         image_manager - ImageManager instance which will be used to do all
                             image manipulation. You must provide this.
@@ -239,12 +240,12 @@ class OSMManager(object):
                 raise Exception("Unable to find/create/use maptile cache "
                                 "directory.")
 
-        # Get url template, which supports the following fields:
+        # Get URL template, which supports the following fields:
         #  * {z}: tile zoom level
         #  * {x}, {y}: coordinate x and y
-        #  * {s}: hidpi scale factor.
-        # Note: hi-dpi is not currently supported by the default OSM tile
-        # servers, but this can look like this, for example:
+        #  * {s}: high-resolution scale factor.
+        # Note: high-resolution is not currently supported by the default OSM
+        # tile servers, but this can look like this, for example:
         #  * http://server/layer@{s}x/{z}/{x}/{y}.png
         #  * http://server/layer/{z}/{x}/{y}@{s}x.png (e.g. Mapbox)
         #  * http://server/layer/{z}/{x}/{y}.png?scale={s} (e.g. Google Maps)
@@ -255,13 +256,14 @@ class OSMManager(object):
         else:
             self.url = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
 
-        # Default scale is 1x. Hi-dpi tiles can be 2x, 3x, 4x or even higher
+        # Default scale is 1. High-resolution tiles use 1.5, 2 (most common),
+        # 3, 4 or even more.
         if scale:
             self.scale = scale
         else:
             self.scale = 1
 
-        # Tile size is 256 multiplied by scale
+        # Tile size is 256 pixels multiplied by scale
         self.tile_size = 256 * self.scale
 
         # Make a hash of the server URL to use in cached tile filenames.
