@@ -268,7 +268,7 @@ class OSMManager(object):
 
         # Make a hash of the server URL to use in cached tile filenames.
         md5 = hashlib.md5()
-        md5.update(self.url.replace('{s}', str(self.scale)).encode("utf-8"))
+        md5.update(self.url.format(s=str(self.scale)).encode("utf-8"))
         self.cache_prefix = 'osmviz-%s-' % md5.hexdigest()[:5]
 
         if mgr:  # Assume it's a valid manager
@@ -295,11 +295,8 @@ class OSMManager(object):
         Given x, y coord of the tile to download, and the zoom level,
         returns the URL from which to download the image.
         """
-        return self.url \
-            .replace("{z}", str(zoom)) \
-            .replace("{x}", str(tile_coord[0])) \
-            .replace("{y}", str(tile_coord[1])) \
-            .replace("{s}", str(self.scale))
+        return self.url.format(x=str(tile_coord[0]), y=str(tile_coord[1]),
+                               z=str(zoom), s=str(self.scale))
 
     def getLocalTileFilename(self, tile_coord, zoom):
         """
