@@ -268,7 +268,7 @@ class OSMManager(object):
 
         # Make a hash of the server URL to use in cached tile filenames.
         md5 = hashlib.md5()
-        md5.update(self.url.format(s=str(self.scale)).encode("utf-8"))
+        md5.update(self.url.replace("{s}", str(self.scale)).encode("utf-8"))
         self.cache_prefix = 'osmviz-%s-' % md5.hexdigest()[:5]
 
         if mgr:  # Assume it's a valid manager
