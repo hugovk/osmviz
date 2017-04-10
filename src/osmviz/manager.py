@@ -295,8 +295,8 @@ class OSMManager(object):
         Given x, y coord of the tile to download, and the zoom level,
         returns the URL from which to download the image.
         """
-        return self.url.format(x=str(tile_coord[0]), y=str(tile_coord[1]),
-                               z=str(zoom), s=str(self.scale))
+        return self.url.format(x=tile_coord[0], y=tile_coord[1], z=zoom,
+                               s=self.scale)
 
     def getLocalTileFilename(self, tile_coord, zoom):
         """
