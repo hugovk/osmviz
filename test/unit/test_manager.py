@@ -6,7 +6,7 @@ from __future__ import print_function, unicode_literals
 
 import unittest
 
-from osmviz.manager import ImageManager, PILImageManager
+from osmviz.manager import ImageManager, OSMManager, PILImageManager
 
 
 class TestImageManager(unittest.TestCase):
@@ -78,7 +78,6 @@ class TestPILImageManager(unittest.TestCase):
         xy = (0, 0)
 
         # Act / Assert
-#         self.imgr.paste_image_file(imagef, xy)
         self.assertRaises(Exception,
                           lambda: self.imgr.paste_image_file(imagef, xy))
 
@@ -107,7 +106,6 @@ class TestPILImageManager(unittest.TestCase):
 
         # Assert
         self.assertEqual(self.imgr.image.size, (200, 100))
-        # TODO assert image for correctness
 
     def test_getImage(self):
         # Arrange
@@ -120,6 +118,89 @@ class TestPILImageManager(unittest.TestCase):
 
         # Assert
         self.assertEqual(im.size, (200, 100))
+
+
+class TestOSMManager(unittest.TestCase):
+
+    def setUp(self):
+        imgr = PILImageManager('RGB')
+        self.osm = OSMManager(image_manager=imgr)
+
+    def test_getTileCoord(self):
+        # Arrange
+        lon_deg = 24.945831
+        lat_deg = 60.192059
+        zoom = 15
+
+        # Act
+        coord = self.osm.getTileCoord(lon_deg, lat_deg, zoom)
+
+        # Assert
+        self.assertEqual(coord, (18654, 9480))
+
+    def test_getTileURL(self):
+        # Arrange
+        tile_coord = (18654, 9480)
+        zoom = 15
+
+        # Act
+        url = self.osm.getTileURL(tile_coord, zoom)
+
+        # Assert
+        self.assertEqual(url,
+                         "http://tile.openstreetmap.org/15/18654/9480.png")
+
+    def test_getLocalTileFilename(self):
+        # Arrange
+        tile_coord = (18654, 9480)
+        zoom = 15
+
+        # Act
+        filename = self.osm.getLocalTileFilename(tile_coord, zoom)
+
+        # Assert
+        self.assertTrue(filename.endswith("-15_18654_9480.png"))
+
+    def test_retrieveTileImage(self):
+        # Arrange
+        tile_coord = (18654, 9480)
+        zoom = 15
+
+        # Act
+        filename = self.osm.retrieveTileImage(tile_coord, zoom)
+
+        # Assert
+        self.assertTrue(filename.endswith("-15_18654_9480.png"))
+
+    def test_tileNWLatlon(self):
+        # Arrange
+        tile_coord = (18654, 9480)
+        zoom = 15
+
+        # Act
+        lat_deg, lon_deg = self.osm.tileNWLatlon(tile_coord, zoom)
+
+        # Assert
+        self.assertEqual((lat_deg, lon_deg),
+                         (60.19615576604439, 24.93896484375))
+
+    def test_createOSMImage(self):
+        # Arrange
+        minlat = 59.9225115912
+        maxlat = 60.297839409
+        minlon = 24.7828044415
+        maxlon = 25.2544966708
+        bounds = (minlat, maxlat, minlon, maxlon)
+        zoom = 8
+
+        # Act
+        im, new_bounds = self.osm.createOSMImage(bounds, zoom)
+
+        # Assert
+        self.assertEqual(new_bounds,
+                         (59.5343180010956, 60.930432202923335,
+                          23.90625, 25.3125))
+        self.assertEqual(im.size, (256, 512))
 
 
 if __name__ == '__main__':
