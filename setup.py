@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='osmviz',
-    version='1.0.1',
+    version='1.1',
     description='OSMViz is a small set of Python tools for retrieving '
                 'and using Mapnik tiles from a Slippy Map server '
                 '(you may know these as OpenStreetMap images).',
