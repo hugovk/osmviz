@@ -29,7 +29,6 @@ The Simulation class just does the following:
 
 Keyboard input is accepted to control the speed of the simulation.
 """
-
 # Copyright (c) 2010 Colin Bick, Robert Damphousse
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
