@@ -35,6 +35,7 @@ def makeInterpolator(begin_ll, end_ll, begin_t, end_t):
             return (blat + frac*(elat-blat), blon + frac*(elon-blon))
     return ret
 
+
 for i in range(num_trains):
     lat = bottom_lat + i * (top_lat-bottom_lat) / (num_trains-1)
 

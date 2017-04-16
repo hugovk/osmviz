@@ -34,11 +34,19 @@ Basic idea:
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-import math
-import urllib
+from __future__ import print_function, unicode_literals
 import hashlib
+import math
 import os.path as path
 import os
+try:
+    # Python 2
+    from urllib import urlretrieve, FancyURLopener
+    import urllib
+except ImportError:
+    # Python 3
+    from urllib.request import urlretrieve, FancyURLopener
+    import urllib.request._urlopener
 
 
 class ImageManager(object):
@@ -105,7 +113,7 @@ class ImageManager(object):
 
         try:
             img = self.load_image_file(imagef)
-        except Exception, e:
+        except Exception as e:
             raise Exception("Could not load image "+str(imagef)+"\n"+str(e))
 
         self.paste_image(img, xy)
@@ -219,13 +227,13 @@ class OSMManager(object):
         if cache:
             if not os.path.isdir(cache):
                 try:
-                    os.makedirs(cache, 0766)
+                    os.makedirs(cache, 0o766)
                     self.cache = cache
-                    print "WARNING: Created cache dir", cache
+                    print("WARNING: Created cache dir", cache)
                 except:
-                    print "Could not make cache dir", cache
+                    print("Could not make cache dir", cache)
             elif not os.access(cache, os.R_OK | os.W_OK):
-                print "Insufficient privileges on cache dir", cache
+                print("Insufficient privileges on cache dir", cache)
             else:
                 self.cache = cache
 
@@ -234,9 +242,9 @@ class OSMManager(object):
                           os.getenv("TMP") or
                           os.getenv("TEMP") or
                           "/tmp")
-            print "WARNING: Using %s to cache maptiles." % self.cache
+            print("WARNING: Using %s to cache maptiles." % self.cache)
             if not os.access(self.cache, os.R_OK | os.W_OK):
-                print " ERROR: Insufficient access to %s." % self.cache
+                print(" ERROR: Insufficient access to %s." % self.cache)
                 raise Exception("Unable to find/create/use maptile cache "
                                 "directory.")
 
@@ -318,8 +326,8 @@ class OSMManager(object):
         if not path.isfile(filename):
             url = self.getTileURL(tile_coord, zoom)
             try:
-                urllib.urlretrieve(url, filename=filename)
-            except Exception, e:
+                urlretrieve(url, filename=filename)
+            except Exception as e:
                 raise Exception("Unable to retrieve URL: "+url+"\n"+str(e))
         return filename
 
@@ -336,7 +344,7 @@ class OSMManager(object):
         lat_deg = lat_rad * 180.0 / math.pi
         return(lat_deg, lon_deg)
 
-    def createOSMImage(self, (minlat, maxlat, minlon, maxlon), zoom):
+    def createOSMImage(self, bounds, zoom):
         """
         Given bounding latlons (in degrees), and an OSM zoom level,
         creates an image constructed from OSM tiles.
@@ -345,6 +353,7 @@ class OSMManager(object):
         and bounds is the (latmin, latmax, lonmin, lonmax) bounding box
         which the tiles cover.
         """
+        (minlat, maxlat, minlon, maxlon) = bounds
         if not self.manager:
             raise Exception("No ImageManager was specified, cannot create "
                             "image.")
@@ -356,7 +365,7 @@ class OSMManager(object):
         pix_width = (maxX-minX+1)*self.tile_size
         pix_height = (maxY-minY+1)*self.tile_size
         self.manager.prepare_image(pix_width, pix_height)
-        print "Retrieving %d tiles..." % ((1+maxX-minX)*(1+maxY-minY), )
+        print("Retrieving %d tiles..." % ((1+maxX-minX)*(1+maxY-minY), ))
 
         for x in range(minX, maxX+1):
             for y in range(minY, maxY+1):
@@ -364,14 +373,14 @@ class OSMManager(object):
                 x_off = self.tile_size*(x-minX)
                 y_off = self.tile_size*(y-minY)
                 self.manager.paste_image_file(fname, (x_off, y_off))
-        print "... done."
+        print("... done.")
         return (self.manager.getImage(),
                 (new_minlat, new_maxlat, new_minlon, new_maxlon))
 
 
-class _useragenthack(urllib.FancyURLopener):
+class _useragenthack(FancyURLopener):
     def __init__(self, *args):
-        urllib.FancyURLopener.__init__(self, *args)
+        FancyURLopener.__init__(self, *args)
         for i, (header, val) in enumerate(self.addheaders):
             if header == "User-Agent":
                 del self.addheaders[i]
@@ -379,6 +388,12 @@ class _useragenthack(urllib.FancyURLopener):
         self.addheader('User-Agent',
                        'OSMViz/1.0 +http://cbick.github.com/osmviz')
 
+
 # import httplib
 # httplib.HTTPConnection.debuglevel = 1
-urllib._urlopener = _useragenthack()
+try:
+    # Python 2
+    urllib._urlopener = _useragenthack()
+except AttributeError:
+    # Python 3
+    urllib.request._urlopener = _useragenthack()

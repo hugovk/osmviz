@@ -51,9 +51,11 @@ Keyboard input is accepted to control the speed of the simulation.
 # THE SOFTWARE.
 
 
-from manager import OSMManager, PygameImageManager
+from __future__ import print_function, unicode_literals
+from .manager import OSMManager, PygameImageManager
 import pygame
 import time
+from functools import reduce
 
 Inf = float('inf')
 
@@ -267,7 +269,7 @@ class Simulation(object):
         hours = int(self.time/3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int((self.time % 60))
-        print "%02d:%02d:%02d" % (hours, minutes, seconds)
+        print("%02d:%02d:%02d" % (hours, minutes, seconds))
 
     def getXY(self, lat, lon, bounds, ssize):
         """
@@ -299,7 +301,7 @@ class Simulation(object):
         notec = pygame.Color(200, 200, 80)
 
         fnt = None
-        if isinstance(font, basestring):
+        if isinstance(font, str):
             try:
                 fnt = pygame.font.Font(font, fontsize)
             except:
@@ -382,7 +384,7 @@ class Simulation(object):
                     screen.blit(text, (mousex, mousey-10))
                     del text
                 else:
-                    print selected.getLabel()
+                    print(selected.getLabel())
 
             pygame.display.flip()
 

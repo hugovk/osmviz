@@ -221,6 +221,7 @@ def colorize_file(file=None, outstream=sys.stdout, standalone=True):
     if file:
         sourcefile.close()
 
+
 if __name__ == "__main__":
     import os
     if os.environ.get('PATH_TRANSLATED'):
