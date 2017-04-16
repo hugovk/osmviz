@@ -254,10 +254,9 @@ class Simulation(object):
 
     def __sortVizs(self):
         """Sorts tracked objects in order of Drawing Order"""
-        def tcmp(t1, t2):
-            return cmp(t1.getDrawingOrder(),
-                       t2.getDrawingOrder())
-        self.all_vizs.sort(cmp=tcmp)
+        def keyfunction(item):
+            return item.getDrawingOrder()
+        self.all_vizs.sort(key=keyfunction)
 
     def setTime(self, time):
         """
