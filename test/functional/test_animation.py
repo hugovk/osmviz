@@ -20,7 +20,7 @@ def find_bounds(route):
     return (min_time, max_time), (min_lat, max_lat, min_lon, max_lon)
 
 
-def test_sim(route, zoom, image="images/train.png"):
+def test_sim(route, zoom, image="test/images/train.png"):
     time_window, bbox = find_bounds(route)
 
     def get_ll(time):
