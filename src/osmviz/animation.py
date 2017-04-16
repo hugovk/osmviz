@@ -329,7 +329,7 @@ class Simulation(object):
         lastTime = self.time
 
         def getXY(lat, lon):
-            self.getXY(lat, lon, new_bounds, windowsize)
+            return self.getXY(lat, lon, new_bounds, windowsize)
 
         # Main simulation loop #
 
