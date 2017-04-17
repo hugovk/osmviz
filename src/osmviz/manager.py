@@ -46,7 +46,7 @@ try:
 except ImportError:
     # Python 3
     from urllib.request import urlretrieve, FancyURLopener
-    import urllib.request._urlopener
+    import urllib.request
 
 
 class ImageManager(object):
