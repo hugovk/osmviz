@@ -27,7 +27,6 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
     include_package_data=True,
-    use_2to3=True,
     # osmviz actually only requires either PyGame or PIL, not necessarily both
     requires=(
        'PyGame',

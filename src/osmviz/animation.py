@@ -29,7 +29,6 @@ The Simulation class just does the following:
 
 Keyboard input is accepted to control the speed of the simulation.
 """
-
 # Copyright (c) 2010 Colin Bick, Robert Damphousse
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -51,9 +50,11 @@ Keyboard input is accepted to control the speed of the simulation.
 # THE SOFTWARE.
 
 
-from manager import OSMManager, PygameImageManager
+from __future__ import print_function, unicode_literals
+from .manager import OSMManager, PygameImageManager
 import pygame
 import time
+from functools import reduce
 
 Inf = float('inf')
 
@@ -252,10 +253,9 @@ class Simulation(object):
 
     def __sortVizs(self):
         """Sorts tracked objects in order of Drawing Order"""
-        def tcmp(t1, t2):
-            return cmp(t1.getDrawingOrder(),
-                       t2.getDrawingOrder())
-        self.all_vizs.sort(cmp=tcmp)
+        def keyfunction(item):
+            return item.getDrawingOrder()
+        self.all_vizs.sort(key=keyfunction)
 
     def setTime(self, time):
         """
@@ -267,7 +267,7 @@ class Simulation(object):
         hours = int(self.time/3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int((self.time % 60))
-        print "%02d:%02d:%02d" % (hours, minutes, seconds)
+        print("%02d:%02d:%02d" % (hours, minutes, seconds))
 
     def getXY(self, lat, lon, bounds, ssize):
         """
@@ -299,7 +299,7 @@ class Simulation(object):
         notec = pygame.Color(200, 200, 80)
 
         fnt = None
-        if isinstance(font, basestring):
+        if isinstance(font, str):
             try:
                 fnt = pygame.font.Font(font, fontsize)
             except:
@@ -328,7 +328,7 @@ class Simulation(object):
         lastTime = self.time
 
         def getXY(lat, lon):
-            self.getXY(lat, lon, new_bounds, windowsize)
+            return self.getXY(lat, lon, new_bounds, windowsize)
 
         # Main simulation loop #
 
@@ -382,7 +382,7 @@ class Simulation(object):
                     screen.blit(text, (mousex, mousey-10))
                     del text
                 else:
-                    print selected.getLabel()
+                    print(selected.getLabel())
 
             pygame.display.flip()
 
