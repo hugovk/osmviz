@@ -27,7 +27,7 @@ Basic&nbsp;idea:<br>
 <tr bgcolor="#aa55cc">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
-    
+
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
 </td><td width="25%" valign=top><a href="os.html">os</a><br>
@@ -38,7 +38,7 @@ Basic&nbsp;idea:<br>
 <tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
-    
+
 <tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl>
 <dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
@@ -60,7 +60,7 @@ Basic&nbsp;idea:<br>
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="ImageManager">class <strong>ImageManager</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
-    
+
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>Simple&nbsp;abstract&nbsp;interface&nbsp;for&nbsp;creating&nbsp;and&nbsp;manipulating&nbsp;images,&nbsp;to&nbsp;be&nbsp;used<br>
 by&nbsp;an&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;<a href="__builtin__.html#object">object</a>.<br>&nbsp;</tt></td></tr>
@@ -104,7 +104,7 @@ Data descriptors defined here:<br>
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="OSMManager">class <strong>OSMManager</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
-    
+
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>An&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;manages&nbsp;the&nbsp;retrieval&nbsp;and&nbsp;storage&nbsp;of&nbsp;Open&nbsp;Street&nbsp;Map<br>
 images.&nbsp;The&nbsp;basic&nbsp;utility&nbsp;is&nbsp;the&nbsp;<a href="#OSMManager-createOSMImage">createOSMImage</a>()&nbsp;method&nbsp;which<br>
@@ -120,7 +120,7 @@ cache&nbsp;-&nbsp;path&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;to&nbsp;direct
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
 server&nbsp;-&nbsp;URL&nbsp;of&nbsp;OSM&nbsp;server&nbsp;from&nbsp;which&nbsp;to&nbsp;retrieve&nbsp;OSM&nbsp;tiles.&nbsp;This<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;fully&nbsp;qualified,&nbsp;including&nbsp;the&nbsp;protocol.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;"<a href="http://tile.openstreetmap.org">http://tile.openstreetmap.org</a>"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;"<a href="https://tile.openstreetmap.org">https://tile.openstreetmap.org</a>"<br>
 &nbsp;<br>
 image_manager&nbsp;-&nbsp;<a href="#ImageManager">ImageManager</a>&nbsp;instance&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;do&nbsp;all<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;manipulation.&nbsp;You&nbsp;must&nbsp;provide&nbsp;this.</tt></dd></dl>
@@ -139,7 +139,7 @@ the&nbsp;osm&nbsp;server&nbsp;every&nbsp;time&nbsp;the&nbsp;thing&nbsp;runs.</tt
 
 <dl><dt><a name="OSMManager-getTileCoord"><strong>getTileCoord</strong></a>(self, lon_deg, lat_deg, zoom)</dt><dd><tt>Given&nbsp;lon,lat&nbsp;coords&nbsp;in&nbsp;DEGREES,&nbsp;and&nbsp;a&nbsp;zoom&nbsp;level,<br>
 returns&nbsp;the&nbsp;(x,y)&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;corresponding&nbsp;tile&nbsp;#.<br>
-(<a href="http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python">http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python</a>)</tt></dd></dl>
+(<a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python</a>)</tt></dd></dl>
 
 <dl><dt><a name="OSMManager-getTileURL"><strong>getTileURL</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile&nbsp;to&nbsp;download,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
 returns&nbsp;the&nbsp;URL&nbsp;from&nbsp;which&nbsp;to&nbsp;download&nbsp;the&nbsp;image.</tt></dd></dl>
@@ -165,7 +165,7 @@ Data descriptors defined here:<br>
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="PILImageManager">class <strong>PILImageManager</strong></a>(<a href="osmviz.manager.html#ImageManager">ImageManager</a>)</font></td></tr>
-    
+
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>An&nbsp;<a href="#ImageManager">ImageManager</a>&nbsp;which&nbsp;works&nbsp;with&nbsp;PIL&nbsp;images.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
@@ -214,7 +214,7 @@ Data descriptors inherited from <a href="osmviz.manager.html#ImageManager">Image
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="PygameImageManager">class <strong>PygameImageManager</strong></a>(<a href="osmviz.manager.html#ImageManager">ImageManager</a>)</font></td></tr>
-    
+
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>An&nbsp;<a href="#ImageManager">ImageManager</a>&nbsp;which&nbsp;works&nbsp;with&nbsp;Pygame&nbsp;images.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>

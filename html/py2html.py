@@ -6,10 +6,10 @@
 
 # Based on the code from JŸrgen Herman, the following changes where made:
 #
-# Mike Brown <http://skew.org/~mike/>:
+# Mike Brown <https://skew.org/~mike/>:
 # - make script callable as a CGI and a Apache handler for .py files.
 #
-# Christopher Arndt <http://chrisarndt.de>:
+# Christopher Arndt <https://chrisarndt.de>:
 # - make script usable as a module
 # - use class tags and style sheet instead of <style> tags
 # - when called as a script, add HTML header and footer
@@ -52,7 +52,7 @@ _css_classes = {
 
 _HTML_HEADER = """\
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
+  "https://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <title>%%(title)s</title>

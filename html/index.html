@@ -38,15 +38,15 @@ With OSMViz you can:
 <li>Patch tiles together into a bigger map
 <li>Easily animate stuff on that map (requires pygame)
 </ul>
-OSMViz is released under the <a href="http://www.opensource.org/licenses/mit-license.php" target="TOP">MIT license</a>. Currently it supports images using PIL and/or Pygame.
+OSMViz is released under the <a href="https://opensource.org/licenses/mit-license.php" target="TOP">MIT license</a>. Currently it supports images using Pillow and/or Pygame.
 </p>
 
 <h4>A note about OpenStreetMap maps</h4>
 <p>
-If you choose to pull tiles from the <a href="http://www.openstreetmap.org" target="TOP">openstreetmap.org</a> server, then there are some things you should know:
+If you choose to pull tiles from the <a href="https://www.openstreetmap.org" target="TOP">openstreetmap.org</a> server, then there are some things you should know:
 <ul>
-<li> These tiles have a usage policy, available <a href="http://wiki.openstreetmap.org/wiki/Tile_usage_policy" target="TOP">here</a>.
-<li> These tiles are (c) <a href="http://www.openstreetmap.org" target="TOP">OpenStreetMap</a> and contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="TOP">CC-BY-SA</a>
+<li> These tiles have a usage policy, available <a href="https://wiki.openstreetmap.org/wiki/Tile_usage_policy" target="TOP">here</a>.
+<li> These tiles are (c) <a href="https://www.openstreetmap.org" target="TOP">OpenStreetMap</a> and contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="TOP">CC-BY-SA</a>
 </ul>
 </p>
 
@@ -64,7 +64,7 @@ start_lat,start_lon = (45.77,-68.65) <span class="comment"># Northeast</span>
 end_lat,end_lon = (30.05,-118.25) <span class="comment"># Southwest</span>
 begin_time, end_time = 0, 60 <span class="comment"># In 60 seconds!</span>
 
-image_f = "images/train.png" 
+image_f = "images/train.png"
 
 <span class="comment"># Define bounds for the train and zoom level, how much map do we show?</span>
 
@@ -86,8 +86,8 @@ def locAtTime(t):
 <span class="comment"># Create a TrackingViz</span>
 
 viz = TrackingViz("Continental Espresso", image_f, locAtTime,
-                   (begin_time,end_time), 
-                   (bound_sw_lat,bound_ne_lat,bound_sw_lon,bound_ne_lon), 
+                   (begin_time,end_time),
+                   (bound_sw_lat,bound_ne_lat,bound_sw_lon,bound_ne_lon),
                   1) <span class="comment"># Drawing order</span>
 
 <span class="comment"># Add our TrackingViz to a Simulation and then run the simulation</span>
@@ -115,17 +115,17 @@ To run it yourself you need to have an existing "images/train.png" as well as an
 <h3>Requirements</h3>
 <p>
 <ul>
-<li>Python (tested using Python 2.5.x)
-<li>Animations require Pygame (tested using Pygame 1.9.1)
-<li>Image construction requires PIL (tested using PIL 1.1.6)
+<li>Python
+<li>Animations require Pygame
+<li>Image construction requires Pillow
 </ul>
 </p>
 
 <h3>Links</h3>
 <p>
-<a href="http://www.openstreetmap.org" target="TOP">OpenStreetMap</a><br>
-<a href="http://pygame.org" target="TOP">Pygame</a><br>
-<a href="http://www.pythonware.com/products/pil/" target="TOP">PIL</a>
+<a href="https://www.openstreetmap.org" target="TOP">OpenStreetMap</a><br>
+<a href="https://pygame.org" target="TOP">Pygame</a><br>
+<a href="https://python-pillow.org/" target="TOP">Pillow</a>
 </p>
 
 

@@ -196,7 +196,7 @@ class OSMManager(object):
 
         server - URL of OSM server from which to retrieve OSM tiles. This
                     should be fully qualified, including the protocol.
-                    Default "http://tile.openstreetmap.org"
+                    Default "https://tile.openstreetmap.org"
 
         url - Full URL template from which to retrieve OSM tiles. This should
                     be fully qualified, including the protocol, and should
@@ -254,15 +254,15 @@ class OSMManager(object):
         #  * {s}: high-resolution scale factor.
         # Note: high-resolution is not currently supported by the default OSM
         # tile servers, but this can look like this, for example:
-        #  * http://server/layer@{s}x/{z}/{x}/{y}.png
-        #  * http://server/layer/{z}/{x}/{y}@{s}x.png (e.g. Mapbox)
-        #  * http://server/layer/{z}/{x}/{y}.png?scale={s} (e.g. Google Maps)
+        #  * https://server/layer@{s}x/{z}/{x}/{y}.png
+        #  * https://server/layer/{z}/{x}/{y}@{s}x.png (e.g. Mapbox)
+        #  * https://server/layer/{z}/{x}/{y}.png?scale={s} (e.g. Google Maps)
         if url:
             self.url = url
         elif server:
             self.url = "%s/{z}/{x}/{y}.png" % server
         else:
-            self.url = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            self.url = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 
         # Default scale is 1. High-resolution tiles use 1.5, 2 (most common),
         # 3, 4 or even more.
@@ -289,7 +289,7 @@ class OSMManager(object):
         """
         Given lon, lat coords in DEGREES, and a zoom level,
         returns the (x, y) coordinate of the corresponding tile #.
-        (http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python)
+        (https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python)
         """
         lat_rad = lat_deg * math.pi / 180.0
         n = 2.0 ** zoom
@@ -386,7 +386,7 @@ class _useragenthack(FancyURLopener):
                 del self.addheaders[i]
                 break
         self.addheader('User-Agent',
-                       'OSMViz/1.0 +http://cbick.github.com/osmviz')
+                       'OSMViz/1.1.0 +https://hugovk.github.io/osmviz')
 
 
 # import httplib

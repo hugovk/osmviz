@@ -21,7 +21,7 @@ setup(
     keywords='osm openstreetmap tiles visualization',
     author='Colin Bick',
     author_email='colin.bick@gmail.com',
-    url='http://cbick.github.com/osmviz',
+    url='https://hugovk.github.io/osmviz',
     license='MIT',
     package_dir={'': 'src'},
     packages=find_packages(where='src'),

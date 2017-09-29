@@ -16,11 +16,11 @@ See LICENSE in this directory.
 Tiles taken from the openstreetmap.org server
 have a usage policy as outlined here:
 
-http://wiki.openstreetmap.org/wiki/Tile_usage_policy
+https://operations.osmfoundation.org/policies/tiles/
 
 These tiles are (c) OpenStreetMap & contributors, CC-BY-SA.
-OpenStreetMap: http://www.openstreetmap.org
-CC-BY-SA: http://creativecommons.org/licenses/by-sa/2.0/
+OpenStreetMap: https://www.openstreetmap.org
+CC-BY-SA: https://creativecommons.org/licenses/by-sa/2.0/
 
 You can tell OSMViz to use any slippymap server provided
 tiles that you wish, which may have its own usage policy.
