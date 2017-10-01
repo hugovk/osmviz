@@ -148,7 +148,7 @@ class TestOSMManager(unittest.TestCase):
 
         # Assert
         self.assertEqual(url,
-                         "http://tile.openstreetmap.org/15/18654/9480.png")
+                         "https://tile.openstreetmap.org/15/18654/9480.png")
 
     def test_getLocalTileFilename(self):
         # Arrange
