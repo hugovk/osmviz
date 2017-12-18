@@ -1,5 +1,7 @@
 # OSMViz
 
+[![PyPI version](https://img.shields.io/pypi/v/osmviz.svg)](https://pypi.python.org/pypi/osmviz/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/osmviz.svg)](https://pypi.python.org/pypi/osmviz/)
 [![Build Status](https://travis-ci.org/hugovk/osmviz.svg?branch=master)](https://travis-ci.org/hugovk/osmviz)
 [![codecov](https://codecov.io/gh/hugovk/osmviz/branch/master/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
 
@@ -34,7 +36,7 @@ and using Mapnik tiles from a Slippy Map server
 ## Requirements
 
 * Python 2.7 or Python 3.4+
-* Pygame and/or Pillow
+* Pillow and/or Pygame 
 
 ## Installation
 
