@@ -2,8 +2,8 @@ html{
     font-family:arial;
 }
 body{
-    margin:0px;
-    padding:0px;
+    margin:0;
+    padding:0;
     /* set these to zero and adjust elsewhere as desired - personal taste */
 }
 
@@ -11,8 +11,8 @@ body{
     position:absolute;
     width:250px;
     border-right:1px solid black;
-    border-top:0px;
-    border-bottom:0px;
+    border-top:0;
+    border-bottom:0;
     height:100%;
     z-index:1
     /* z-index is the stacking order for rendering.  if #nav is below
@@ -20,7 +20,7 @@ body{
        */
 }
 #wrapper{
-    border:0px solid green;
+    border:0 solid green;
     /* relative makes child elements be absolutely relative to this element */
     position:relative; 
     height:100%;
@@ -28,7 +28,7 @@ body{
 }
 #content{
     z-index:0;
-    border:0px solid red;
+    border:0 solid red;
     position:absolute;
 
     /* tickery: both #nav and #content have the same origin,
@@ -47,7 +47,7 @@ body{
 }
 table{
 /*position:static;*/
-border:0px solid red;
+border:0 solid red;
 }
 
 table td{
