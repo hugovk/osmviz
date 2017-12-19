@@ -332,14 +332,14 @@ class Simulation(object):
 
         # Main simulation loop #
 
-        exit = False
-        while not exit:
+        ready_to_exit = False
+        while not ready_to_exit:
 
             # Check keyboard events
             for event in pygame.event.get():
                 if (event.type == pygame.KEYDOWN and
                         event.key == pygame.K_ESCAPE):
-                    exit = True
+                    ready_to_exit = True
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     speed = max((speed + 1) * 1.4, (speed / 1.4) + 1)
                 elif (event.type == pygame.KEYDOWN and

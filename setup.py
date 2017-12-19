@@ -7,6 +7,7 @@ setup(
                 'and using Mapnik tiles from a Slippy Map server '
                 '(you may know these as OpenStreetMap images).',
     long_description=open('README.md', 'r').read(),
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     classifiers=[
         # 'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
