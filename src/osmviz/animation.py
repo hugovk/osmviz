@@ -302,7 +302,7 @@ class Simulation(object):
         if isinstance(font, str):
             try:
                 fnt = pygame.font.Font(font, fontsize)
-            except:
+            except Exception:
                 fnt = None
         elif isinstance(font, pygame.font.Font):
             fnt = font
