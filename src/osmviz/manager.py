@@ -136,7 +136,7 @@ class PygameImageManager(ImageManager):
         ImageManager.__init__(self)
         try:
             import pygame
-        except:
+        except ImportError:
             raise Exception("Pygame could not be imported!")
         self.pygame = pygame
 
@@ -165,7 +165,7 @@ class PILImageManager(ImageManager):
         self.mode = mode
         try:
             import PIL.Image
-        except:
+        except ImportError:
             raise Exception("PIL could not be imported!")
         self.PILImage = PIL.Image
 
@@ -230,7 +230,7 @@ class OSMManager(object):
                     os.makedirs(cache, 0o766)
                     self.cache = cache
                     print("WARNING: Created cache dir", cache)
-                except:
+                except Exception:
                     print("Could not make cache dir", cache)
             elif not os.access(cache, os.R_OK | os.W_OK):
                 print("Insufficient privileges on cache dir", cache)

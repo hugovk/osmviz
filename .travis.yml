@@ -13,7 +13,7 @@ python:
 sudo: false
 
 install:
- - pip install pep8 pyflakes
+ - pip install pycodestyle pyflakes
  - pip install pillow
  - pip install coverage
 
@@ -22,9 +22,10 @@ script:
  - coverage erase
  - coverage run --append --include="src/*" test/unit/test_manager.py
  - coverage run --append --include="src/*" test/functional/test_manager.py
+
  # Static analysis
  - pyflakes setup.py src test
- - pep8 --statistics --count setup.py src test
+ - pycodestyle --statistics --count setup.py src test
 
 after_success:
  - coverage report
