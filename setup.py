@@ -5,7 +5,7 @@ with open("README.md") as f:
 
 setup(
     name='osmviz',
-    version='1.1.0',
+    version='2.0.0',
     description='OSMViz is a small set of Python tools for retrieving '
                 'and using Mapnik tiles from a Slippy Map server '
                 '(you may know these as OpenStreetMap images).',
@@ -25,7 +25,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Documentation'],
     keywords='osm openstreetmap tiles visualization',
-    author='Colin Bick',
+    author='Colin Bick and Contributors',
     author_email='colin.bick@gmail.com',
     url='https://hugovk.github.io/osmviz',
     license='MIT',
