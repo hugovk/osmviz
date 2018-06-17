@@ -19,7 +19,7 @@ install:
  - pip install coverage
 
 script:
- - python setup.py develop
+ - pip install -e .
  - coverage erase
  - coverage run --append --include="src/*" test/unit/test_manager.py
  - coverage run --append --include="src/*" test/functional/test_manager.py
