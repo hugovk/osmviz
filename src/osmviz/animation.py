@@ -50,11 +50,12 @@ Keyboard input is accepted to control the speed of the simulation.
 # THE SOFTWARE.
 
 
-from __future__ import print_function, unicode_literals
-from .manager import OSMManager, PygameImageManager
-import pygame
 import time
 from functools import reduce
+
+import pygame
+
+from .manager import OSMManager, PygameImageManager
 
 Inf = float('inf')
 

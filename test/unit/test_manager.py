@@ -2,8 +2,6 @@
 """
 Unit tests for manager.py
 """
-from __future__ import print_function, unicode_literals
-
 import unittest
 
 from osmviz.manager import ImageManager, OSMManager, PILImageManager

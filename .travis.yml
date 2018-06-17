@@ -6,8 +6,6 @@ cache: pip
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python:
  - pypy3
- - pypy
- - 2.7
  - 3.7-dev
  - 3.6
  - 3.5
