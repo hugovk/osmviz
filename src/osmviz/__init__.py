@@ -18,3 +18,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+import sys
+import warnings
+
+if sys.version_info < (3,):
+    warnings.warn('You are using OSMViz with Python 2. '
+                  'OSMViz will soon be Python 3 only. '
+                  'More info: https://github.com/hugovk/osmviz/issues/18',
+                  UserWarning)
