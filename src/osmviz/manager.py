@@ -34,19 +34,12 @@ Basic idea:
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-from __future__ import print_function, unicode_literals
 import hashlib
 import math
-import os.path as path
 import os
-try:
-    # Python 2
-    from urllib import urlretrieve, FancyURLopener
-    import urllib
-except ImportError:
-    # Python 3
-    from urllib.request import urlretrieve, FancyURLopener
-    import urllib.request
+import os.path as path
+import urllib.request
+from urllib.request import FancyURLopener, urlretrieve
 
 
 class ImageManager(object):
@@ -391,9 +384,4 @@ class _useragenthack(FancyURLopener):
 
 # import httplib
 # httplib.HTTPConnection.debuglevel = 1
-try:
-    # Python 2
-    urllib._urlopener = _useragenthack()
-except AttributeError:
-    # Python 3
-    urllib.request._urlopener = _useragenthack()
+urllib.request._urlopener = _useragenthack()
