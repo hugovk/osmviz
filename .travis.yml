@@ -1,5 +1,7 @@
 language: python
 
+cache: pip
+
 # Supported CPython versions:
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python:
@@ -21,8 +23,8 @@ install:
 script:
  - pip install -e .
  - coverage erase
- - coverage run --append --include="src/*" test/unit/test_manager.py
- - coverage run --append --include="src/*" test/functional/test_manager.py
+ - travis_retry coverage run --append --include="src/*" test/unit/test_manager.py
+ - travis_retry coverage run --append --include="src/*" test/functional/test_manager.py
 
  # Static analysis
  - pyflakes setup.py src test
