@@ -27,7 +27,7 @@ script:
 
  # Static analysis
  - flake8 setup.py src test examples
- - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then black --check --diff .; fi
+ - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then black --check --diff setup.py src test examples; fi
 
 after_success:
  - coverage report
