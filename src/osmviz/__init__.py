@@ -45,4 +45,5 @@ installed, and try to check how to prevent it for future users.
 See the following for more up-to-date information:
 
 https://github.com/hugovk/osmviz/issues/18
-""")
+"""
+    )

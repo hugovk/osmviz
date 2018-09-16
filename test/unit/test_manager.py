@@ -24,7 +24,6 @@ class TestImageManager(unittest.TestCase):
 
 
 class TestPILImageManager(unittest.TestCase):
-
     def setUp(self):
         mode = "RGB"
         self.imgr = PILImageManager(mode)
@@ -47,8 +46,7 @@ class TestPILImageManager(unittest.TestCase):
         self.imgr.prepare_image(width, height)
 
         # Assert
-        self.assertRaises(Exception,
-                          lambda: self.imgr.prepare_image(width, height))
+        self.assertRaises(Exception, lambda: self.imgr.prepare_image(width, height))
 
     def test_destroy_image__no_image(self):
         # Arrange
@@ -56,7 +54,7 @@ class TestPILImageManager(unittest.TestCase):
         self.imgr.destroy_image()
 
         # Assert
-        self.assertEqual(self.imgr.image, None)
+        self.assertIsNone(self.imgr.image)
 
     def test_destroy_image__with_image(self):
         # Arrange
@@ -68,7 +66,7 @@ class TestPILImageManager(unittest.TestCase):
         self.imgr.destroy_image()
 
         # Assert
-        self.assertEqual(self.imgr.image, None)
+        self.assertIsNone(self.imgr.image)
 
     def test_paste_image_file__image_not_prepared(self):
         # Arrange
@@ -76,8 +74,7 @@ class TestPILImageManager(unittest.TestCase):
         xy = (0, 0)
 
         # Act / Assert
-        self.assertRaises(Exception,
-                          lambda: self.imgr.paste_image_file(imagef, xy))
+        self.assertRaises(Exception, lambda: self.imgr.paste_image_file(imagef, xy))
 
     def test_paste_image_file__could_not_load_image(self):
         # Arrange
@@ -88,8 +85,7 @@ class TestPILImageManager(unittest.TestCase):
         xy = (0, 0)
 
         # Act / Assert
-        self.assertRaises(Exception,
-                          lambda: self.imgr.paste_image_file(imagef, xy))
+        self.assertRaises(Exception, lambda: self.imgr.paste_image_file(imagef, xy))
 
     def test_paste_image_file(self):
         # Arrange
@@ -119,9 +115,8 @@ class TestPILImageManager(unittest.TestCase):
 
 
 class TestOSMManager(unittest.TestCase):
-
     def setUp(self):
-        imgr = PILImageManager('RGB')
+        imgr = PILImageManager("RGB")
         self.osm = OSMManager(image_manager=imgr)
 
     def test_getTileCoord(self):
@@ -145,8 +140,7 @@ class TestOSMManager(unittest.TestCase):
         url = self.osm.getTileURL(tile_coord, zoom)
 
         # Assert
-        self.assertEqual(url,
-                         "https://tile.openstreetmap.org/15/18654/9480.png")
+        self.assertEqual(url, "https://tile.openstreetmap.org/15/18654/9480.png")
 
     def test_getLocalTileFilename(self):
         # Arrange
@@ -179,8 +173,7 @@ class TestOSMManager(unittest.TestCase):
         lat_deg, lon_deg = self.osm.tileNWLatlon(tile_coord, zoom)
 
         # Assert
-        self.assertEqual((lat_deg, lon_deg),
-                         (60.19615576604439, 24.93896484375))
+        self.assertEqual((lat_deg, lon_deg), (60.19615576604439, 24.93896484375))
 
     def test_createOSMImage(self):
         # Arrange
@@ -195,13 +188,13 @@ class TestOSMManager(unittest.TestCase):
         im, new_bounds = self.osm.createOSMImage(bounds, zoom)
 
         # Assert
-        self.assertEqual(new_bounds,
-                         (59.5343180010956, 60.930432202923335,
-                          23.90625, 25.3125))
+        self.assertEqual(
+            new_bounds, (59.5343180010956, 60.930432202923335, 23.90625, 25.3125)
+        )
         self.assertEqual(im.size, (256, 512))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
 
 
