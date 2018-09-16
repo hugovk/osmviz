@@ -54,7 +54,7 @@ class TestPILImageManager(unittest.TestCase):
         self.imgr.destroy_image()
 
         # Assert
-        self.assertEqual(self.imgr.image, None)
+        self.assertIsNone(self.imgr.image)
 
     def test_destroy_image__with_image(self):
         # Arrange
@@ -66,7 +66,7 @@ class TestPILImageManager(unittest.TestCase):
         self.imgr.destroy_image()
 
         # Assert
-        self.assertEqual(self.imgr.image, None)
+        self.assertIsNone(self.imgr.image)
 
     def test_paste_image_file__image_not_prepared(self):
         # Arrange

@@ -26,12 +26,12 @@ script:
  - travis_retry coverage run --append --include="src/*" test/functional/test_manager.py
 
  # Static analysis
- - flake8 setup.py src test
+ - flake8 setup.py src test examples
  - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then black --check --diff .; fi
 
 after_success:
  - coverage report
- - pip install codecov
+ - pip install -U codecov
  - codecov
 
 matrix:
