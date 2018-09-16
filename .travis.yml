@@ -4,12 +4,16 @@ sudo: false
 
 # Supported CPython versions:
 # https://en.wikipedia.org/wiki/CPython#Version_history
-python:
- - pypy3
- - 3.7-dev
- - 3.6
- - 3.5
- - 3.4
+matrix:
+  fast_finish: true
+  include:
+    - python: "pypy3"
+    - python: '3.7'
+      dist: xenial
+      sudo: required
+    - python: '3.6'
+    - python: '3.5'
+    - python: '3.4'
 
 install:
  - pip install -U coverage
@@ -33,6 +37,3 @@ after_success:
  - coverage report
  - pip install -U codecov
  - codecov
-
-matrix:
-  fast_finish: true
