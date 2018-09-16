@@ -4,6 +4,7 @@
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/osmviz.svg)](https://pypi.python.org/pypi/osmviz/)
 [![Build Status](https://travis-ci.org/hugovk/osmviz.svg?branch=master)](https://travis-ci.org/hugovk/osmviz)
 [![codecov](https://codecov.io/gh/hugovk/osmviz/branch/master/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 An OpenStreetMap Visualization Toolkit for Python
 

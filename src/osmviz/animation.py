@@ -57,7 +57,7 @@ import pygame
 
 from .manager import OSMManager, PygameImageManager
 
-Inf = float('inf')
+Inf = float("inf")
 
 
 class SimViz(object):
@@ -148,8 +148,15 @@ class TrackingViz(SimViz):
     A generic SimViz which displays a moving image on the map.
     """
 
-    def __init__(self, label, image, getLatLonAtTimeFunc,
-                 time_window, bounding_box, drawing_order=0):
+    def __init__(
+        self,
+        label,
+        image,
+        getLatLonAtTimeFunc,
+        time_window,
+        bounding_box,
+        drawing_order=0,
+    ):
         """
         Constructs a TrackingViz.
         Arguments:
@@ -193,7 +200,7 @@ class TrackingViz(SimViz):
         if self.xy:
             x, y = self.xy
             w, h = self.width, self.height
-            x, y = x-w/2, y-h/2
+            x, y = x - w / 2, y - h / 2
             surf.blit(self.image, (x, y))
 
     def mouseIntersect(self, mousex, mousey):
@@ -201,7 +208,7 @@ class TrackingViz(SimViz):
             return False
         x, y = self.xy
         w, h = self.width, self.height
-        return abs(x-mousex) < w/2 and abs(y-mousey) < h/2
+        return abs(x - mousex) < w / 2 and abs(y - mousey) < h / 2
 
 
 class Simulation(object):
@@ -236,10 +243,13 @@ class Simulation(object):
 
         def helper(left, right):
             right = right.getBoundingBox()
-            return (min(left[0], right[0]),
-                    max(left[1], right[1]),
-                    min(left[2], right[2]),
-                    max(left[3], right[3]))
+            return (
+                min(left[0], right[0]),
+                max(left[1], right[1]),
+                min(left[2], right[2]),
+                max(left[3], right[3]),
+            )
+
         self.bounding_box = reduce(helper, self.actor_vizs, init_box)
 
     def __findTimeWindow(self):
@@ -248,14 +258,16 @@ class Simulation(object):
 
         def helper(left, right):
             right = right.getTimeInterval()
-            return (min(left[0], right[0]),
-                    max(left[1], right[1]))
+            return (min(left[0], right[0]), max(left[1], right[1]))
+
         self.time_window = reduce(helper, self.actor_vizs, init_window)
 
     def __sortVizs(self):
         """Sorts tracked objects in order of Drawing Order"""
+
         def keyfunction(item):
             return item.getDrawingOrder()
+
         self.all_vizs.sort(key=keyfunction)
 
     def setTime(self, time):
@@ -265,7 +277,7 @@ class Simulation(object):
         self.time = min(max(time, self.time_window[0]), self.time_window[1])
 
     def printTime(self):
-        hours = int(self.time/3600)
+        hours = int(self.time / 3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int((self.time % 60))
         print("%02d:%02d:%02d" % (hours, minutes, seconds))
@@ -275,15 +287,21 @@ class Simulation(object):
         Given coordinates in lon, lat, and a screen size,
         returns the corresponding (x, y) pixel coordinates.
         """
-        x_ratio = ((lon - bounds[2]) / (bounds[3]-bounds[2]))
-        y_ratio = 1.0 - ((lat - bounds[0]) / (bounds[1]-bounds[0]))
-        x, y = int(x_ratio*ssize[0]), int(y_ratio*ssize[1])
+        x_ratio = (lon - bounds[2]) / (bounds[3] - bounds[2])
+        y_ratio = 1.0 - ((lat - bounds[0]) / (bounds[1] - bounds[0]))
+        x, y = int(x_ratio * ssize[0]), int(y_ratio * ssize[1])
         return x, y
 
-    def run(self, speed=0.0, windowsize=(1280, 800), refresh_rate=1.0,
-            font="/Library/Frameworks/Python.framework/Versions/2.5/"
-                 "lib/python2.5/site-packages/pygame/freesansbold.ttf",
-            fontsize=10, osmzoom=14):
+    def run(
+        self,
+        speed=0.0,
+        windowsize=(1280, 800),
+        refresh_rate=1.0,
+        font="/Library/Frameworks/Python.framework/Versions/2.5/"
+        "lib/python2.5/site-packages/pygame/freesansbold.ttf",
+        fontsize=10,
+        osmzoom=14,
+    ):
         """
         Pops up a window and displays the simulation on it.
         Speed is advancement of sim in seconds/second.
@@ -309,13 +327,12 @@ class Simulation(object):
             fnt = font
 
         osm = OSMManager(cache="maptiles/", image_manager=PygameImageManager())
-        bg_big, new_bounds = osm.createOSMImage(self.bounding_box,
-                                                zoom=osmzoom)
+        bg_big, new_bounds = osm.createOSMImage(self.bounding_box, zoom=osmzoom)
         w_h_ratio = float(bg_big.get_width()) / bg_big.get_height()
         # Make the window smaller to keep proportions and stay within
         # specified windowsize
-        newwidth = int(windowsize[1]*w_h_ratio)
-        newheight = int(windowsize[0]/w_h_ratio)
+        newwidth = int(windowsize[1] * w_h_ratio)
+        newheight = int(windowsize[0] / w_h_ratio)
         if newwidth > windowsize[0]:
             windowsize = windowsize[0], newheight
         elif newheight > windowsize[1]:
@@ -338,22 +355,17 @@ class Simulation(object):
 
             # Check keyboard events
             for event in pygame.event.get():
-                if (event.type == pygame.KEYDOWN and
-                        event.key == pygame.K_ESCAPE):
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     ready_to_exit = True
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                     speed = max((speed + 1) * 1.4, (speed / 1.4) + 1)
-                elif (event.type == pygame.KEYDOWN and
-                      event.key == pygame.K_DOWN):
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
                     speed = min((speed / 1.4) - 1, (speed - 1) * 1.4)
-                elif (event.type == pygame.KEYDOWN and
-                        event.key == pygame.K_SPACE):
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     speed = 0.0
-                elif (event.type == pygame.KEYDOWN and
-                      event.key == pygame.K_LEFT):
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
                     self.time = self.time_window[0]
-                elif (event.type == pygame.KEYDOWN and
-                      event.key == pygame.K_RIGHT):
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
                     self.time = self.time_window[1]
 
             # Grab mouse position
@@ -380,7 +392,7 @@ class Simulation(object):
             if selected:
                 if fnt:
                     text = fnt.render(selected.getLabel(), True, black, notec)
-                    screen.blit(text, (mousex, mousey-10))
+                    screen.blit(text, (mousex, mousey - 10))
                     del text
                 else:
                     print(selected.getLabel())
@@ -388,7 +400,7 @@ class Simulation(object):
             pygame.display.flip()
 
             time.sleep(refresh_rate)
-            self.setTime(self.time + speed*refresh_rate)
+            self.setTime(self.time + speed * refresh_rate)
 
         # Clean up and exit
         del bg_small

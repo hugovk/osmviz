@@ -112,7 +112,7 @@ class ImageManager(object):
         try:
             img = self.load_image_file(imagef)
         except Exception as e:
-            raise Exception("Could not load image "+str(imagef)+"\n"+str(e))
+            raise Exception("Could not load image " + str(imagef) + "\n" + str(e))
 
         self.paste_image(img, xy)
         del img
@@ -184,6 +184,7 @@ class OSMManager(object):
     automatically gets all the images needed, and tiles them together
     into one big image.
     """
+
     def __init__(self, **kwargs):
         """
         Creates an OSMManager.
@@ -214,11 +215,11 @@ class OSMManager(object):
         image_manager - ImageManager instance which will be used to do all
                             image manipulation. You must provide this.
         """
-        cache = kwargs.get('cache')
-        server = kwargs.get('server')
-        url = kwargs.get('url')
-        scale = kwargs.get('scale')
-        mgr = kwargs.get('image_manager')
+        cache = kwargs.get("cache")
+        server = kwargs.get("server")
+        url = kwargs.get("url")
+        scale = kwargs.get("scale")
+        mgr = kwargs.get("image_manager")
 
         self.cache = None
 
@@ -236,15 +237,13 @@ class OSMManager(object):
                 self.cache = cache
 
         if not self.cache:
-            self.cache = (os.getenv("TMPDIR") or
-                          os.getenv("TMP") or
-                          os.getenv("TEMP") or
-                          "/tmp")
+            self.cache = (
+                os.getenv("TMPDIR") or os.getenv("TMP") or os.getenv("TEMP") or "/tmp"
+            )
             print("WARNING: Using %s to cache maptiles." % self.cache)
             if not os.access(self.cache, os.R_OK | os.W_OK):
                 print(" ERROR: Insufficient access to %s." % self.cache)
-                raise Exception("Unable to find/create/use maptile cache "
-                                "directory.")
+                raise Exception("Unable to find/create/use maptile cache " "directory.")
 
         # Get URL template, which supports the following fields:
         #  * {z}: tile zoom level
@@ -275,13 +274,12 @@ class OSMManager(object):
         # Make a hash of the server URL to use in cached tile filenames.
         md5 = hashlib.md5()
         md5.update(self.url.replace("{s}", str(self.scale)).encode("utf-8"))
-        self.cache_prefix = 'osmviz-%s-' % md5.hexdigest()[:5]
+        self.cache_prefix = "osmviz-%s-" % md5.hexdigest()[:5]
 
         if mgr:  # Assume it's a valid manager
             self.manager = mgr
         else:
-            raise Exception("OSMManager.__init__ requires argument "
-                            "image_manager")
+            raise Exception("OSMManager.__init__ requires argument " "image_manager")
 
     def getTileCoord(self, lon_deg, lat_deg, zoom):
         """
@@ -292,8 +290,11 @@ class OSMManager(object):
         lat_rad = lat_deg * math.pi / 180.0
         n = 2.0 ** zoom
         xtile = int((lon_deg + 180.0) / 360.0 * n)
-        ytile = int((1.0 - math.log(math.tan(lat_rad) +
-                    (1 / math.cos(lat_rad))) / math.pi) / 2.0 * n)
+        ytile = int(
+            (1.0 - math.log(math.tan(lat_rad) + (1 / math.cos(lat_rad))) / math.pi)
+            / 2.0
+            * n
+        )
         return xtile, ytile
 
     def getTileURL(self, tile_coord, zoom):
@@ -301,8 +302,7 @@ class OSMManager(object):
         Given x, y coord of the tile to download, and the zoom level,
         returns the URL from which to download the image.
         """
-        return self.url.format(x=tile_coord[0], y=tile_coord[1], z=zoom,
-                               s=self.scale)
+        return self.url.format(x=tile_coord[0], y=tile_coord[1], z=zoom, s=self.scale)
 
     def getLocalTileFilename(self, tile_coord, zoom):
         """
@@ -326,7 +326,7 @@ class OSMManager(object):
             try:
                 urlretrieve(url, filename=filename)
             except Exception as e:
-                raise Exception("Unable to retrieve URL: "+url+"\n"+str(e))
+                raise Exception("Unable to retrieve URL: " + url + "\n" + str(e))
         return filename
 
     def tileNWLatlon(self, tile_coord, zoom):
@@ -353,15 +353,14 @@ class OSMManager(object):
         """
         (minlat, maxlat, minlon, maxlon) = bounds
         if not self.manager:
-            raise Exception("No ImageManager was specified, cannot create "
-                            "image.")
+            raise Exception("No ImageManager was specified, cannot create " "image.")
 
         topleft = minX, minY = self.getTileCoord(minlon, maxlat, zoom)
         maxX, maxY = self.getTileCoord(maxlon, minlat, zoom)
         new_maxlat, new_minlon = self.tileNWLatlon(topleft, zoom)
-        new_minlat, new_maxlon = self.tileNWLatlon((maxX+1, maxY+1), zoom)
-        pix_width = (maxX-minX+1)*self.tile_size
-        pix_height = (maxY-minY+1)*self.tile_size
+        new_minlat, new_maxlon = self.tileNWLatlon((maxX + 1, maxY + 1), zoom)
+        pix_width = (maxX - minX + 1) * self.tile_size
+        pix_height = (maxY - minY + 1) * self.tile_size
         self.manager.prepare_image(pix_width, pix_height)
         total = (1 + maxX - minX) * (1 + maxY - minY)
 
@@ -370,11 +369,11 @@ class OSMManager(object):
         else:
             print("Retrieving {} tiles...".format(total))
 
-        for x in range(minX, maxX+1):
-            for y in range(minY, maxY+1):
+        for x in range(minX, maxX + 1):
+            for y in range(minY, maxY + 1):
                 fname = self.retrieveTileImage((x, y), zoom)
-                x_off = self.tile_size*(x-minX)
-                y_off = self.tile_size*(y-minY)
+                x_off = self.tile_size * (x - minX)
+                y_off = self.tile_size * (y - minY)
                 self.manager.paste_image_file(fname, (x_off, y_off))
                 if tqdm:
                     pbar.update()
@@ -382,8 +381,10 @@ class OSMManager(object):
             pbar.close()
         else:
             print("... done.")
-        return (self.manager.getImage(),
-                (new_minlat, new_maxlat, new_minlon, new_maxlon))
+        return (
+            self.manager.getImage(),
+            (new_minlat, new_maxlat, new_minlon, new_maxlon),
+        )
 
 
 class _useragenthack(FancyURLopener):
@@ -393,8 +394,7 @@ class _useragenthack(FancyURLopener):
             if header == "User-Agent":
                 del self.addheaders[i]
                 break
-        self.addheader('User-Agent',
-                       'OSMViz/1.1.0 +https://hugovk.github.io/osmviz')
+        self.addheader("User-Agent", "OSMViz/1.1.0 +https://hugovk.github.io/osmviz")
 
 
 # import httplib

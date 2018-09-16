@@ -1,6 +1,6 @@
 from osmviz.animation import TrackingViz, Simulation
 
-Inf = float('inf')
+Inf = float("inf")
 
 
 def find_bounds(route):
@@ -29,36 +29,29 @@ def test_sim(route, zoom, image="test/images/train.png"):
         elif time > time_window[1]:
             return route[-1][:2]
 
-        for (lat1, lon1, time1), (lat2, lon2, time2) in zip(
-                route[:-1], route[1:]):
+        for (lat1, lon1, time1), (lat2, lon2, time2) in zip(route[:-1], route[1:]):
             if time1 < time <= time2:
                 break
 
-        frac = (time-time1) / (time2-time1)
-        lat = lat1 + frac * (lat2-lat1)
-        lon = lon1 + frac * (lon2-lon1)
+        frac = (time - time1) / (time2 - time1)
+        lat = lat1 + frac * (lat2 - lat1)
+        lon = lon1 + frac * (lon2 - lon1)
         return lat, lon
 
-    viz = TrackingViz("Test Train",
-                      image,
-                      get_ll,
-                      time_window,
-                      bbox,
-                      1)
+    viz = TrackingViz("Test Train", image, get_ll, time_window, bbox, 1)
     sim = Simulation([viz], [], 0)
     sim.run(speed=0, refresh_rate=0.1, osmzoom=zoom, windowsize=(600, 600))
 
 
 def test_sim_one():
-    begin_ll = 45+46.0/60, -(68+39.0/60)
-    end_ll = 30+3.0/60, -(118+15.0/60)
+    begin_ll = 45 + 46.0 / 60, -(68 + 39.0 / 60)
+    end_ll = 30 + 3.0 / 60, -(118 + 15.0 / 60)
 
-    route = [begin_ll+(0,),
-             end_ll+(100,)]
+    route = [begin_ll + (0,), end_ll + (100,)]
     test_sim(route, 6)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_sim_one()
 
 # End of file
