@@ -41,6 +41,11 @@ import os.path as path
 import urllib.request
 from urllib.request import FancyURLopener, urlretrieve
 
+try:
+    from tqdm import tqdm
+except ImportError:
+    tqdm = None
+
 
 class ImageManager(object):
     """
@@ -358,7 +363,12 @@ class OSMManager(object):
         pix_width = (maxX-minX+1)*self.tile_size
         pix_height = (maxY-minY+1)*self.tile_size
         self.manager.prepare_image(pix_width, pix_height)
-        print("Retrieving %d tiles..." % ((1+maxX-minX)*(1+maxY-minY), ))
+        total = (1 + maxX - minX) * (1 + maxY - minY)
+
+        if tqdm:
+            pbar = tqdm(desc="Retrieving tiles", total=total, unit="tile")
+        else:
+            print("Retrieving {} tiles...".format(total))
 
         for x in range(minX, maxX+1):
             for y in range(minY, maxY+1):
@@ -366,7 +376,12 @@ class OSMManager(object):
                 x_off = self.tile_size*(x-minX)
                 y_off = self.tile_size*(y-minY)
                 self.manager.paste_image_file(fname, (x_off, y_off))
-        print("... done.")
+                if tqdm:
+                    pbar.update()
+        if tqdm:
+            pbar.close()
+        else:
+            print("... done.")
         return (self.manager.getImage(),
                 (new_minlat, new_maxlat, new_minlon, new_maxlon))
 

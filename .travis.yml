@@ -14,9 +14,11 @@ python:
 sudo: false
 
 install:
- - pip install pycodestyle pyflakes
- - pip install pillow
- - pip install coverage
+ - pip install -U pycodestyle pyflakes
+ - pip install -U pillow
+ - pip install -U coverage
+ # Test at least one version with tqdm
+ - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then pip install -U tqdm; fi
 
 script:
  - pip install -e .
