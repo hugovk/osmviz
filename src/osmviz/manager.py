@@ -243,7 +243,7 @@ class OSMManager(object):
             print("WARNING: Using %s to cache maptiles." % self.cache)
             if not os.access(self.cache, os.R_OK | os.W_OK):
                 print(" ERROR: Insufficient access to %s." % self.cache)
-                raise Exception("Unable to find/create/use maptile cache " "directory.")
+                raise Exception("Unable to find/create/use maptile cache directory.")
 
         # Get URL template, which supports the following fields:
         #  * {z}: tile zoom level
@@ -279,7 +279,7 @@ class OSMManager(object):
         if mgr:  # Assume it's a valid manager
             self.manager = mgr
         else:
-            raise Exception("OSMManager.__init__ requires argument " "image_manager")
+            raise Exception("OSMManager.__init__ requires argument image_manager")
 
     def getTileCoord(self, lon_deg, lat_deg, zoom):
         """
@@ -353,7 +353,7 @@ class OSMManager(object):
         """
         (minlat, maxlat, minlon, maxlon) = bounds
         if not self.manager:
-            raise Exception("No ImageManager was specified, cannot create " "image.")
+            raise Exception("No ImageManager was specified, cannot create image.")
 
         topleft = minX, minY = self.getTileCoord(minlon, maxlat, zoom)
         maxX, maxY = self.getTileCoord(maxlon, minlat, zoom)
