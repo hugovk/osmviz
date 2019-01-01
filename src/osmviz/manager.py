@@ -365,9 +365,9 @@ class OSMManager(object):
         total = (1 + maxX - minX) * (1 + maxY - minY)
 
         if tqdm:
-            pbar = tqdm(desc="Retrieving tiles", total=total, unit="tile")
+            pbar = tqdm(desc="Fetching tiles", total=total, unit="tile")
         else:
-            print("Retrieving {} tiles...".format(total))
+            print("Fetching {} tiles...".format(total))
 
         for x in range(minX, maxX + 1):
             for y in range(minY, maxY + 1):
