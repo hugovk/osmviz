@@ -14,13 +14,13 @@ git tag -a 2.0.0 -m "Release 2.0.0"
 ```
 * [ ] Create a distribution and release on PyPI:
 ```bash
-pip install -U pip setuptools wheel twine keyring
+pip3 install -U pip setuptools wheel twine keyring
 rm -rf build
-python setup.py sdist --format=gztar bdist_wheel
+python3 setup.py sdist --format=gztar bdist_wheel
+twine check dist/*
 twine upload -r pypi dist/osmviz-2.0.0*
-
 ```
-* [ ] Check installation: `pip install -U osmviz`
+* [ ] Check installation: `pip3 uninstall -y osmviz && pip3 install -U osmviz`
 * [ ] Push commits and tags:
  ```bash
 git push
