@@ -36,7 +36,7 @@ and using Mapnik tiles from a Slippy Map server
 
 ## Requirements
 
-* Python 3.4+
+* Python 3.5+
 * Pillow and/or Pygame 
 
 ## Installation
