@@ -39,7 +39,7 @@ import math
 import os
 import os.path as path
 import urllib.request
-from urllib.request import FancyURLopener, urlretrieve
+from urllib.request import urlretrieve
 
 try:
     from tqdm import tqdm
