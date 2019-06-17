@@ -390,5 +390,5 @@ class OSMManager(object):
 # import httplib
 # httplib.HTTPConnection.debuglevel = 1
 opener = urllib.request.build_opener()
-opener.addheaders = [('User-agent', 'OSMViz/1.1.0 +https://hugovk.github.io/osmviz')]
+opener.addheaders = [("User-agent", "OSMViz/1.1.0 +https://hugovk.github.io/osmviz")]
 urllib.request.install_opener(opener)
