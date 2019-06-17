@@ -39,7 +39,7 @@ import math
 import os
 import os.path as path
 import urllib.request
-from urllib.request import FancyURLopener, urlretrieve
+from urllib.request import urlretrieve
 
 try:
     from tqdm import tqdm
@@ -387,16 +387,8 @@ class OSMManager(object):
         )
 
 
-class _useragenthack(FancyURLopener):
-    def __init__(self, *args):
-        FancyURLopener.__init__(self, *args)
-        for i, (header, val) in enumerate(self.addheaders):
-            if header == "User-Agent":
-                del self.addheaders[i]
-                break
-        self.addheader("User-Agent", "OSMViz/1.1.0 +https://hugovk.github.io/osmviz")
-
-
 # import httplib
 # httplib.HTTPConnection.debuglevel = 1
-urllib.request._urlopener = _useragenthack()
+opener = urllib.request.build_opener()
+opener.addheaders = [("User-agent", "OSMViz/1.1.0 +https://hugovk.github.io/osmviz")]
+urllib.request.install_opener(opener)
