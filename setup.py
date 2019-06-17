@@ -31,12 +31,13 @@ with open("README.md") as f:
 
 setup(
     name="osmviz",
-    version="3.2.0.dev0",
     description="OSMViz is a small set of Python tools for retrieving "
     "and using Mapnik tiles from a Slippy Map server "
     "(you may know these as OpenStreetMap images).",
     long_description=long_description,
     long_description_content_type="text/markdown",
+    use_scm_version=True,
+    setup_requires=["setuptools_scm"],
     python_requires=">=3.5",
     classifiers=[
         # 'Development Status :: 5 - Production/Stable',
