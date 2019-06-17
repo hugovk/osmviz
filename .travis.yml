@@ -22,6 +22,7 @@ install:
 
 script:
  - pip install -e .
+ - python setup.py --version
  - coverage erase
  - travis_retry coverage run --append --include="src/*" test/unit/test_manager.py
  - travis_retry coverage run --append --include="src/*" test/functional/test_manager.py
