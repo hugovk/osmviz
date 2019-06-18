@@ -46,7 +46,7 @@ deploy:
       python: 3.7
     user: hugovk
     password:
-        secure: "SRpqE989FOEwU1i/eRmxTAgcVgtUh5SZ5fy3suJPZURi3VCjT4UCGLnC5TccCtF2buJOsy5rj+ksOU242WZeZKLmQAbEV8AroZjJ8JtoV5Kztn4PPE7lEE73vUKS9bLFg1vHqH6CV4C+QY95bKj86QpFk5wVkF3zODbKyE2Cg/U="
+        secure: "UH2iUwZAhdd7ZBV7jtPAEV58cjSMHKv2NLMC2Dg1q29oHWeRl9UBT6JMckXSoLylCSJs6JS7af8JUhP+5fOGRNA+STT78QTD0Gtw1HmkH0ruDKUgkfWFQmoRCKr7Lihuh3NBYQszZwDV3nWZAIumKwq6BA3NMuyaey68Qvxdrt0="
     distributions: sdist --format=gztar bdist_wheel
     skip_existing: true
   - provider: pypi
@@ -57,6 +57,6 @@ deploy:
       python: 3.7
     user: hugovk
     password:
-        secure: "SRpqE989FOEwU1i/eRmxTAgcVgtUh5SZ5fy3suJPZURi3VCjT4UCGLnC5TccCtF2buJOsy5rj+ksOU242WZeZKLmQAbEV8AroZjJ8JtoV5Kztn4PPE7lEE73vUKS9bLFg1vHqH6CV4C+QY95bKj86QpFk5wVkF3zODbKyE2Cg/U="
+        secure: "UH2iUwZAhdd7ZBV7jtPAEV58cjSMHKv2NLMC2Dg1q29oHWeRl9UBT6JMckXSoLylCSJs6JS7af8JUhP+5fOGRNA+STT78QTD0Gtw1HmkH0ruDKUgkfWFQmoRCKr7Lihuh3NBYQszZwDV3nWZAIumKwq6BA3NMuyaey68Qvxdrt0="
     distributions: sdist --format=gztar bdist_wheel
     skip_existing: true
