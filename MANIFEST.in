@@ -1,2 +1,10 @@
 include LICENSE
 include README.md
+prune examples
+prune html
+prune test
+exclude .flake8
+exclude .gitignore
+exclude .travis.yml
+exclude index.html
+exclude RELEASING.md
