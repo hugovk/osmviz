@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 19.3b0
+    hooks:
+      - id: black
+        language_version: python3.7
+        exclude: ^html/
+        # override until resolved: https://github.com/psf/black/issues/402
+        files: \.pyi?$
+        types: []
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.8
+    hooks:
+      - id: flake8
+        language_version: python3.7
+        exclude: ^html/
+
+  - repo: https://github.com/mgedmin/check-manifest
+    rev: "0.39"
+    hooks:
+      - id: check-manifest

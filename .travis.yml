@@ -1,3 +1,4 @@
+dist: xenial
 language: python
 cache: pip
 
@@ -6,38 +7,26 @@ cache: pip
 matrix:
   fast_finish: true
   include:
+    - python: '3.7'
+      env: TOXENV=lint
     - python: "pypy3"
     - python: '3.7'
-      dist: xenial
     - python: '3.6'
     - python: '3.5'
     - python: '3.8-dev'
 
 install:
- - pip install -U check-manifest
- - pip install -U coverage
- - pip install -U flake8
- - pip install -U pillow
- - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then pip install -U black; fi
- # Test at least one version with tqdm
- - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then pip install -U tqdm; fi
+  - pip install -U pip
+  - pip install -U tox-travis
 
 script:
- - pip install -e .
- - python setup.py --version
- - coverage erase
- - travis_retry coverage run --append --include="src/*" test/unit/test_manager.py
- - travis_retry coverage run --append --include="src/*" test/functional/test_manager.py
-
- # Static analysis
- - flake8 setup.py src test examples
- - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then black --check --diff setup.py src test examples; fi
- - check-manifest
+  - tox
 
 after_success:
- - coverage report
- - pip install -U codecov
- - codecov
+  - |
+    if [ "$TOXENV" != "lint" ]; then
+      pip install -U codecov && codecov
+    fi
 
 deploy:
   - provider: pypi
@@ -46,7 +35,7 @@ deploy:
       tags: false
       repo: hugovk/osmviz
       branch: master
-      python: 3.7
+      condition: $TOXENV = lint
     user: hugovk
     password:
         secure: "UH2iUwZAhdd7ZBV7jtPAEV58cjSMHKv2NLMC2Dg1q29oHWeRl9UBT6JMckXSoLylCSJs6JS7af8JUhP+5fOGRNA+STT78QTD0Gtw1HmkH0ruDKUgkfWFQmoRCKr7Lihuh3NBYQszZwDV3nWZAIumKwq6BA3NMuyaey68Qvxdrt0="
@@ -57,7 +46,7 @@ deploy:
       tags: true
       repo: hugovk/osmviz
       branch: master
-      python: 3.7
+      condition: $TOXENV = lint
     user: hugovk
     password:
         secure: "UH2iUwZAhdd7ZBV7jtPAEV58cjSMHKv2NLMC2Dg1q29oHWeRl9UBT6JMckXSoLylCSJs6JS7af8JUhP+5fOGRNA+STT78QTD0Gtw1HmkH0ruDKUgkfWFQmoRCKr7Lihuh3NBYQszZwDV3nWZAIumKwq6BA3NMuyaey68Qvxdrt0="
