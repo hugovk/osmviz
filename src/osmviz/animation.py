@@ -279,7 +279,7 @@ class Simulation(object):
     def printTime(self):
         hours = int(self.time / 3600)
         minutes = int((self.time % 3600) / 60)
-        seconds = int((self.time % 60))
+        seconds = int(self.time % 60)
         print("%02d:%02d:%02d" % (hours, minutes, seconds))
 
     def getXY(self, lat, lon, bounds, ssize):

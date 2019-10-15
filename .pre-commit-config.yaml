@@ -1,9 +1,13 @@
 repos:
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v1.24.1
+    hooks:
+      - id: pyupgrade
+
   - repo: https://github.com/psf/black
     rev: 19.3b0
     hooks:
       - id: black
-        language_version: python3.7
         exclude: ^html/
         # override until resolved: https://github.com/psf/black/issues/402
         files: \.pyi?$
@@ -13,10 +17,22 @@ repos:
     rev: 3.7.8
     hooks:
       - id: flake8
-        language_version: python3.7
+        additional_dependencies: [flake8-2020]
         exclude: ^html/
 
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.4.1
+    hooks:
+      - id: python-check-blanket-noqa
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+
   - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.39"
+    rev: '0.40'
     hooks:
       - id: check-manifest

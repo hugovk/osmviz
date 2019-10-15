@@ -1,10 +1,9 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-1 -*-
 """
     MoinMoin - Python source parser and colorizer
 """
 
-# Based on the code from JŸrgen Herman, the following changes where made:
+# Based on the code from JÃ¼rgen Herman, the following changes were made:
 #
 # Mike Brown <https://skew.org/~mike/>:
 # - make script callable as a CGI and a Apache handler for .py files.
@@ -30,7 +29,7 @@ import tokenize
 __version__ = '0.3'
 __date__ = '2005-07-04'
 __license__ = 'GPL'
-__author__ = 'JŸrgen Hermann, Mike Brown, Christopher Arndt'
+__author__ = 'JÃ¼rgen Hermann, Mike Brown, Christopher Arndt'
 
 #############################################################################
 # Python Source Parser (does highlighting)
