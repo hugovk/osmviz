@@ -20,6 +20,7 @@ setup(
     long_description_content_type="text/markdown",
     use_scm_version={"local_scheme": local_scheme},
     setup_requires=["setuptools_scm"],
+    extras_require={"tests": ["coverage", "pillow", "pytest", "pytest-cov"]},
     python_requires=">=3.5",
     classifiers=[
         # 'Development Status :: 5 - Production/Stable',
