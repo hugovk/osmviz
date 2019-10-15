@@ -1,30 +1,5 @@
-import sys
-
 from setuptools import find_packages, setup
 
-if sys.version_info < (3,):
-    error = """You are running OSMViz 3.0 on Python 2.
-
-OSMViz 3.0 and above are no longer compatible with Python 2.
-Make sure you have pip >= 9.0 and setuptools >= 24.2:
-
- $ pip install pip setuptools --upgrade
-
-Your choices:
-
-- Upgrade to Python 3.
-
-- Install an older version of OSMViz:
-
- $ pip install 'osmviz<3.0'
-
-See the following for more up-to-date information:
-
-https://github.com/hugovk/osmviz/issues/18
-    """
-
-    print(error, file=sys.stderr)
-    sys.exit(1)
 
 with open("README.md") as f:
     long_description = f.read()
