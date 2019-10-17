@@ -1,9 +1,12 @@
 # OSMViz
 
-[![PyPI version](https://img.shields.io/pypi/v/osmviz.svg)](https://pypi.python.org/pypi/osmviz/)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/osmviz.svg)](https://pypi.python.org/pypi/osmviz/)
-[![Build Status](https://travis-ci.org/hugovk/osmviz.svg?branch=master)](https://travis-ci.org/hugovk/osmviz)
+[![PyPI version](https://img.shields.io/pypi/v/osmviz.svg?logo=pypi&logoColor=FFE873)](https://pypi.python.org/pypi/osmviz/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/osmviz.svg?logo=python&logoColor=FFE873)](https://pypi.python.org/pypi/osmviz/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/osmviz.svg)](https://pypistats.org/packages/pypistats)
+[![Travis CI status](https://img.shields.io/travis/hugovk/osmviz/master?label=Travis%20CI&logo=travis)](https://travis-ci.org/hugovk/osmviz)
+[![GitHub Actions status](https://github.com/hugovk/osmviz/workflows/Test/badge.svg)](https://github.com/hugovk/osmviz/actions)
 [![codecov](https://codecov.io/gh/hugovk/osmviz/branch/master/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
+[![GitHub](https://img.shields.io/github/license/hugovk/osmviz.svg)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 An OpenStreetMap Visualization Toolkit for Python
