@@ -1,4 +1,4 @@
-from osmviz.animation import TrackingViz, Simulation
+from osmviz.animation import Simulation, TrackingViz
 
 Inf = float("inf")
 

@@ -3,8 +3,8 @@ This example demonstrates how to create and show a PIL image
 of OSM tiles patched together.
 """
 
-from osmviz.manager import PILImageManager, OSMManager
 import PIL.Image as Image
+from osmviz.manager import OSMManager, PILImageManager
 
 imgr = PILImageManager("RGB")
 osm = OSMManager(image_manager=imgr)

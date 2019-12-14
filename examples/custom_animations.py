@@ -5,8 +5,8 @@ if you want to do something besides just show icons moving
 on the map.
 """
 
-from osmviz.animation import SimViz, TrackingViz, Simulation
 import pygame
+from osmviz.animation import Simulation, SimViz, TrackingViz
 
 # Our goal is to show a train lassoed to Denver, running around it.
 
