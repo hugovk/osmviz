@@ -1,5 +1,5 @@
-from osmviz.manager import PILImageManager, OSMManager
 import PIL.Image as Image
+from osmviz.manager import OSMManager, PILImageManager
 
 
 def test_pil():
