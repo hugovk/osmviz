@@ -37,8 +37,3 @@ repos:
       - id: check-merge-conflict
       - id: check-toml
       - id: check-yaml
-
-  - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.40"
-    hooks:
-      - id: check-manifest
