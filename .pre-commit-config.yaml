@@ -1,14 +1,15 @@
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v1.25.2
+    rev: v1.26.2
     hooks:
       - id: pyupgrade
+        args: ["--py36-plus"]
 
   - repo: https://github.com/psf/black
     rev: 19.10b0
     hooks:
       - id: black
-        args: ["--target-version", "py35"]
+        args: ["--target-version", "py36"]
         exclude: ^html/
         # override until resolved: https://github.com/psf/black/issues/402
         files: \.pyi?$
@@ -18,16 +19,16 @@ repos:
     rev: 3.7.9
     hooks:
       - id: flake8
-        additional_dependencies: [flake8-2020]
+        additional_dependencies: [flake8-2020, flake8-implicit-str-concat]
         exclude: ^html/
 
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v4.3.21
+  - repo: https://github.com/timothycrosley/isort
+    rev: 4.3.21
     hooks:
       - id: isort
 
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.4.2
+    rev: v1.4.4
     hooks:
       - id: python-check-blanket-noqa
 
