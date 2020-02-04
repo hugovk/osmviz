@@ -7,7 +7,7 @@
 [![GitHub Actions status](https://github.com/hugovk/osmviz/workflows/Test/badge.svg)](https://github.com/hugovk/osmviz/actions)
 [![codecov](https://codecov.io/gh/hugovk/osmviz/branch/master/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
 [![GitHub](https://img.shields.io/github/license/hugovk/osmviz.svg)](LICENSE)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Code style: Black](https://img.shields.io/badge/code%20style-Black-000000.svg)](https://github.com/psf/black)
 
 An OpenStreetMap Visualization Toolkit for Python
 
@@ -39,7 +39,7 @@ and using Mapnik tiles from a Slippy Map server
 
 ## Requirements
 
-* Python 3.5+
+* Python 3.6+
 * Pillow and/or Pygame 
 
 ## Installation

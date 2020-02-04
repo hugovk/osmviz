@@ -60,7 +60,7 @@ from .manager import OSMManager, PygameImageManager
 Inf = float("inf")
 
 
-class SimViz(object):
+class SimViz:
     """
     Abstract interface representing an object which knows how and when
     to display itself on a surface inside of a Simulation.
@@ -211,7 +211,7 @@ class TrackingViz(SimViz):
         return abs(x - mousex) < w / 2 and abs(y - mousey) < h / 2
 
 
-class Simulation(object):
+class Simulation:
     """
     A collection of generic SimViz's and a timer, of sorts. This lets the
     visualizer say "Give me coordinates of each object at time T". A run()

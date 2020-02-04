@@ -47,7 +47,7 @@ except ImportError:
     tqdm = None
 
 
-class ImageManager(object):
+class ImageManager:
     """
     Simple abstract interface for creating and manipulating images, to be used
     by an OSMManager object.
@@ -177,7 +177,7 @@ class PILImageManager(ImageManager):
         self.getImage().paste(img, xy)
 
 
-class OSMManager(object):
+class OSMManager:
     """
     An OSMManager manages the retrieval and storage of Open Street Map
     images. The basic utility is the createOSMImage() method which
@@ -367,7 +367,7 @@ class OSMManager(object):
         if tqdm:
             pbar = tqdm(desc="Fetching tiles", total=total, unit="tile")
         else:
-            print("Fetching {} tiles...".format(total))
+            print(f"Fetching {total} tiles...")
 
         for x in range(minX, maxX + 1):
             for y in range(minY, maxY + 1):
