@@ -1,4 +1,5 @@
 import PIL.Image as Image
+
 from osmviz.manager import OSMManager, PILImageManager
 
 

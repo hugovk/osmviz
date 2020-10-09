@@ -4,6 +4,7 @@ of OSM tiles patched together.
 """
 
 import PIL.Image as Image
+
 from osmviz.manager import OSMManager, PILImageManager
 
 imgr = PILImageManager("RGB")

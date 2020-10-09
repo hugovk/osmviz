@@ -6,6 +6,7 @@ on the map.
 """
 
 import pygame
+
 from osmviz.animation import Simulation, SimViz, TrackingViz
 
 # Our goal is to show a train lassoed to Denver, running around it.
