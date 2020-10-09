@@ -18,32 +18,3 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-import sys
-
-if sys.version_info < (3,):
-    raise ImportError(
-        """You are running OSMViz 3.0 on Python 2.
-
-OSMViz 3.0 and above are no longer compatible with Python 2, and you still
-ended up with this version installed. That's unfortunate; sorry about that.
-It should not have happened. Make sure you have pip >= 9.0 to avoid this kind
-of issue, as well as setuptools >= 24.2:
-
- $ pip install pip setuptools --upgrade
-
-Your choices:
-
-- Upgrade to Python 3.
-
-- Install an older version of OSMViz:
-
- $ pip install 'osmviz<3.0'
-
-It would be great if you can figure out how this version ended up being
-installed, and try to check how to prevent it for future users.
-
-See the following for more up-to-date information:
-
-https://github.com/hugovk/osmviz/issues/18
-"""
-    )
