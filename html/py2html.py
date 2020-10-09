@@ -19,12 +19,13 @@
 #   as intermediate
 
 import cgi
-import cStringIO
 import keyword
 import string
 import sys
 import token
 import tokenize
+
+import cStringIO
 
 __version__ = '0.3'
 __date__ = '2005-07-04'
