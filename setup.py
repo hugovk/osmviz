@@ -21,6 +21,10 @@ setup(
     setup_requires=["setuptools_scm"],
     extras_require={"tests": ["coverage", "pillow", "pytest", "pytest-cov"]},
     python_requires=">=3.6",
+    project_urls={
+        "Documentation": "https://hugovk.github.io/osmviz/",
+        "Source": "https://github.com/hugovk/osmviz",
+    },
     classifiers=[
         # 'Development Status :: 5 - Production/Stable',
         "Intended Audience :: Developers",
@@ -38,7 +42,7 @@ setup(
     keywords="osm openstreetmap tiles visualization",
     author="Colin Bick and Contributors",
     author_email="colin.bick@gmail.com",
-    url="https://hugovk.github.io/osmviz",
+    url="https://github.com/hugovk/osmviz",
     license="MIT",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
