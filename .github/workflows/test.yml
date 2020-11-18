@@ -19,9 +19,6 @@ jobs:
           - { codecov-flag: GHA_Ubuntu_18, os: ubuntu-18.04 }
           - { codecov-flag: GHA_Ubuntu_16, os: ubuntu-16.04 }
           - { codecov-flag: GHA_macOS, os: macos-latest }
-        exclude:
-          # Pending Pillow 8.0.0 (~2020-10-15)
-          - { python-version: "3.9", os: macos-latest }
 
     steps:
       - uses: actions/checkout@v2
