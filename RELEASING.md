@@ -1,29 +1,22 @@
 # Release Checklist
 
-* [ ] Get master to the appropriate code release state.
-      [Travis CI](https://travis-ci.org/hugovk/osmviz) should be running cleanly for
+- [ ] Get master to the appropriate code release state.
+      [GitHub Actions](https://github.com/hugovk/osmviz/actions) should be running cleanly for
       all merges to master.
+      [![GitHub Actions status](https://github.com/hugovk/osmviz/workflows/Test/badge.svg)](https://github.com/hugovk/osmviz/actions)
 
-* [ ] Tag with the version number:
+- [ ] Edit release draft, adjust text if needed:
+      https://github.com/hugovk/osmviz/releases
 
-```bash
-git tag -a 3.1.1 -m "Release 3.1.1"
-```
+- [ ] Check next tag is correct, amend if needed
 
-* [ ] Push tag:
+- [ ] Publish release
 
-```bash
-git push --tags
-```
+- [ ] Check the tagged
+      [GitHub Actions build](https://github.com/hugovk/osmviz/actions?query=workflow%3ADeploy)
+      has deployed to [PyPI](https://pypi.org/project/osmviz/#history)
 
-* [ ] Create new GitHub release: https://github.com/hugovk/osmviz/releases/new
-
-  * Tag: Pick existing tag "3.1.1"
-
-* [ ] Check the tagged [Travis CI build](https://travis-ci.org/hugovk/osmviz) has
-      deployed to [PyPI](https://pypi.org/project/osmviz/#history)
-
-* [ ] Check installation:
+- [ ] Check installation:
 
 ```bash
 pip3 uninstall -y osmviz && pip3 install -U osmviz
