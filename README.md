@@ -4,7 +4,7 @@
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/osmviz.svg?logo=python&logoColor=FFE873)](https://pypi.python.org/pypi/osmviz/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/osmviz.svg)](https://pypistats.org/packages/pypistats)
 [![GitHub Actions status](https://github.com/hugovk/osmviz/workflows/Test/badge.svg)](https://github.com/hugovk/osmviz/actions)
-[![codecov](https://codecov.io/gh/hugovk/osmviz/branch/master/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
+[![codecov](https://codecov.io/gh/hugovk/osmviz/branch/main/graph/badge.svg)](https://codecov.io/gh/hugovk/osmviz)
 [![GitHub](https://img.shields.io/github/license/hugovk/osmviz.svg)](LICENSE)
 [![Code style: Black](https://img.shields.io/badge/code%20style-Black-000000.svg)](https://github.com/psf/black)
 

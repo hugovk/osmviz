@@ -1,8 +1,8 @@
 # Release Checklist
 
-- [ ] Get master to the appropriate code release state.
-      [GitHub Actions](https://github.com/hugovk/osmviz/actions) should be running cleanly for
-      all merges to master.
+- [ ] Get `main` to the appropriate code release state.
+      [GitHub Actions](https://github.com/hugovk/osmviz/actions) should be running
+      cleanly for all merges to `main`.
       [![GitHub Actions status](https://github.com/hugovk/osmviz/workflows/Test/badge.svg)](https://github.com/hugovk/osmviz/actions)
 
 - [ ] Edit release draft, adjust text if needed:
