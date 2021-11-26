@@ -19,10 +19,10 @@ image_f = "images/train.png"
 zoom = 6
 num_trains = 10
 
-trackvizs = []
+track_vizs = []
 
 
-def makeInterpolator(begin_ll, end_ll, begin_t, end_t):
+def make_interpolator(begin_ll, end_ll, begin_t, end_t):
     def ret(t):
         if t < begin_t:
             return begin_ll
@@ -32,7 +32,7 @@ def makeInterpolator(begin_ll, end_ll, begin_t, end_t):
             blat, blon = begin_ll
             elat, elon = end_ll
             frac = float(t) / (end_t - begin_t)
-            return (blat + frac * (elat - blat), blon + frac * (elon - blon))
+            return blat + frac * (elat - blat), blon + frac * (elon - blon)
 
     return ret
 
@@ -40,21 +40,21 @@ def makeInterpolator(begin_ll, end_ll, begin_t, end_t):
 for i in range(num_trains):
     lat = bottom_lat + i * (top_lat - bottom_lat) / (num_trains - 1)
 
-    locAtTime = makeInterpolator(
+    loc_at_time = make_interpolator(
         (lat, left_lon), (lat, right_lon), begin_time, end_time
     )
 
     tviz = TrackingViz(
-        "Train %d" % (i + 1,),
+        f"Train {i+1}",
         image_f,
-        locAtTime,
+        loc_at_time,
         (begin_time, end_time),
         (30, 46, -119, -68.5),
         1,
     )  # drawing order doesn't really matter here
 
-    trackvizs.append(tviz)
+    track_vizs.append(tviz)
 
 
-sim = Simulation(trackvizs, [], 0)
+sim = Simulation(track_vizs, [], 0)
 sim.run(speed=1, refresh_rate=0.1, osmzoom=zoom)
