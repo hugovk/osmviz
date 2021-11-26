@@ -250,10 +250,10 @@ class OSMManager:
             self.cache = (
                 os.getenv("TMPDIR") or os.getenv("TMP") or os.getenv("TEMP") or "/tmp"
             )
-            print("WARNING: Using %s to cache maptiles." % self.cache)
+            print(f"WARNING: Using {self.cache} to cache map tiles.")
             if not os.access(self.cache, os.R_OK | os.W_OK):
-                print(" ERROR: Insufficient access to %s." % self.cache)
-                raise Exception("Unable to find/create/use maptile cache directory.")
+                print(f" ERROR: Insufficient access to {self.cache}.")
+                raise Exception("Unable to find/create/use map tile cache directory.")
 
         # Get URL template, which supports the following fields:
         #  * {z}: tile zoom level
@@ -267,7 +267,7 @@ class OSMManager:
         if url:
             self.url = url
         elif server:
-            self.url = "%s/{z}/{x}/{y}.png" % server
+            self.url = f"{server}/{{z}}/{{x}}/{{y}}.png"
         else:
             self.url = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 
@@ -284,7 +284,7 @@ class OSMManager:
         # Make a hash of the server URL to use in cached tile filenames.
         md5 = hashlib.md5()
         md5.update(self.url.replace("{s}", str(self.scale)).encode("utf-8"))
-        self.cache_prefix = "osmviz-%s-" % md5.hexdigest()[:5]
+        self.cache_prefix = f"osmviz-{md5.hexdigest()[:5]}-"
 
         if mgr:  # Assume it's a valid manager
             self.manager = mgr
@@ -339,8 +339,9 @@ class OSMManager:
         if it was downloaded. That way we don't have to kill
         the osm server every time the thing runs.
         """
-        params = (self.cache_prefix, zoom, tile_coord[0], tile_coord[1])
-        return path.join(self.cache, "%s%d_%d_%d.png" % params)
+        return path.join(
+            self.cache, f"{self.cache_prefix}{zoom}_{tile_coord[0]}_{tile_coord[1]}.png"
+        )
 
     def getLocalTileFilename(self, tile_coord, zoom):
         """Deprecated, use lower case version instead."""
@@ -363,7 +364,7 @@ class OSMManager:
             try:
                 urlretrieve(url, filename=filename)
             except Exception as e:
-                raise Exception("Unable to retrieve URL: " + url + "\n" + str(e))
+                raise Exception(f"Unable to retrieve URL: {url}\n{e}")
         return filename
 
     def retrieveTileImage(self, tile_coord, zoom):

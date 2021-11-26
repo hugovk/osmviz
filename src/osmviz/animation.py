@@ -412,7 +412,7 @@ class Simulation:
         hours = int(self.time / 3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int(self.time % 60)
-        print("%02d:%02d:%02d" % (hours, minutes, seconds))
+        print(f"{hours:02d}:{minutes:02d}:{seconds:02d}")
 
     def printTime(self):
         """Deprecated, use lower case version instead."""

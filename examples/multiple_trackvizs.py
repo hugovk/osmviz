@@ -32,7 +32,7 @@ def make_interpolator(begin_ll, end_ll, begin_t, end_t):
             blat, blon = begin_ll
             elat, elon = end_ll
             frac = float(t) / (end_t - begin_t)
-            return (blat + frac * (elat - blat), blon + frac * (elon - blon))
+            return blat + frac * (elat - blat), blon + frac * (elon - blon)
 
     return ret
 
@@ -45,7 +45,7 @@ for i in range(num_trains):
     )
 
     tviz = TrackingViz(
-        "Train %d" % (i + 1,),
+        f"Train {i+1}",
         image_f,
         loc_at_time,
         (begin_time, end_time),
