@@ -381,10 +381,10 @@ class OSMManager:
         returns the (lat, lon) coordinates of the upper
         left corner of the tile.
         """
-        xtile, ytile = tile_coord
+        x_tile, y_tile = tile_coord
         n = 2.0 ** zoom
-        lon_deg = xtile / n * 360.0 - 180.0
-        lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
+        lon_deg = x_tile / n * 360.0 - 180.0
+        lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * y_tile / n)))
         lat_deg = lat_rad * 180.0 / math.pi
         return lat_deg, lon_deg
 
