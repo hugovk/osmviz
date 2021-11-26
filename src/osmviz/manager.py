@@ -39,7 +39,6 @@ import math
 import os
 import os.path as path
 import urllib.request
-import warnings
 from urllib.request import urlretrieve
 
 try:
@@ -67,7 +66,7 @@ class ImageManager:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def load_image_file(self, imagef):
+    def load_image_file(self, image_file):
         """
         To be overridden.
         Loads specified image file into image object and returns it.
@@ -101,7 +100,7 @@ class ImageManager:
             del self.image
         self.image = None
 
-    def paste_image_file(self, imagef, xy):
+    def paste_image_file(self, image_file, xy):
         """
         Given the filename of an image, and the x, y coordinates of the
         location at which to place the top left corner of the contents
@@ -111,9 +110,9 @@ class ImageManager:
             raise Exception("Image not prepared")
 
         try:
-            img = self.load_image_file(imagef)
+            img = self.load_image_file(image_file)
         except Exception as e:
-            raise Exception("Could not load image " + str(imagef) + "\n" + str(e))
+            raise Exception(f"Could not load image {image_file}\n{e}")
 
         self.paste_image(img, xy)
         del img
@@ -124,15 +123,6 @@ class ImageManager:
         is not for use by the OSMManager.
         """
         return self.image
-
-    def getImage(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getImage is deprecated, use get_image instead",
-            DeprecationWarning,
-            stacklevel=3,
-        )
-        return self.get_image()
 
 
 class PygameImageManager(ImageManager):
@@ -151,8 +141,8 @@ class PygameImageManager(ImageManager):
     def create_image(self, width, height):
         return self.pygame.Surface((width, height))
 
-    def load_image_file(self, imagef):
-        return self.pygame.image.load(imagef)
+    def load_image_file(self, image_file):
+        return self.pygame.image.load(image_file)
 
     def paste_image(self, img, xy):
         self.get_image().blit(img, xy)
@@ -180,8 +170,8 @@ class PILImageManager(ImageManager):
     def create_image(self, width, height):
         return self.PILImage.new(self.mode, (width, height))
 
-    def load_image_file(self, imagef):
-        return self.PILImage.open(imagef)
+    def load_image_file(self, image_file):
+        return self.PILImage.open(image_file)
 
     def paste_image(self, img, xy):
         self.get_image().paste(img, xy)
@@ -307,30 +297,12 @@ class OSMManager:
         )
         return xtile, ytile
 
-    def getTileCoord(self, lon_deg, lat_deg, zoom):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getTileCoord is deprecated, use get_tile_coord instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.get_tile_coord(lon_deg, lat_deg, zoom)
-
     def get_tile_url(self, tile_coord, zoom):
         """
         Given x, y coord of the tile to download, and the zoom level,
         returns the URL from which to download the image.
         """
         return self.url.format(x=tile_coord[0], y=tile_coord[1], z=zoom, s=self.scale)
-
-    def getTileURL(self, tile_coord, zoom):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getTileURL is deprecated, use get_tile_url instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.get_tile_url(tile_coord, zoom)
 
     def get_local_tile_filename(self, tile_coord, zoom):
         """
@@ -342,15 +314,6 @@ class OSMManager:
         return path.join(
             self.cache, f"{self.cache_prefix}{zoom}_{tile_coord[0]}_{tile_coord[1]}.png"
         )
-
-    def getLocalTileFilename(self, tile_coord, zoom):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getLocalTileFilename is deprecated, use get_local_tile_filename instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.get_local_tile_filename(tile_coord, zoom)
 
     def retrieve_tile_image(self, tile_coord, zoom):
         """
@@ -367,15 +330,6 @@ class OSMManager:
                 raise Exception(f"Unable to retrieve URL: {url}\n{e}")
         return filename
 
-    def retrieveTileImage(self, tile_coord, zoom):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "retrieveTileImage is deprecated, use retrieve_tile_image instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.retrieve_tile_image(tile_coord, zoom)
-
     def tile_nw_lat_lon(self, tile_coord, zoom):
         """
         Given x, y coord of the tile, and the zoom level,
@@ -388,15 +342,6 @@ class OSMManager:
         lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * y_tile / n)))
         lat_deg = lat_rad * 180.0 / math.pi
         return lat_deg, lon_deg
-
-    def tileNWLatlon(self, tile_coord, zoom):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "tileNWLatlon is deprecated, use tile_nw_lat_lon instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.tile_nw_lat_lon(tile_coord, zoom)
 
     def create_osm_image(self, bounds, zoom):
         """
@@ -441,15 +386,6 @@ class OSMManager:
             self.manager.get_image(),
             (new_min_lat, new_max_lat, new_min_lon, new_max_lon),
         )
-
-    def createOSMImage(self, bounds, zoom):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "createOSMImage is deprecated, use create_osm_image instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.create_osm_image(bounds, zoom)
 
 
 # import httplib
