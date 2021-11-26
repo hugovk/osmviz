@@ -126,6 +126,7 @@ class ImageManager:
         return self.image
 
     def getImage(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getImage is deprecated, use get_image instead",
             DeprecationWarning,
@@ -307,6 +308,7 @@ class OSMManager:
         return xtile, ytile
 
     def getTileCoord(self, lon_deg, lat_deg, zoom):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getTileCoord is deprecated, use get_tile_coord instead",
             DeprecationWarning,
@@ -322,6 +324,7 @@ class OSMManager:
         return self.url.format(x=tile_coord[0], y=tile_coord[1], z=zoom, s=self.scale)
 
     def getTileURL(self, tile_coord, zoom):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getTileURL is deprecated, use get_tile_url instead",
             DeprecationWarning,
@@ -340,6 +343,7 @@ class OSMManager:
         return path.join(self.cache, "%s%d_%d_%d.png" % params)
 
     def getLocalTileFilename(self, tile_coord, zoom):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getLocalTileFilename is deprecated, use get_local_tile_filename instead",
             DeprecationWarning,
@@ -363,6 +367,7 @@ class OSMManager:
         return filename
 
     def retrieveTileImage(self, tile_coord, zoom):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "retrieveTileImage is deprecated, use retrieve_tile_image instead",
             DeprecationWarning,
@@ -384,6 +389,7 @@ class OSMManager:
         return lat_deg, lon_deg
 
     def tileNWLatlon(self, tile_coord, zoom):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "tileNWLatlon is deprecated, use tile_nw_lat_lon instead",
             DeprecationWarning,
@@ -436,6 +442,7 @@ class OSMManager:
         )
 
     def createOSMImage(self, bounds, zoom):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "createOSMImage is deprecated, use create_osm_image instead",
             DeprecationWarning,

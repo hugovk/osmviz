@@ -1,6 +1,6 @@
-
-<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html><head><title>Python: module osmviz.manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head><body bgcolor="#f0f0f8">
 
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="osmviz.html"><font color="#ffffff">osmviz</font></a>.manager</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/colin/colin_dev/transit/osmviz/src/osmviz/manager.py">/Users/colin/colin_dev/transit/osmviz/src/osmviz/manager.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/hugo/github/osmviz/src/osmviz/manager.py">/Users/hugo/github/osmviz/src/osmviz/manager.py</a></font></td></tr></table>
     <p><tt>OpenStreetMap&nbsp;Management&nbsp;Tool:<br>
 &nbsp;&nbsp;-&nbsp;Provides&nbsp;simple&nbsp;interface&nbsp;to&nbsp;retrieve&nbsp;and&nbsp;tile&nbsp;OSM&nbsp;images<br>
 &nbsp;&nbsp;-&nbsp;Can&nbsp;use&nbsp;pygame&nbsp;or&nbsp;PIL&nbsp;(to&nbsp;generate&nbsp;pygame&nbsp;Surfaces&nbsp;or&nbsp;PIL&nbsp;images)<br>
@@ -18,7 +18,7 @@ Basic&nbsp;idea:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Pygame&nbsp;and&nbsp;PIL&nbsp;implementations&nbsp;available<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;To&nbsp;make&nbsp;your&nbsp;own&nbsp;custom&nbsp;<a href="#ImageManager">ImageManager</a>,&nbsp;override&nbsp;the&nbsp;<a href="#ImageManager">ImageManager</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class.<br>
-&nbsp;&nbsp;2.&nbsp;Construct&nbsp;an&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+&nbsp;&nbsp;2.&nbsp;Construct&nbsp;an&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;<a href="builtins.html#object">object</a>.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Can&nbsp;provide&nbsp;custom&nbsp;OSM&nbsp;server&nbsp;URL,&nbsp;etc.<br>
 &nbsp;&nbsp;3.&nbsp;Use&nbsp;the&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;to&nbsp;retrieve&nbsp;individual&nbsp;tiles&nbsp;and&nbsp;do&nbsp;as&nbsp;you&nbsp;please<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;patch&nbsp;tiles&nbsp;together&nbsp;into&nbsp;a&nbsp;larger&nbsp;image&nbsp;for&nbsp;you.</tt></p>
@@ -26,14 +26,16 @@ Basic&nbsp;idea:<br>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#aa55cc">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
 
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="hashlib.html">hashlib</a><br>
+<a href="math.html">math</a><br>
 </td><td width="25%" valign=top><a href="os.html">os</a><br>
-</td><td width="25%" valign=top><a href="posixpath.html">posixpath</a><br>
+<a href="posixpath.html">posixpath</a><br>
 </td><td width="25%" valign=top><a href="urllib.html">urllib</a><br>
-</td></tr></table></td></tr></table><p>
+<a href="warnings.html">warnings</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -41,7 +43,7 @@ Basic&nbsp;idea:<br>
 
 <tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl>
-<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
 </font></dt><dd>
 <dl>
 <dt><font face="helvetica, arial"><a href="osmviz.manager.html#ImageManager">ImageManager</a>
@@ -59,14 +61,14 @@ Basic&nbsp;idea:<br>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#000000" face="helvetica, arial"><a name="ImageManager">class <strong>ImageManager</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+<font color="#000000" face="helvetica, arial"><a name="ImageManager">class <strong>ImageManager</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
 
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>Simple&nbsp;abstract&nbsp;interface&nbsp;for&nbsp;creating&nbsp;and&nbsp;manipulating&nbsp;images,&nbsp;to&nbsp;be&nbsp;used<br>
-by&nbsp;an&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;<a href="__builtin__.html#object">object</a>.<br>&nbsp;</tt></td></tr>
+by&nbsp;an&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;<a href="builtins.html#object">object</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="ImageManager-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+<dl><dt><a name="ImageManager-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
 <dl><dt><a name="ImageManager-create_image"><strong>create_image</strong></a>(self, width, height)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
 Create&nbsp;and&nbsp;return&nbsp;image&nbsp;with&nbsp;specified&nbsp;dimensions</tt></dd></dl>
@@ -74,19 +76,21 @@ Create&nbsp;and&nbsp;return&nbsp;image&nbsp;with&nbsp;specified&nbsp;dimensions<
 <dl><dt><a name="ImageManager-destroy_image"><strong>destroy_image</strong></a>(self)</dt><dd><tt>Destroys&nbsp;internal&nbsp;representation&nbsp;of&nbsp;the&nbsp;image,&nbsp;if&nbsp;it&nbsp;was<br>
 ever&nbsp;created.</tt></dd></dl>
 
-<dl><dt><a name="ImageManager-getImage"><strong>getImage</strong></a>(self)</dt><dd><tt>Returns&nbsp;some&nbsp;representation&nbsp;of&nbsp;the&nbsp;internal&nbsp;image.&nbsp;The&nbsp;returned&nbsp;value&nbsp;<br>
+<dl><dt><a name="ImageManager-getImage"><strong>getImage</strong></a>(self)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="ImageManager-get_image"><strong>get_image</strong></a>(self)</dt><dd><tt>Returns&nbsp;some&nbsp;representation&nbsp;of&nbsp;the&nbsp;internal&nbsp;image.&nbsp;The&nbsp;returned&nbsp;value<br>
 is&nbsp;not&nbsp;for&nbsp;use&nbsp;by&nbsp;the&nbsp;<a href="#OSMManager">OSMManager</a>.</tt></dd></dl>
 
 <dl><dt><a name="ImageManager-load_image_file"><strong>load_image_file</strong></a>(self, imagef)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
-Loads&nbsp;specified&nbsp;image&nbsp;file&nbsp;into&nbsp;image&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;and&nbsp;returns&nbsp;it.</tt></dd></dl>
+Loads&nbsp;specified&nbsp;image&nbsp;file&nbsp;into&nbsp;image&nbsp;<a href="builtins.html#object">object</a>&nbsp;and&nbsp;returns&nbsp;it.</tt></dd></dl>
 
 <dl><dt><a name="ImageManager-paste_image"><strong>paste_image</strong></a>(self, img, xy)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
 Given&nbsp;an&nbsp;already-loaded&nbsp;file,&nbsp;paste&nbsp;it&nbsp;into&nbsp;the&nbsp;internal&nbsp;image<br>
 at&nbsp;the&nbsp;specified&nbsp;top-left&nbsp;coordinate.</tt></dd></dl>
 
-<dl><dt><a name="ImageManager-paste_image_file"><strong>paste_image_file</strong></a>(self, imagef, xy)</dt><dd><tt>Given&nbsp;the&nbsp;filename&nbsp;of&nbsp;an&nbsp;image,&nbsp;and&nbsp;the&nbsp;x,y&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;<br>
+<dl><dt><a name="ImageManager-paste_image_file"><strong>paste_image_file</strong></a>(self, imagef, xy)</dt><dd><tt>Given&nbsp;the&nbsp;filename&nbsp;of&nbsp;an&nbsp;image,&nbsp;and&nbsp;the&nbsp;x,&nbsp;y&nbsp;coordinates&nbsp;of&nbsp;the<br>
 location&nbsp;at&nbsp;which&nbsp;to&nbsp;place&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;contents<br>
-of&nbsp;that&nbsp;image,&nbsp;pastes&nbsp;the&nbsp;image&nbsp;into&nbsp;this&nbsp;<a href="__builtin__.html#object">object</a>'s&nbsp;internal&nbsp;image.</tt></dd></dl>
+of&nbsp;that&nbsp;image,&nbsp;pastes&nbsp;the&nbsp;image&nbsp;into&nbsp;this&nbsp;<a href="builtins.html#object">object</a>'s&nbsp;internal&nbsp;image.</tt></dd></dl>
 
 <dl><dt><a name="ImageManager-prepare_image"><strong>prepare_image</strong></a>(self, width, height)</dt><dd><tt>Create&nbsp;and&nbsp;internally&nbsp;store&nbsp;an&nbsp;image&nbsp;whose&nbsp;dimensions<br>
 are&nbsp;those&nbsp;specified&nbsp;by&nbsp;width&nbsp;and&nbsp;height.</tt></dd></dl>
@@ -103,12 +107,14 @@ Data descriptors defined here:<br>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#000000" face="helvetica, arial"><a name="OSMManager">class <strong>OSMManager</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+<font color="#000000" face="helvetica, arial"><a name="OSMManager">class <strong>OSMManager</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
 
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>An&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;manages&nbsp;the&nbsp;retrieval&nbsp;and&nbsp;storage&nbsp;of&nbsp;Open&nbsp;Street&nbsp;Map<br>
-images.&nbsp;The&nbsp;basic&nbsp;utility&nbsp;is&nbsp;the&nbsp;<a href="#OSMManager-createOSMImage">createOSMImage</a>()&nbsp;method&nbsp;which<br>
-automatically&nbsp;gets&nbsp;all&nbsp;the&nbsp;images&nbsp;needed,&nbsp;and&nbsp;tiles&nbsp;them&nbsp;together&nbsp;<br>
+<td colspan=2><tt><a href="#OSMManager">OSMManager</a>(**kwargs)<br>
+&nbsp;<br>
+An&nbsp;<a href="#OSMManager">OSMManager</a>&nbsp;manages&nbsp;the&nbsp;retrieval&nbsp;and&nbsp;storage&nbsp;of&nbsp;Open&nbsp;Street&nbsp;Map<br>
+images.&nbsp;The&nbsp;basic&nbsp;utility&nbsp;is&nbsp;the&nbsp;<a href="#OSMManager-create_osm_image">create_osm_image</a>()&nbsp;method&nbsp;which<br>
+automatically&nbsp;gets&nbsp;all&nbsp;the&nbsp;images&nbsp;needed,&nbsp;and&nbsp;tiles&nbsp;them&nbsp;together<br>
 into&nbsp;one&nbsp;big&nbsp;image.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
@@ -116,40 +122,67 @@ into&nbsp;one&nbsp;big&nbsp;image.<br>&nbsp;</tt></td></tr>
 Arguments:<br>
 &nbsp;<br>
 cache&nbsp;-&nbsp;path&nbsp;(relative&nbsp;or&nbsp;absolute)&nbsp;to&nbsp;directory&nbsp;where&nbsp;tiles&nbsp;downloaded<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;OSM&nbsp;server&nbsp;should&nbsp;be&nbsp;saved.&nbsp;Default&nbsp;"/tmp".<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;OSM&nbsp;server&nbsp;should&nbsp;be&nbsp;saved.&nbsp;Default&nbsp;"/tmp".<br>
+&nbsp;<br>
 server&nbsp;-&nbsp;URL&nbsp;of&nbsp;OSM&nbsp;server&nbsp;from&nbsp;which&nbsp;to&nbsp;retrieve&nbsp;OSM&nbsp;tiles.&nbsp;This<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;fully&nbsp;qualified,&nbsp;including&nbsp;the&nbsp;protocol.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;"<a href="https://tile.openstreetmap.org">https://tile.openstreetmap.org</a>"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;fully&nbsp;qualified,&nbsp;including&nbsp;the&nbsp;protocol.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;"<a href="https://tile.openstreetmap.org">https://tile.openstreetmap.org</a>"<br>
+&nbsp;<br>
+url&nbsp;-&nbsp;Full&nbsp;URL&nbsp;template&nbsp;from&nbsp;which&nbsp;to&nbsp;retrieve&nbsp;OSM&nbsp;tiles.&nbsp;This&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;fully&nbsp;qualified,&nbsp;including&nbsp;the&nbsp;protocol,&nbsp;and&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contain&nbsp;placeholders&nbsp;for&nbsp;zoom&nbsp;('{z}'),&nbsp;coordinate&nbsp;x&nbsp;and&nbsp;y<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('{x}'&nbsp;and&nbsp;'{y}'),&nbsp;and&nbsp;optionally&nbsp;scale&nbsp;('{s}')&nbsp;for&nbsp;high-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resolution&nbsp;tile&nbsp;retrieval.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:&nbsp;when&nbsp;specified,&nbsp;the&nbsp;server&nbsp;parameter&nbsp;is&nbsp;ignored.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default:&nbsp;server&nbsp;with&nbsp;"/{z}/{x}/{y}.png"&nbsp;appended<br>
+&nbsp;<br>
+scale&nbsp;-&nbsp;Scale&nbsp;to&nbsp;use&nbsp;for&nbsp;high-resolution&nbsp;tiles.&nbsp;Note&nbsp;that&nbsp;both&nbsp;URL&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale&nbsp;must&nbsp;be&nbsp;set&nbsp;correctly&nbsp;for&nbsp;correct&nbsp;high-resolution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;support.&nbsp;Standard&nbsp;tile&nbsp;size&nbsp;is&nbsp;256&nbsp;pixels,&nbsp;high-resolution<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tiles&nbsp;are&nbsp;scale&nbsp;times&nbsp;256&nbsp;pixels&nbsp;(e.g.,&nbsp;512&nbsp;pixels&nbsp;when<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale&nbsp;is&nbsp;2).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;1&nbsp;(standard&nbsp;resolution)<br>
 &nbsp;<br>
 image_manager&nbsp;-&nbsp;<a href="#ImageManager">ImageManager</a>&nbsp;instance&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;do&nbsp;all<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;manipulation.&nbsp;You&nbsp;must&nbsp;provide&nbsp;this.</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image&nbsp;manipulation.&nbsp;You&nbsp;must&nbsp;provide&nbsp;this.</tt></dd></dl>
 
-<dl><dt><a name="OSMManager-createOSMImage"><strong>createOSMImage</strong></a>(self, (minlat, maxlat, minlon, maxlon), zoom)</dt><dd><tt>Given&nbsp;bounding&nbsp;latlons&nbsp;(in&nbsp;degrees),&nbsp;and&nbsp;an&nbsp;OSM&nbsp;zoom&nbsp;level,<br>
+<dl><dt><a name="OSMManager-createOSMImage"><strong>createOSMImage</strong></a>(self, bounds, zoom)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="OSMManager-create_osm_image"><strong>create_osm_image</strong></a>(self, bounds, zoom)</dt><dd><tt>Given&nbsp;bounding&nbsp;lat_lons&nbsp;(in&nbsp;degrees),&nbsp;and&nbsp;an&nbsp;OSM&nbsp;zoom&nbsp;level,<br>
 creates&nbsp;an&nbsp;image&nbsp;constructed&nbsp;from&nbsp;OSM&nbsp;tiles.<br>
-Returns&nbsp;(img,bounds)&nbsp;where&nbsp;img&nbsp;is&nbsp;the&nbsp;constructed&nbsp;image&nbsp;(as&nbsp;returned<br>
-by&nbsp;the&nbsp;image&nbsp;manager's&nbsp;"getImage()"&nbsp;method),<br>
-and&nbsp;bounds&nbsp;is&nbsp;the&nbsp;(latmin,latmax,lonmin,lonmax)&nbsp;bounding&nbsp;box<br>
+Returns&nbsp;(img,&nbsp;bounds)&nbsp;where&nbsp;img&nbsp;is&nbsp;the&nbsp;constructed&nbsp;image&nbsp;(as&nbsp;returned<br>
+by&nbsp;the&nbsp;image&nbsp;manager's&nbsp;"get_image()"&nbsp;method),<br>
+and&nbsp;bounds&nbsp;is&nbsp;the&nbsp;(min_lat,&nbsp;max_lat,&nbsp;min_lon,&nbsp;max_lon)&nbsp;bounding&nbsp;box<br>
 which&nbsp;the&nbsp;tiles&nbsp;cover.</tt></dd></dl>
 
-<dl><dt><a name="OSMManager-getLocalTileFilename"><strong>getLocalTileFilename</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
+<dl><dt><a name="OSMManager-getLocalTileFilename"><strong>getLocalTileFilename</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="OSMManager-getTileCoord"><strong>getTileCoord</strong></a>(self, lon_deg, lat_deg, zoom)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="OSMManager-getTileURL"><strong>getTileURL</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="OSMManager-get_local_tile_filename"><strong>get_local_tile_filename</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,&nbsp;y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
 returns&nbsp;the&nbsp;filename&nbsp;to&nbsp;which&nbsp;the&nbsp;file&nbsp;would&nbsp;be&nbsp;saved<br>
 if&nbsp;it&nbsp;was&nbsp;downloaded.&nbsp;That&nbsp;way&nbsp;we&nbsp;don't&nbsp;have&nbsp;to&nbsp;kill<br>
 the&nbsp;osm&nbsp;server&nbsp;every&nbsp;time&nbsp;the&nbsp;thing&nbsp;runs.</tt></dd></dl>
 
-<dl><dt><a name="OSMManager-getTileCoord"><strong>getTileCoord</strong></a>(self, lon_deg, lat_deg, zoom)</dt><dd><tt>Given&nbsp;lon,lat&nbsp;coords&nbsp;in&nbsp;DEGREES,&nbsp;and&nbsp;a&nbsp;zoom&nbsp;level,<br>
-returns&nbsp;the&nbsp;(x,y)&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;corresponding&nbsp;tile&nbsp;#.<br>
+<dl><dt><a name="OSMManager-get_tile_coord"><strong>get_tile_coord</strong></a>(self, lon_deg, lat_deg, zoom)</dt><dd><tt>Given&nbsp;lon,&nbsp;lat&nbsp;coords&nbsp;in&nbsp;DEGREES,&nbsp;and&nbsp;a&nbsp;zoom&nbsp;level,<br>
+returns&nbsp;the&nbsp;(x,&nbsp;y)&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;corresponding&nbsp;tile&nbsp;#.<br>
 (<a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python</a>)</tt></dd></dl>
 
-<dl><dt><a name="OSMManager-getTileURL"><strong>getTileURL</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile&nbsp;to&nbsp;download,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
+<dl><dt><a name="OSMManager-get_tile_url"><strong>get_tile_url</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,&nbsp;y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile&nbsp;to&nbsp;download,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
 returns&nbsp;the&nbsp;URL&nbsp;from&nbsp;which&nbsp;to&nbsp;download&nbsp;the&nbsp;image.</tt></dd></dl>
 
-<dl><dt><a name="OSMManager-retrieveTileImage"><strong>retrieveTileImage</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
-retrieves&nbsp;the&nbsp;file&nbsp;to&nbsp;disk&nbsp;if&nbsp;necessary&nbsp;and&nbsp;<br>
+<dl><dt><a name="OSMManager-retrieveTileImage"><strong>retrieveTileImage</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="OSMManager-retrieve_tile_image"><strong>retrieve_tile_image</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,&nbsp;y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
+retrieves&nbsp;the&nbsp;file&nbsp;to&nbsp;disk&nbsp;if&nbsp;necessary&nbsp;and<br>
 returns&nbsp;the&nbsp;local&nbsp;filename.</tt></dd></dl>
 
-<dl><dt><a name="OSMManager-tileNWLatlon"><strong>tileNWLatlon</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
-returns&nbsp;the&nbsp;(lat,lon)&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;upper<br>
+<dl><dt><a name="OSMManager-tileNWLatlon"><strong>tileNWLatlon</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="OSMManager-tile_nw_lat_lon"><strong>tile_nw_lat_lon</strong></a>(self, tile_coord, zoom)</dt><dd><tt>Given&nbsp;x,&nbsp;y&nbsp;coord&nbsp;of&nbsp;the&nbsp;tile,&nbsp;and&nbsp;the&nbsp;zoom&nbsp;level,<br>
+returns&nbsp;the&nbsp;(lat,&nbsp;lon)&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;upper<br>
 left&nbsp;corner&nbsp;of&nbsp;the&nbsp;tile.</tt></dd></dl>
 
 <hr>
@@ -167,36 +200,44 @@ Data descriptors defined here:<br>
 <font color="#000000" face="helvetica, arial"><a name="PILImageManager">class <strong>PILImageManager</strong></a>(<a href="osmviz.manager.html#ImageManager">ImageManager</a>)</font></td></tr>
 
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>An&nbsp;<a href="#ImageManager">ImageManager</a>&nbsp;which&nbsp;works&nbsp;with&nbsp;PIL&nbsp;images.<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt><a href="#PILImageManager">PILImageManager</a>(mode)<br>
+&nbsp;<br>
+An&nbsp;<a href="#ImageManager">ImageManager</a>&nbsp;which&nbsp;works&nbsp;with&nbsp;PIL&nbsp;images.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="osmviz.manager.html#PILImageManager">PILImageManager</a></dd>
 <dd><a href="osmviz.manager.html#ImageManager">ImageManager</a></dd>
-<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
 </dl>
 <hr>
 Methods defined here:<br>
 <dl><dt><a name="PILImageManager-__init__"><strong>__init__</strong></a>(self, mode)</dt><dd><tt>Constructs&nbsp;a&nbsp;PIL&nbsp;Image&nbsp;Manager.<br>
 Arguments:<br>
-&nbsp;&nbsp;mode&nbsp;-&nbsp;the&nbsp;PIL&nbsp;mode&nbsp;in&nbsp;which&nbsp;to&nbsp;create&nbsp;the&nbsp;image.</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;mode&nbsp;-&nbsp;the&nbsp;PIL&nbsp;mode&nbsp;in&nbsp;which&nbsp;to&nbsp;create&nbsp;the&nbsp;image.</tt></dd></dl>
 
-<dl><dt><a name="PILImageManager-create_image"><strong>create_image</strong></a>(self, width, height)</dt></dl>
+<dl><dt><a name="PILImageManager-create_image"><strong>create_image</strong></a>(self, width, height)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
+Create&nbsp;and&nbsp;return&nbsp;image&nbsp;with&nbsp;specified&nbsp;dimensions</tt></dd></dl>
 
-<dl><dt><a name="PILImageManager-load_image_file"><strong>load_image_file</strong></a>(self, imagef)</dt></dl>
+<dl><dt><a name="PILImageManager-load_image_file"><strong>load_image_file</strong></a>(self, imagef)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
+Loads&nbsp;specified&nbsp;image&nbsp;file&nbsp;into&nbsp;image&nbsp;<a href="builtins.html#object">object</a>&nbsp;and&nbsp;returns&nbsp;it.</tt></dd></dl>
 
-<dl><dt><a name="PILImageManager-paste_image"><strong>paste_image</strong></a>(self, img, xy)</dt></dl>
+<dl><dt><a name="PILImageManager-paste_image"><strong>paste_image</strong></a>(self, img, xy)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
+Given&nbsp;an&nbsp;already-loaded&nbsp;file,&nbsp;paste&nbsp;it&nbsp;into&nbsp;the&nbsp;internal&nbsp;image<br>
+at&nbsp;the&nbsp;specified&nbsp;top-left&nbsp;coordinate.</tt></dd></dl>
 
 <hr>
 Methods inherited from <a href="osmviz.manager.html#ImageManager">ImageManager</a>:<br>
 <dl><dt><a name="PILImageManager-destroy_image"><strong>destroy_image</strong></a>(self)</dt><dd><tt>Destroys&nbsp;internal&nbsp;representation&nbsp;of&nbsp;the&nbsp;image,&nbsp;if&nbsp;it&nbsp;was<br>
 ever&nbsp;created.</tt></dd></dl>
 
-<dl><dt><a name="PILImageManager-getImage"><strong>getImage</strong></a>(self)</dt><dd><tt>Returns&nbsp;some&nbsp;representation&nbsp;of&nbsp;the&nbsp;internal&nbsp;image.&nbsp;The&nbsp;returned&nbsp;value&nbsp;<br>
+<dl><dt><a name="PILImageManager-getImage"><strong>getImage</strong></a>(self)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="PILImageManager-get_image"><strong>get_image</strong></a>(self)</dt><dd><tt>Returns&nbsp;some&nbsp;representation&nbsp;of&nbsp;the&nbsp;internal&nbsp;image.&nbsp;The&nbsp;returned&nbsp;value<br>
 is&nbsp;not&nbsp;for&nbsp;use&nbsp;by&nbsp;the&nbsp;<a href="#OSMManager">OSMManager</a>.</tt></dd></dl>
 
-<dl><dt><a name="PILImageManager-paste_image_file"><strong>paste_image_file</strong></a>(self, imagef, xy)</dt><dd><tt>Given&nbsp;the&nbsp;filename&nbsp;of&nbsp;an&nbsp;image,&nbsp;and&nbsp;the&nbsp;x,y&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;<br>
+<dl><dt><a name="PILImageManager-paste_image_file"><strong>paste_image_file</strong></a>(self, imagef, xy)</dt><dd><tt>Given&nbsp;the&nbsp;filename&nbsp;of&nbsp;an&nbsp;image,&nbsp;and&nbsp;the&nbsp;x,&nbsp;y&nbsp;coordinates&nbsp;of&nbsp;the<br>
 location&nbsp;at&nbsp;which&nbsp;to&nbsp;place&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;contents<br>
-of&nbsp;that&nbsp;image,&nbsp;pastes&nbsp;the&nbsp;image&nbsp;into&nbsp;this&nbsp;<a href="__builtin__.html#object">object</a>'s&nbsp;internal&nbsp;image.</tt></dd></dl>
+of&nbsp;that&nbsp;image,&nbsp;pastes&nbsp;the&nbsp;image&nbsp;into&nbsp;this&nbsp;<a href="builtins.html#object">object</a>'s&nbsp;internal&nbsp;image.</tt></dd></dl>
 
 <dl><dt><a name="PILImageManager-prepare_image"><strong>prepare_image</strong></a>(self, width, height)</dt><dd><tt>Create&nbsp;and&nbsp;internally&nbsp;store&nbsp;an&nbsp;image&nbsp;whose&nbsp;dimensions<br>
 are&nbsp;those&nbsp;specified&nbsp;by&nbsp;width&nbsp;and&nbsp;height.</tt></dd></dl>
@@ -221,29 +262,35 @@ Data descriptors inherited from <a href="osmviz.manager.html#ImageManager">Image
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="osmviz.manager.html#PygameImageManager">PygameImageManager</a></dd>
 <dd><a href="osmviz.manager.html#ImageManager">ImageManager</a></dd>
-<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="PygameImageManager-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+<dl><dt><a name="PygameImageManager-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
-<dl><dt><a name="PygameImageManager-create_image"><strong>create_image</strong></a>(self, width, height)</dt></dl>
+<dl><dt><a name="PygameImageManager-create_image"><strong>create_image</strong></a>(self, width, height)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
+Create&nbsp;and&nbsp;return&nbsp;image&nbsp;with&nbsp;specified&nbsp;dimensions</tt></dd></dl>
 
-<dl><dt><a name="PygameImageManager-load_image_file"><strong>load_image_file</strong></a>(self, imagef)</dt></dl>
+<dl><dt><a name="PygameImageManager-load_image_file"><strong>load_image_file</strong></a>(self, imagef)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
+Loads&nbsp;specified&nbsp;image&nbsp;file&nbsp;into&nbsp;image&nbsp;<a href="builtins.html#object">object</a>&nbsp;and&nbsp;returns&nbsp;it.</tt></dd></dl>
 
-<dl><dt><a name="PygameImageManager-paste_image"><strong>paste_image</strong></a>(self, img, xy)</dt></dl>
+<dl><dt><a name="PygameImageManager-paste_image"><strong>paste_image</strong></a>(self, img, xy)</dt><dd><tt>To&nbsp;be&nbsp;overridden.<br>
+Given&nbsp;an&nbsp;already-loaded&nbsp;file,&nbsp;paste&nbsp;it&nbsp;into&nbsp;the&nbsp;internal&nbsp;image<br>
+at&nbsp;the&nbsp;specified&nbsp;top-left&nbsp;coordinate.</tt></dd></dl>
 
 <hr>
 Methods inherited from <a href="osmviz.manager.html#ImageManager">ImageManager</a>:<br>
 <dl><dt><a name="PygameImageManager-destroy_image"><strong>destroy_image</strong></a>(self)</dt><dd><tt>Destroys&nbsp;internal&nbsp;representation&nbsp;of&nbsp;the&nbsp;image,&nbsp;if&nbsp;it&nbsp;was<br>
 ever&nbsp;created.</tt></dd></dl>
 
-<dl><dt><a name="PygameImageManager-getImage"><strong>getImage</strong></a>(self)</dt><dd><tt>Returns&nbsp;some&nbsp;representation&nbsp;of&nbsp;the&nbsp;internal&nbsp;image.&nbsp;The&nbsp;returned&nbsp;value&nbsp;<br>
+<dl><dt><a name="PygameImageManager-getImage"><strong>getImage</strong></a>(self)</dt><dd><tt>Deprecated,&nbsp;use&nbsp;lower&nbsp;case&nbsp;version&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="PygameImageManager-get_image"><strong>get_image</strong></a>(self)</dt><dd><tt>Returns&nbsp;some&nbsp;representation&nbsp;of&nbsp;the&nbsp;internal&nbsp;image.&nbsp;The&nbsp;returned&nbsp;value<br>
 is&nbsp;not&nbsp;for&nbsp;use&nbsp;by&nbsp;the&nbsp;<a href="#OSMManager">OSMManager</a>.</tt></dd></dl>
 
-<dl><dt><a name="PygameImageManager-paste_image_file"><strong>paste_image_file</strong></a>(self, imagef, xy)</dt><dd><tt>Given&nbsp;the&nbsp;filename&nbsp;of&nbsp;an&nbsp;image,&nbsp;and&nbsp;the&nbsp;x,y&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;<br>
+<dl><dt><a name="PygameImageManager-paste_image_file"><strong>paste_image_file</strong></a>(self, imagef, xy)</dt><dd><tt>Given&nbsp;the&nbsp;filename&nbsp;of&nbsp;an&nbsp;image,&nbsp;and&nbsp;the&nbsp;x,&nbsp;y&nbsp;coordinates&nbsp;of&nbsp;the<br>
 location&nbsp;at&nbsp;which&nbsp;to&nbsp;place&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;contents<br>
-of&nbsp;that&nbsp;image,&nbsp;pastes&nbsp;the&nbsp;image&nbsp;into&nbsp;this&nbsp;<a href="__builtin__.html#object">object</a>'s&nbsp;internal&nbsp;image.</tt></dd></dl>
+of&nbsp;that&nbsp;image,&nbsp;pastes&nbsp;the&nbsp;image&nbsp;into&nbsp;this&nbsp;<a href="builtins.html#object">object</a>'s&nbsp;internal&nbsp;image.</tt></dd></dl>
 
 <dl><dt><a name="PygameImageManager-prepare_image"><strong>prepare_image</strong></a>(self, width, height)</dt><dd><tt>Create&nbsp;and&nbsp;internally&nbsp;store&nbsp;an&nbsp;image&nbsp;whose&nbsp;dimensions<br>
 are&nbsp;those&nbsp;specified&nbsp;by&nbsp;width&nbsp;and&nbsp;height.</tt></dd></dl>
@@ -256,5 +303,12 @@ Data descriptors inherited from <a href="osmviz.manager.html#ImageManager">Image
 <dl><dt><strong>__weakref__</strong></dt>
 <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
 </dl>
-</td></tr></table></td></tr></table>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>opener</strong> = &lt;urllib.request.OpenerDirector object&gt;</td></tr></table>
 </body></html>

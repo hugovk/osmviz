@@ -90,6 +90,7 @@ class SimViz:
         raise Exception("UNIMPLEMENTED")
 
     def getBoundingBox(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getBoundingBox is deprecated, use get_bounding_box instead",
             DeprecationWarning,
@@ -107,6 +108,7 @@ class SimViz:
         raise Exception("UNIMPLEMENTED")
 
     def getTimeInterval(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getTimeInterval is deprecated, use get_time_interval instead",
             DeprecationWarning,
@@ -124,6 +126,7 @@ class SimViz:
         raise Exception("UNIMPLEMENTED")
 
     def setState(self, simtime, getXY):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "setState(simtime, getXY) is deprecated, "
             "use set_state(sim_time, get_xy) instead",
@@ -141,6 +144,7 @@ class SimViz:
         raise Exception("UNIMPLEMENTED")
 
     def drawToSurface(self, surf):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "drawToSurface is deprecated, use draw_to_surface instead",
             DeprecationWarning,
@@ -158,6 +162,7 @@ class SimViz:
         return self.drawing_order
 
     def getDrawingOrder(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getDrawingOrder is deprecated, use get_drawing_order instead",
             DeprecationWarning,
@@ -175,6 +180,7 @@ class SimViz:
         return None
 
     def getLabel(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getLabel is deprecated, use get_label instead",
             DeprecationWarning,
@@ -193,6 +199,7 @@ class SimViz:
         raise Exception("UNIMPLEMENTED")
 
     def mouseIntersect(self, mousex, mousey):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "mouseIntersect(mousex, mousey) is deprecated, "
             "use mouse_intersect(mouse_x, mouse_y) instead",
@@ -243,6 +250,7 @@ class TrackingViz(SimViz):
         return self.time_window
 
     def getTimeInterval(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getTimeInterval is deprecated, use get_time_interval instead",
             DeprecationWarning,
@@ -254,6 +262,7 @@ class TrackingViz(SimViz):
         return self.bounding_box
 
     def getBoundingBox(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getBoundingBox is deprecated, use get_bounding_box instead",
             DeprecationWarning,
@@ -265,6 +274,7 @@ class TrackingViz(SimViz):
         return self.label
 
     def getLabel(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getLabel is deprecated, use get_label instead",
             DeprecationWarning,
@@ -281,6 +291,7 @@ class TrackingViz(SimViz):
         self.xy = x, y
 
     def setState(self, simtime, getXY):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "setState(simtime, getXY) is deprecated, "
             "use set_state(sim_time, get_xy) instead",
@@ -297,6 +308,7 @@ class TrackingViz(SimViz):
             surf.blit(self.image, (x, y))
 
     def drawToSurface(self, surf):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "drawToSurface is deprecated, use draw_to_surface instead",
             DeprecationWarning,
@@ -312,6 +324,7 @@ class TrackingViz(SimViz):
         return abs(x - mouse_x) < w / 2 and abs(y - mouse_y) < h / 2
 
     def mouseIntersect(self, mousex, mousey):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "mouseIntersect(mousex, mousey) is deprecated, "
             "use mouse_intersect(mouse_x, mouse_y) instead",
@@ -387,6 +400,7 @@ class Simulation:
         self.time = min(max(time, self.time_window[0]), self.time_window[1])
 
     def setTime(self, time):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "setTime is deprecated, use set_time instead",
             DeprecationWarning,
@@ -401,6 +415,7 @@ class Simulation:
         print("%02d:%02d:%02d" % (hours, minutes, seconds))
 
     def printTime(self):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "printTime is deprecated, use print_time instead",
             DeprecationWarning,
@@ -419,6 +434,7 @@ class Simulation:
         return x, y
 
     def getXY(self, lat, lon, bounds, ssize):
+        """Deprecated, use lower case version instead."""
         warnings.warn(
             "getXY(lat, lon, bounds, ssize) is deprecated, "
             "use get_xy(lat, lon, bounds, screen_size) instead",

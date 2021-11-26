@@ -1,7 +1,7 @@
 doc::
-	env PYTHONPATH=$(PYTHONPATH):../src/ pydoc -w osmviz.manager
-	env PYTHONPATH=$(PYTHONPATH):../src/ pydoc -w osmviz.animation
-	env PYTHONPATH=$(PYTHONPATH):../src/ pydoc -w osmviz
+	env PYTHONPATH=$(PYTHONPATH):../src/ python3 -m pydoc -w osmviz.manager
+	env PYTHONPATH=$(PYTHONPATH):../src/ python3 -m pydoc -w osmviz.animation
+	env PYTHONPATH=$(PYTHONPATH):../src/ python3 -m pydoc -w osmviz
 
 examples::
 	python py2html.py ../examples/multiple_trackvizs.py > multiple_trackvizs.py.html
