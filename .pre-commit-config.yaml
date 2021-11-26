@@ -3,13 +3,13 @@ repos:
     rev: v2.29.0
     hooks:
       - id: pyupgrade
-        args: [--py37-plus]
+        args: ["--py36-plus"]
 
   - repo: https://github.com/psf/black
     rev: 21.9b0
     hooks:
       - id: black
-        args: [--target-version=py37]
+        args: ["--target-version", "py36"]
         exclude: ^html/
 
   - repo: https://github.com/PyCQA/isort
