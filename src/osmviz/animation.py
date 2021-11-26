@@ -51,6 +51,7 @@ Keyboard input is accepted to control the speed of the simulation.
 
 
 import time
+import warnings
 from functools import reduce
 
 import pygame
@@ -73,14 +74,14 @@ class SimViz:
         """
         Base constructor for a SimViz.
         'drawingOrder' is used to specify the order in which this viz
-        is drawn to the surface relative to others. See 'getDrawingOrder()'.
+        is drawn to the surface relative to others. See 'get_drawing_order()'.
         """
         self.drawing_order = drawingOrder
 
-    def getBoundingBox(self):
+    def get_bounding_box(self):
         """
         To be overridden.
-        Returns (latmin, latmax, lonmin, lonmax) the lat/lon bounds
+        Returns (lat_min, lat_max, lon_min, lon_max) the lat/lon bounds
         of this visualization object.
         Note that for Simulation purposes, this does not need to
         be implemented if this SimViz is passed in as one of the
@@ -88,7 +89,15 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def getTimeInterval(self):
+    def getBoundingBox(self):
+        warnings.warn(
+            "getBoundingBox is deprecated, use get_bounding_box instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_bounding_box()
+
+    def get_time_interval(self):
         """
         To be overridden.
         Returns (begin, end) time values for the existence of this
@@ -97,7 +106,15 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def setState(self, simtime, getXY):
+    def getTimeInterval(self):
+        warnings.warn(
+            "getTimeInterval is deprecated, use get_time_interval instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_time_interval()
+
+    def set_state(self, sim_time, get_xy):
         """
         To be overridden.
         Sets the internal state of this viz to the specified time.
@@ -106,7 +123,16 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def drawToSurface(self, surf):
+    def setState(self, simtime, getXY):
+        warnings.warn(
+            "setState(simtime, getXY) is deprecated, "
+            "use set_state(sim_time, get_xy) instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        raise Exception("UNIMPLEMENTED")
+
+    def draw_to_surface(self, surf):
         """
         To be overridden.
         Draws this viz on the supplied surface, according to its
@@ -114,7 +140,15 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def getDrawingOrder(self):
+    def drawToSurface(self, surf):
+        warnings.warn(
+            "drawToSurface is deprecated, use draw_to_surface instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        raise Exception("UNIMPLEMENTED")
+
+    def get_drawing_order(self):
         """
         Returns an integer representing the order in which this viz
         should be drawn relative to other vizs. Vizs with a higher
@@ -123,7 +157,15 @@ class SimViz:
         """
         return self.drawing_order
 
-    def getLabel(self):
+    def getDrawingOrder(self):
+        warnings.warn(
+            "getDrawingOrder is deprecated, use get_drawing_order instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.drawing_order
+
+    def get_label(self):
         """
         To be overridden (optionally).
         Returns string to be displayed as descriptive label for this
@@ -132,14 +174,31 @@ class SimViz:
         """
         return None
 
-    def mouseIntersect(self, mousex, mousey):
+    def getLabel(self):
+        warnings.warn(
+            "getLabel is deprecated, use get_label instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return None
+
+    def mouse_intersect(self, mouse_x, mouse_y):
         """
         To be overridden.
         Returns True if the given mouse location is inside some
         designated region of this visualization.
-        Note that for Simulation purposes, if getLabel() returns
+        Note that for Simulation purposes, if get_label() returns
         None then this method does not need to be implemented.
         """
+        raise Exception("UNIMPLEMENTED")
+
+    def mouseIntersect(self, mousex, mousey):
+        warnings.warn(
+            "mouseIntersect(mousex, mousey) is deprecated, "
+            "use mouse_intersect(mouse_x, mouse_y) instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         raise Exception("UNIMPLEMENTED")
 
 
@@ -168,7 +227,7 @@ class TrackingViz(SimViz):
                  this object exists
             bounding_box - a tuple (min_lat, max_lat, min_lon, max_lon)
                  representing the farthest bounds that this object will reach
-            drawing_order - see SimViz.getDrawingOrder()
+            drawing_order - see SimViz.get_drawing_order()
         """
         SimViz.__init__(self, drawing_order)
         self.label = label
@@ -178,37 +237,88 @@ class TrackingViz(SimViz):
         self.time_window = time_window
         self.bounding_box = bounding_box
         self.getLocationAtTime = getLatLonAtTimeFunc
+        self.get_location_at_time = getLatLonAtTimeFunc
 
-    def getTimeInterval(self):
+    def get_time_interval(self):
         return self.time_window
 
-    def getBoundingBox(self):
+    def getTimeInterval(self):
+        warnings.warn(
+            "getTimeInterval is deprecated, use get_time_interval instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.time_window
+
+    def get_bounding_box(self):
         return self.bounding_box
 
-    def getLabel(self):
+    def getBoundingBox(self):
+        warnings.warn(
+            "getBoundingBox is deprecated, use get_bounding_box instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.bounding_box
+
+    def get_label(self):
         return self.label
 
-    def setState(self, simtime, getXY):
+    def getLabel(self):
+        warnings.warn(
+            "getLabel is deprecated, use get_label instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.label
+
+    def set_state(self, sim_time, get_xy):
         self.xy = None
-        ll = self.getLocationAtTime(simtime)
+        ll = self.get_location_at_time(sim_time)
         if ll is None:
             return
-        x, y = getXY(*ll)
+        x, y = get_xy(*ll)
         self.xy = x, y
 
-    def drawToSurface(self, surf):
+    def setState(self, simtime, getXY):
+        warnings.warn(
+            "setState(simtime, getXY) is deprecated, "
+            "use set_state(sim_time, get_xy) instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.set_state(simtime, getXY)
+
+    def draw_to_surface(self, surf):
         if self.xy:
             x, y = self.xy
             w, h = self.width, self.height
             x, y = x - w / 2, y - h / 2
             surf.blit(self.image, (x, y))
 
-    def mouseIntersect(self, mousex, mousey):
+    def drawToSurface(self, surf):
+        warnings.warn(
+            "drawToSurface is deprecated, use draw_to_surface instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.draw_to_surface(surf)
+
+    def mouse_intersect(self, mouse_x, mouse_y):
         if not self.xy:
             return False
         x, y = self.xy
         w, h = self.width, self.height
-        return abs(x - mousex) < w / 2 and abs(y - mousey) < h / 2
+        return abs(x - mouse_x) < w / 2 and abs(y - mouse_y) < h / 2
+
+    def mouseIntersect(self, mousex, mousey):
+        warnings.warn(
+            "mouseIntersect(mousex, mousey) is deprecated, "
+            "use mouse_intersect(mouse_x, mouse_y) instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.mouse_intersect(mousex, mousey)
 
 
 class Simulation:
@@ -230,19 +340,19 @@ class Simulation:
         self.actor_vizs = actor_vizs
         self.scene_vizs = scene_vizs
         self.all_vizs = actor_vizs + scene_vizs
-        self.__findBoundingBox()
-        self.__findTimeWindow()
-        self.__sortVizs()
+        self.__find_bounding_box()
+        self.__find_time_window()
+        self.__sort_vizs()
 
         self.time = 10000
-        self.setTime(initTime)
+        self.set_time(initTime)
 
-    def __findBoundingBox(self):
-        """Finds the latlon box bounding all objects"""
+    def __find_bounding_box(self):
+        """Finds the lat_lon box bounding all objects"""
         init_box = (Inf, -Inf, Inf, -Inf)
 
         def helper(left, right):
-            right = right.getBoundingBox()
+            right = right.get_bounding_box()
             return (
                 min(left[0], right[0]),
                 max(left[1], right[1]),
@@ -252,45 +362,70 @@ class Simulation:
 
         self.bounding_box = reduce(helper, self.actor_vizs, init_box)
 
-    def __findTimeWindow(self):
+    def __find_time_window(self):
         """Finds the min and max times over all routes"""
         init_window = (Inf, -Inf)
 
         def helper(left, right):
-            right = right.getTimeInterval()
-            return (min(left[0], right[0]), max(left[1], right[1]))
+            right = right.get_time_interval()
+            return min(left[0], right[0]), max(left[1], right[1])
 
         self.time_window = reduce(helper, self.actor_vizs, init_window)
 
-    def __sortVizs(self):
+    def __sort_vizs(self):
         """Sorts tracked objects in order of Drawing Order"""
 
-        def keyfunction(item):
-            return item.getDrawingOrder()
+        def key_function(item):
+            return item.get_drawing_order()
 
-        self.all_vizs.sort(key=keyfunction)
+        self.all_vizs.sort(key=key_function)
 
-    def setTime(self, time):
+    def set_time(self, time):
         """
         Moves all bus tracks to the given time.
         """
         self.time = min(max(time, self.time_window[0]), self.time_window[1])
 
-    def printTime(self):
+    def setTime(self, time):
+        warnings.warn(
+            "setTime is deprecated, use set_time instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.set_time(time)
+
+    def print_time(self):
         hours = int(self.time / 3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int(self.time % 60)
         print("%02d:%02d:%02d" % (hours, minutes, seconds))
 
-    def getXY(self, lat, lon, bounds, ssize):
+    def printTime(self):
+        warnings.warn(
+            "printTime is deprecated, use print_time instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.print_time()
+
+    def get_xy(self, lat, lon, bounds, screen_size):
         """
         Given coordinates in lon, lat, and a screen size,
         returns the corresponding (x, y) pixel coordinates.
         """
         x_ratio = (lon - bounds[2]) / (bounds[3] - bounds[2])
         y_ratio = 1.0 - ((lat - bounds[0]) / (bounds[1] - bounds[0]))
-        x, y = int(x_ratio * ssize[0]), int(y_ratio * ssize[1])
+        x, y = int(x_ratio * screen_size[0]), int(y_ratio * screen_size[1])
         return x, y
+
+    def getXY(self, lat, lon, bounds, ssize):
+        warnings.warn(
+            "getXY(lat, lon, bounds, ssize) is deprecated, "
+            "use get_xy(lat, lon, bounds, screen_size) instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_xy(lat, lon, bounds, ssize)
 
     def run(
         self,
@@ -327,26 +462,26 @@ class Simulation:
             fnt = font
 
         osm = OSMManager(cache="maptiles/", image_manager=PygameImageManager())
-        bg_big, new_bounds = osm.createOSMImage(self.bounding_box, zoom=osmzoom)
+        bg_big, new_bounds = osm.create_osm_image(self.bounding_box, zoom=osmzoom)
         w_h_ratio = float(bg_big.get_width()) / bg_big.get_height()
         # Make the window smaller to keep proportions and stay within
         # specified windowsize
-        newwidth = int(windowsize[1] * w_h_ratio)
-        newheight = int(windowsize[0] / w_h_ratio)
-        if newwidth > windowsize[0]:
-            windowsize = windowsize[0], newheight
-        elif newheight > windowsize[1]:
-            windowsize = newwidth, windowsize[1]
+        new_width = int(windowsize[1] * w_h_ratio)
+        new_height = int(windowsize[0] / w_h_ratio)
+        if new_width > windowsize[0]:
+            windowsize = windowsize[0], new_height
+        elif new_height > windowsize[1]:
+            windowsize = new_width, windowsize[1]
 
         screen = pygame.display.set_mode(windowsize)
 
         bg_small = pygame.transform.smoothscale(bg_big, windowsize)
         del bg_big
 
-        lastTime = self.time
+        last_time = self.time
 
-        def getXY(lat, lon):
-            return self.getXY(lat, lon, new_bounds, windowsize)
+        def get_xy(lat, lon):
+            return self.get_xy(lat, lon, new_bounds, windowsize)
 
         # Main simulation loop #
 
@@ -369,30 +504,30 @@ class Simulation:
                     self.time = self.time_window[1]
 
             # Grab mouse position
-            mousex, mousey = pygame.mouse.get_pos()
+            mouse_x, mouse_y = pygame.mouse.get_pos()
             selected = None
 
             # Print the time if changed
-            if self.time != lastTime:
-                self.printTime()
-            lastTime = self.time
+            if self.time != last_time:
+                self.print_time()
+            last_time = self.time
 
             # Draw the background
             screen.blit(bg_small, (0, 0))
 
             # Draw the tracked objects
             for sviz in self.all_vizs:
-                sviz.setState(self.time, getXY)
-                sviz.drawToSurface(screen)
-                label = sviz.getLabel()
-                if label and sviz.mouseIntersect(mousex, mousey):
+                sviz.set_state(self.time, get_xy)
+                sviz.draw_to_surface(screen)
+                label = sviz.get_label()
+                if label and sviz.mouse_intersect(mouse_x, mouse_y):
                     selected = sviz
 
             # Display selected label
             if selected:
                 if fnt:
-                    text = fnt.render(selected.getLabel(), True, black, notec)
-                    screen.blit(text, (mousex, mousey - 10))
+                    text = fnt.render(selected.get_label(), True, black, notec)
+                    screen.blit(text, (mouse_x, mouse_y - 10))
                     del text
                 else:
                     print(selected.getLabel())
@@ -400,7 +535,7 @@ class Simulation:
             pygame.display.flip()
 
             time.sleep(refresh_rate)
-            self.setTime(self.time + speed * refresh_rate)
+            self.set_time(self.time + speed * refresh_rate)
 
         # Clean up and exit
         del bg_small

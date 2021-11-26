@@ -20,27 +20,32 @@ class LassoViz(SimViz):
     """
 
     def __init__(
-        self, getLocAtTime1, getLocAtTime2, linecolor=red, linewidth=3, drawingOrder=0
+        self,
+        get_loc_at_time1,
+        get_loc_at_time2,
+        line_color=red,
+        line_width=3,
+        drawing_order=0,
     ):
         """
-        getLocAtTime 1 and 2 represent the location of the 1st and 2nd
+        get_loc_at_time 1 and 2 represent the location of the 1st and 2nd
         endpoint of this lasso, respectively. They should take a single
         argument (time) and return the (lat,lon) of that endpoint.
         """
-        SimViz.__init__(self, drawingOrder)
+        SimViz.__init__(self, drawing_order)
         self.xy1 = None
         self.xy2 = None
-        self.linecolor = linecolor
-        self.linewidth = linewidth
-        self.getLoc1 = getLocAtTime1
-        self.getLoc2 = getLocAtTime2
+        self.line_color = line_color
+        self.line_width = line_width
+        self.get_loc1 = get_loc_at_time1
+        self.get_loc2 = get_loc_at_time2
 
-    def setState(self, simtime, getXY):
-        self.xy1 = getXY(*self.getLoc1(simtime))
-        self.xy2 = getXY(*self.getLoc2(simtime))
+    def set_state(self, sim_time, get_xy):
+        self.xy1 = get_xy(*self.get_loc1(sim_time))
+        self.xy2 = get_xy(*self.get_loc2(sim_time))
 
-    def drawToSurface(self, surf):
-        pygame.draw.line(surf, self.linecolor, self.xy1, self.xy2, self.linewidth)
+    def draw_to_surface(self, surf):
+        pygame.draw.line(surf, self.line_color, self.xy1, self.xy2, self.line_width)
 
     # So long as we are passing LassoViz's in as part of the scene_viz
     # list to a Simulation, we don't need to implement the getLabel,
@@ -57,7 +62,7 @@ class TiedTrain(TrackingViz):
 
     def __init__(
         self,
-        tiepost,
+        tie_post,
         lat_dist,
         lon_dist,
         frequency,
@@ -66,7 +71,7 @@ class TiedTrain(TrackingViz):
         drawing_order=0,
         image="images/train.png",
     ):
-        self.clat, self.clon = tiepost
+        self.clat, self.clon = tie_post
         self.lat_dist = lat_dist
         self.lon_dist = lon_dist
         self.frequency = int(frequency)
@@ -75,7 +80,7 @@ class TiedTrain(TrackingViz):
             self,
             label,
             image,
-            self.getLocAtTime,
+            self.get_loc_at_time,
             time_window,
             (
                 self.clat - self.lat_dist,
@@ -86,7 +91,7 @@ class TiedTrain(TrackingViz):
             drawing_order,
         )
 
-    def getLocAtTime(self, time):
+    def get_loc_at_time(self, time):
         phase = float(time % self.frequency) / self.frequency
         if phase < 0.25:
             blat = self.clat - self.lat_dist
@@ -113,7 +118,7 @@ class TiedTrain(TrackingViz):
 
 denver = 39.756111, -104.994167
 train = TiedTrain(denver, 5.0, 5.0, 60, (0, 600), "Denver Bound")
-lasso = LassoViz(train.getLocAtTime, lambda t: denver)
+lasso = LassoViz(train.get_loc_at_time, lambda t: denver)
 
 sim = Simulation([train], [lasso], 0)
 sim.run(refresh_rate=0.01, speed=1, osmzoom=7)

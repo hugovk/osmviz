@@ -39,6 +39,7 @@ import math
 import os
 import os.path as path
 import urllib.request
+import warnings
 from urllib.request import urlretrieve
 
 try:
@@ -117,12 +118,20 @@ class ImageManager:
         self.paste_image(img, xy)
         del img
 
-    def getImage(self):
+    def get_image(self):
         """
         Returns some representation of the internal image. The returned value
         is not for use by the OSMManager.
         """
         return self.image
+
+    def getImage(self):
+        warnings.warn(
+            "getImage is deprecated, use get_image instead",
+            DeprecationWarning,
+            stacklevel=3,
+        )
+        return self.get_image()
 
 
 class PygameImageManager(ImageManager):
@@ -145,7 +154,7 @@ class PygameImageManager(ImageManager):
         return self.pygame.image.load(imagef)
 
     def paste_image(self, img, xy):
-        self.getImage().blit(img, xy)
+        self.get_image().blit(img, xy)
 
 
 class PILImageManager(ImageManager):
@@ -174,13 +183,13 @@ class PILImageManager(ImageManager):
         return self.PILImage.open(imagef)
 
     def paste_image(self, img, xy):
-        self.getImage().paste(img, xy)
+        self.get_image().paste(img, xy)
 
 
 class OSMManager:
     """
     An OSMManager manages the retrieval and storage of Open Street Map
-    images. The basic utility is the createOSMImage() method which
+    images. The basic utility is the create_osm_image() method which
     automatically gets all the images needed, and tiles them together
     into one big image.
     """
@@ -281,7 +290,7 @@ class OSMManager:
         else:
             raise Exception("OSMManager.__init__ requires argument image_manager")
 
-    def getTileCoord(self, lon_deg, lat_deg, zoom):
+    def get_tile_coord(self, lon_deg, lat_deg, zoom):
         """
         Given lon, lat coords in DEGREES, and a zoom level,
         returns the (x, y) coordinate of the corresponding tile #.
@@ -297,14 +306,30 @@ class OSMManager:
         )
         return xtile, ytile
 
-    def getTileURL(self, tile_coord, zoom):
+    def getTileCoord(self, lon_deg, lat_deg, zoom):
+        warnings.warn(
+            "getTileCoord is deprecated, use get_tile_coord instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_tile_coord(lon_deg, lat_deg, zoom)
+
+    def get_tile_url(self, tile_coord, zoom):
         """
         Given x, y coord of the tile to download, and the zoom level,
         returns the URL from which to download the image.
         """
         return self.url.format(x=tile_coord[0], y=tile_coord[1], z=zoom, s=self.scale)
 
-    def getLocalTileFilename(self, tile_coord, zoom):
+    def getTileURL(self, tile_coord, zoom):
+        warnings.warn(
+            "getTileURL is deprecated, use get_tile_url instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_tile_url(tile_coord, zoom)
+
+    def get_local_tile_filename(self, tile_coord, zoom):
         """
         Given x, y coord of the tile, and the zoom level,
         returns the filename to which the file would be saved
@@ -314,22 +339,38 @@ class OSMManager:
         params = (self.cache_prefix, zoom, tile_coord[0], tile_coord[1])
         return path.join(self.cache, "%s%d_%d_%d.png" % params)
 
-    def retrieveTileImage(self, tile_coord, zoom):
+    def getLocalTileFilename(self, tile_coord, zoom):
+        warnings.warn(
+            "getLocalTileFilename is deprecated, use get_local_tile_filename instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.get_local_tile_filename(tile_coord, zoom)
+
+    def retrieve_tile_image(self, tile_coord, zoom):
         """
         Given x, y coord of the tile, and the zoom level,
         retrieves the file to disk if necessary and
         returns the local filename.
         """
-        filename = self.getLocalTileFilename(tile_coord, zoom)
+        filename = self.get_local_tile_filename(tile_coord, zoom)
         if not path.isfile(filename):
-            url = self.getTileURL(tile_coord, zoom)
+            url = self.get_tile_url(tile_coord, zoom)
             try:
                 urlretrieve(url, filename=filename)
             except Exception as e:
                 raise Exception("Unable to retrieve URL: " + url + "\n" + str(e))
         return filename
 
-    def tileNWLatlon(self, tile_coord, zoom):
+    def retrieveTileImage(self, tile_coord, zoom):
+        warnings.warn(
+            "retrieveTileImage is deprecated, use retrieve_tile_image instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.retrieve_tile_image(tile_coord, zoom)
+
+    def tile_nw_lat_lon(self, tile_coord, zoom):
         """
         Given x, y coord of the tile, and the zoom level,
         returns the (lat, lon) coordinates of the upper
@@ -342,39 +383,47 @@ class OSMManager:
         lat_deg = lat_rad * 180.0 / math.pi
         return lat_deg, lon_deg
 
-    def createOSMImage(self, bounds, zoom):
+    def tileNWLatlon(self, tile_coord, zoom):
+        warnings.warn(
+            "tileNWLatlon is deprecated, use tile_nw_lat_lon instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.tile_nw_lat_lon(tile_coord, zoom)
+
+    def create_osm_image(self, bounds, zoom):
         """
-        Given bounding latlons (in degrees), and an OSM zoom level,
+        Given bounding lat_lons (in degrees), and an OSM zoom level,
         creates an image constructed from OSM tiles.
         Returns (img, bounds) where img is the constructed image (as returned
-        by the image manager's "getImage()" method),
-        and bounds is the (latmin, latmax, lonmin, lonmax) bounding box
+        by the image manager's "get_image()" method),
+        and bounds is the (min_lat, max_lat, min_lon, max_lon) bounding box
         which the tiles cover.
         """
-        (minlat, maxlat, minlon, maxlon) = bounds
+        (min_lat, max_lat, min_lon, max_lon) = bounds
         if not self.manager:
             raise Exception("No ImageManager was specified, cannot create image.")
 
-        topleft = minX, minY = self.getTileCoord(minlon, maxlat, zoom)
-        maxX, maxY = self.getTileCoord(maxlon, minlat, zoom)
-        new_maxlat, new_minlon = self.tileNWLatlon(topleft, zoom)
-        new_minlat, new_maxlon = self.tileNWLatlon((maxX + 1, maxY + 1), zoom)
-        pix_width = (maxX - minX + 1) * self.tile_size
-        pix_height = (maxY - minY + 1) * self.tile_size
+        topleft = min_x, min_y = self.get_tile_coord(min_lon, max_lat, zoom)
+        max_x, max_y = self.get_tile_coord(max_lon, min_lat, zoom)
+        new_max_lat, new_min_lon = self.tile_nw_lat_lon(topleft, zoom)
+        new_min_lat, new_max_lon = self.tile_nw_lat_lon((max_x + 1, max_y + 1), zoom)
+        pix_width = (max_x - min_x + 1) * self.tile_size
+        pix_height = (max_y - min_y + 1) * self.tile_size
         self.manager.prepare_image(pix_width, pix_height)
-        total = (1 + maxX - minX) * (1 + maxY - minY)
+        total = (1 + max_x - min_x) * (1 + max_y - min_y)
 
         if tqdm:
             pbar = tqdm(desc="Fetching tiles", total=total, unit="tile")
         else:
             print(f"Fetching {total} tiles...")
 
-        for x in range(minX, maxX + 1):
-            for y in range(minY, maxY + 1):
-                fname = self.retrieveTileImage((x, y), zoom)
-                x_off = self.tile_size * (x - minX)
-                y_off = self.tile_size * (y - minY)
-                self.manager.paste_image_file(fname, (x_off, y_off))
+        for x in range(min_x, max_x + 1):
+            for y in range(min_y, max_y + 1):
+                f_name = self.retrieve_tile_image((x, y), zoom)
+                x_off = self.tile_size * (x - min_x)
+                y_off = self.tile_size * (y - min_y)
+                self.manager.paste_image_file(f_name, (x_off, y_off))
                 if tqdm:
                     pbar.update()
         if tqdm:
@@ -382,9 +431,17 @@ class OSMManager:
         else:
             print("... done.")
         return (
-            self.manager.getImage(),
-            (new_minlat, new_maxlat, new_minlon, new_maxlon),
+            self.manager.get_image(),
+            (new_min_lat, new_max_lat, new_min_lon, new_max_lon),
         )
+
+    def createOSMImage(self, bounds, zoom):
+        warnings.warn(
+            "createOSMImage is deprecated, use create_osm_image instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.create_osm_image(bounds, zoom)
 
 
 # import httplib
