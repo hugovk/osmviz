@@ -1,110 +1,109 @@
 """
 Unit tests for PILImageManager
 """
-import unittest
+import pytest
 
 from osmviz.manager import PILImageManager
 
 
-class TestPILImageManager(unittest.TestCase):
-    def setUp(self):
-        mode = "RGB"
-        self.image_manager = PILImageManager(mode)
-
-    def test_prepare_image(self):
-        # Arrange
-        width, height = 200, 100
-
-        # Act
-        self.image_manager.prepare_image(width, height)
-
-        # Assert
-        self.assertEqual(self.image_manager.image.size, (200, 100))
-
-    def test_prepare_image__twice(self):
-        # Arrange
-        width, height = 200, 100
-
-        # Act
-        self.image_manager.prepare_image(width, height)
-
-        # Assert
-        self.assertRaises(
-            Exception, lambda: self.image_manager.prepare_image(width, height)
-        )
-
-    def test_destroy_image__no_image(self):
-        # Arrange
-        # Act
-        self.image_manager.destroy_image()
-
-        # Assert
-        self.assertIsNone(self.image_manager.image)
-
-    def test_destroy_image__with_image(self):
-        # Arrange
-        width, height = 200, 100
-        self.image_manager.prepare_image(width, height)
-        self.assertEqual(self.image_manager.image.size, (200, 100))
-
-        # Act
-        self.image_manager.destroy_image()
-
-        # Assert
-        self.assertIsNone(self.image_manager.image)
-
-    def test_paste_image_file__image_not_prepared(self):
-        # Arrange
-        imagef = "dummy.jpg"
-        xy = (0, 0)
-
-        # Act / Assert
-        self.assertRaises(
-            Exception, lambda: self.image_manager.paste_image_file(imagef, xy)
-        )
-
-    def test_paste_image_file__could_not_load_image(self):
-        # Arrange
-        width, height = 200, 100
-        self.image_manager.prepare_image(width, height)
-        self.assertEqual(self.image_manager.image.size, (200, 100))
-        imagef = "dummy.jpg"
-        xy = (0, 0)
-
-        # Act / Assert
-        self.assertRaises(
-            Exception, lambda: self.image_manager.paste_image_file(imagef, xy)
-        )
-
-    def test_paste_image_file(self):
-        # Arrange
-        width, height = 200, 100
-        self.image_manager.prepare_image(width, height)
-        self.assertEqual(self.image_manager.image.size, (200, 100))
-        imagef = "test/images/bus.png"
-        xy = (0, 0)
-
-        # Act
-        self.image_manager.paste_image_file(imagef, xy)
-
-        # Assert
-        self.assertEqual(self.image_manager.image.size, (200, 100))
-
-    def test_get_image(self):
-        # Arrange
-        width, height = 200, 100
-        self.image_manager.prepare_image(width, height)
-        self.assertIsNotNone(self.image_manager.image)
-
-        # Act
-        im = self.image_manager.get_image()
-
-        # Assert
-        self.assertEqual(im.size, (200, 100))
+@pytest.fixture()
+def image_manager():
+    mode = "RGB"
+    image_manager = PILImageManager(mode)
+    yield image_manager
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_prepare_image(image_manager):
+    # Arrange
+    width, height = 200, 100
+
+    # Act
+    image_manager.prepare_image(width, height)
+
+    # Assert
+    assert image_manager.image.size == (200, 100)
 
 
-# End of file
+def test_prepare_image__twice(image_manager):
+    # Arrange
+    width, height = 200, 100
+
+    # Act
+    image_manager.prepare_image(width, height)
+
+    # Assert
+    with pytest.raises(Exception):
+        image_manager.prepare_image(width, height)
+
+
+def test_destroy_image__no_image(image_manager):
+    # Arrange
+    # Act
+    image_manager.destroy_image()
+
+    # Assert
+    assert image_manager.image is None
+
+
+def test_destroy_image__with_image(image_manager):
+    # Arrange
+    width, height = 200, 100
+    image_manager.prepare_image(width, height)
+    assert image_manager.image.size == (200, 100)
+
+    # Act
+    image_manager.destroy_image()
+
+    # Assert
+    assert image_manager.image is None
+
+
+def test_paste_image_file__image_not_prepared(image_manager):
+    # Arrange
+    filename = "dummy.jpg"
+    xy = (0, 0)
+
+    # Act / Assert
+    with pytest.raises(Exception):
+        image_manager.paste_image_file(filename, xy)
+
+
+def test_paste_image_file__could_not_load_image(image_manager):
+    # Arrange
+    width, height = 200, 100
+    image_manager.prepare_image(width, height)
+    assert image_manager.image.size == (200, 100)
+    filename = "dummy.jpg"
+    xy = (0, 0)
+
+    # Act / Assert
+    with pytest.raises(Exception):
+        image_manager.paste_image_file(filename, xy)
+
+
+def test_paste_image_file(image_manager):
+    # Arrange
+    width, height = 200, 100
+    image_manager.prepare_image(width, height)
+    assert image_manager.image.size == (200, 100)
+    filename = "test/images/bus.png"
+    xy = (0, 0)
+
+    # Act
+    image_manager.paste_image_file(filename, xy)
+
+    # Assert
+    assert image_manager.image.size == (200, 100)
+
+
+def test_get_image(image_manager):
+    # Arrange
+    width, height = 200, 100
+    image_manager.prepare_image(width, height)
+    assert image_manager.image is not None
+
+    # Act
+    im = image_manager.get_image()
+
+    # Assert
+    assert im.size == (200, 100)
