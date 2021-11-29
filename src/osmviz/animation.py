@@ -51,7 +51,6 @@ Keyboard input is accepted to control the speed of the simulation.
 
 
 import time
-import warnings
 from functools import reduce
 
 import pygame
@@ -70,13 +69,13 @@ class SimViz:
     subclassed (or at least replicated).
     """
 
-    def __init__(self, drawingOrder=0):
+    def __init__(self, drawing_order=0):
         """
         Base constructor for a SimViz.
         'drawingOrder' is used to specify the order in which this viz
         is drawn to the surface relative to others. See 'get_drawing_order()'.
         """
-        self.drawing_order = drawingOrder
+        self.drawing_order = drawing_order
 
     def get_bounding_box(self):
         """
@@ -89,15 +88,6 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def getBoundingBox(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getBoundingBox is deprecated, use get_bounding_box instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.get_bounding_box()
-
     def get_time_interval(self):
         """
         To be overridden.
@@ -106,15 +96,6 @@ class SimViz:
         May return (-Inf, Inf) to indicate that it is always present.
         """
         raise Exception("UNIMPLEMENTED")
-
-    def getTimeInterval(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getTimeInterval is deprecated, use get_time_interval instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.get_time_interval()
 
     def set_state(self, sim_time, get_xy):
         """
@@ -125,31 +106,12 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def setState(self, simtime, getXY):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "setState(simtime, getXY) is deprecated, "
-            "use set_state(sim_time, get_xy) instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        raise Exception("UNIMPLEMENTED")
-
     def draw_to_surface(self, surf):
         """
         To be overridden.
         Draws this viz on the supplied surface, according to its
         internal state.
         """
-        raise Exception("UNIMPLEMENTED")
-
-    def drawToSurface(self, surf):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "drawToSurface is deprecated, use draw_to_surface instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
         raise Exception("UNIMPLEMENTED")
 
     def get_drawing_order(self):
@@ -161,15 +123,6 @@ class SimViz:
         """
         return self.drawing_order
 
-    def getDrawingOrder(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getDrawingOrder is deprecated, use get_drawing_order instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.drawing_order
-
     def get_label(self):
         """
         To be overridden (optionally).
@@ -177,15 +130,6 @@ class SimViz:
         viz object. Default behavior is to return None, meaning no
         label should ever be displayed.
         """
-        return None
-
-    def getLabel(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getLabel is deprecated, use get_label instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
         return None
 
     def mouse_intersect(self, mouse_x, mouse_y):
@@ -198,16 +142,6 @@ class SimViz:
         """
         raise Exception("UNIMPLEMENTED")
 
-    def mouseIntersect(self, mousex, mousey):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "mouseIntersect(mousex, mousey) is deprecated, "
-            "use mouse_intersect(mouse_x, mouse_y) instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        raise Exception("UNIMPLEMENTED")
-
 
 class TrackingViz(SimViz):
     """
@@ -218,7 +152,7 @@ class TrackingViz(SimViz):
         self,
         label,
         image,
-        getLatLonAtTimeFunc,
+        get_lat_lon_at_time_func,
         time_window,
         bounding_box,
         drawing_order=0,
@@ -228,7 +162,7 @@ class TrackingViz(SimViz):
         Arguments:
             label - text to display when moused over, or None for no text
             image - filename of image to display on map
-            getLatLonAtTimeFunc - a function that takes one argument (time)
+            get_lat_lon_at_time_func - a function that takes one argument (time)
                  and returns (lat, lon)
             time_window - a tuple (begin_time, end_time) representing the times
                  this object exists
@@ -243,43 +177,15 @@ class TrackingViz(SimViz):
         self.height = self.image.get_rect().height
         self.time_window = time_window
         self.bounding_box = bounding_box
-        self.getLocationAtTime = getLatLonAtTimeFunc
-        self.get_location_at_time = getLatLonAtTimeFunc
+        self.get_location_at_time = get_lat_lon_at_time_func
 
     def get_time_interval(self):
-        return self.time_window
-
-    def getTimeInterval(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getTimeInterval is deprecated, use get_time_interval instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
         return self.time_window
 
     def get_bounding_box(self):
         return self.bounding_box
 
-    def getBoundingBox(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getBoundingBox is deprecated, use get_bounding_box instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.bounding_box
-
     def get_label(self):
-        return self.label
-
-    def getLabel(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getLabel is deprecated, use get_label instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
         return self.label
 
     def set_state(self, sim_time, get_xy):
@@ -290,16 +196,6 @@ class TrackingViz(SimViz):
         x, y = get_xy(*ll)
         self.xy = x, y
 
-    def setState(self, simtime, getXY):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "setState(simtime, getXY) is deprecated, "
-            "use set_state(sim_time, get_xy) instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.set_state(simtime, getXY)
-
     def draw_to_surface(self, surf):
         if self.xy:
             x, y = self.xy
@@ -307,31 +203,12 @@ class TrackingViz(SimViz):
             x, y = x - w / 2, y - h / 2
             surf.blit(self.image, (x, y))
 
-    def drawToSurface(self, surf):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "drawToSurface is deprecated, use draw_to_surface instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.draw_to_surface(surf)
-
     def mouse_intersect(self, mouse_x, mouse_y):
         if not self.xy:
             return False
         x, y = self.xy
         w, h = self.width, self.height
         return abs(x - mouse_x) < w / 2 and abs(y - mouse_y) < h / 2
-
-    def mouseIntersect(self, mousex, mousey):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "mouseIntersect(mousex, mousey) is deprecated, "
-            "use mouse_intersect(mouse_x, mouse_y) instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.mouse_intersect(mousex, mousey)
 
 
 class Simulation:
@@ -341,7 +218,7 @@ class Simulation:
     method is provided which displays the simulation in a pygame window.
     """
 
-    def __init__(self, actor_vizs, scene_vizs, initTime=0):
+    def __init__(self, actor_vizs, scene_vizs, init_time=0):
         """
         Given two collections of generic SimViz objects, and optionally an
         initial time, creates a Simulation object.
@@ -358,7 +235,7 @@ class Simulation:
         self.__sort_vizs()
 
         self.time = 10000
-        self.set_time(initTime)
+        self.set_time(init_time)
 
     def __find_bounding_box(self):
         """Finds the lat_lon box bounding all objects"""
@@ -399,29 +276,11 @@ class Simulation:
         """
         self.time = min(max(time, self.time_window[0]), self.time_window[1])
 
-    def setTime(self, time):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "setTime is deprecated, use set_time instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.set_time(time)
-
     def print_time(self):
         hours = int(self.time / 3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int(self.time % 60)
         print(f"{hours:02d}:{minutes:02d}:{seconds:02d}")
-
-    def printTime(self):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "printTime is deprecated, use print_time instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.print_time()
 
     def get_xy(self, lat, lon, bounds, screen_size):
         """
@@ -433,36 +292,26 @@ class Simulation:
         x, y = int(x_ratio * screen_size[0]), int(y_ratio * screen_size[1])
         return x, y
 
-    def getXY(self, lat, lon, bounds, ssize):
-        """Deprecated, use lower case version instead."""
-        warnings.warn(
-            "getXY(lat, lon, bounds, ssize) is deprecated, "
-            "use get_xy(lat, lon, bounds, screen_size) instead",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self.get_xy(lat, lon, bounds, ssize)
-
     def run(
         self,
         speed=0.0,
-        windowsize=(1280, 800),
+        window_size=(1280, 800),
         refresh_rate=1.0,
         font="/Library/Frameworks/Python.framework/Versions/2.5/"
         "lib/python2.5/site-packages/pygame/freesansbold.ttf",
-        fontsize=10,
-        osmzoom=14,
+        font_size=10,
+        osm_zoom=14,
     ):
         """
         Pops up a window and displays the simulation on it.
-        Speed is advancement of sim in seconds/second.
-        Refresh rate is pause in seconds between frames.
-        Windowsize is the desired (width, height) of the display window.
+        speed is advancement of sim in seconds/second.
+        refresh_rate is pause in seconds between frames.
+        window_size is the desired (width, height) of the display window.
         Font is either the full path to a pygame-compatible font file
             (e.g. a .ttf file), or an actual pygame Font object, or None.
             If None, then labels will not be rendered, instead they will be
             printed to stdout.
-        Fontsize is the size of the font, if it exists.
+        font_size is the size of the font, if it exists.
         """
         pygame.init()
         black = pygame.Color(0, 0, 0)
@@ -471,33 +320,33 @@ class Simulation:
         fnt = None
         if isinstance(font, str):
             try:
-                fnt = pygame.font.Font(font, fontsize)
+                fnt = pygame.font.Font(font, font_size)
             except Exception:
                 fnt = None
         elif isinstance(font, pygame.font.Font):
             fnt = font
 
         osm = OSMManager(cache="maptiles/", image_manager=PygameImageManager())
-        bg_big, new_bounds = osm.create_osm_image(self.bounding_box, zoom=osmzoom)
+        bg_big, new_bounds = osm.create_osm_image(self.bounding_box, zoom=osm_zoom)
         w_h_ratio = float(bg_big.get_width()) / bg_big.get_height()
         # Make the window smaller to keep proportions and stay within
-        # specified windowsize
-        new_width = int(windowsize[1] * w_h_ratio)
-        new_height = int(windowsize[0] / w_h_ratio)
-        if new_width > windowsize[0]:
-            windowsize = windowsize[0], new_height
-        elif new_height > windowsize[1]:
-            windowsize = new_width, windowsize[1]
+        # specified window_size
+        new_width = int(window_size[1] * w_h_ratio)
+        new_height = int(window_size[0] / w_h_ratio)
+        if new_width > window_size[0]:
+            window_size = window_size[0], new_height
+        elif new_height > window_size[1]:
+            window_size = new_width, window_size[1]
 
-        screen = pygame.display.set_mode(windowsize)
+        screen = pygame.display.set_mode(window_size)
 
-        bg_small = pygame.transform.smoothscale(bg_big, windowsize)
+        bg_small = pygame.transform.smoothscale(bg_big, window_size)
         del bg_big
 
         last_time = self.time
 
         def get_xy(lat, lon):
-            return self.get_xy(lat, lon, new_bounds, windowsize)
+            return self.get_xy(lat, lon, new_bounds, window_size)
 
         # Main simulation loop #
 
