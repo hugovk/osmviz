@@ -86,7 +86,7 @@ class SimViz:
         be implemented if this SimViz is passed in as one of the
         scene_viz's (as opposed to an actor_viz).
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     def get_time_interval(self):
         """
@@ -95,7 +95,7 @@ class SimViz:
         visualization object.
         May return (-Inf, Inf) to indicate that it is always present.
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     def set_state(self, sim_time, get_xy):
         """
@@ -104,7 +104,7 @@ class SimViz:
         This should be stored internally, for subsequent calls to
         methods such as drawToSurface or mouseIntersect.
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     def draw_to_surface(self, surf):
         """
@@ -112,7 +112,7 @@ class SimViz:
         Draws this viz on the supplied surface, according to its
         internal state.
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     def get_drawing_order(self):
         """
@@ -140,7 +140,7 @@ class SimViz:
         Note that for Simulation purposes, if get_label() returns
         None then this method does not need to be implemented.
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
 
 class TrackingViz(SimViz):

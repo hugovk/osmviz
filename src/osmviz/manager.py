@@ -64,21 +64,21 @@ class ImageManager:
         Given an already-loaded file, paste it into the internal image
         at the specified top-left coordinate.
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     def load_image_file(self, image_file):
         """
         To be overridden.
         Loads specified image file into image object and returns it.
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     def create_image(self, width, height):
         """
         To be overridden.
         Create and return image with specified dimensions
         """
-        raise Exception("UNIMPLEMENTED")
+        raise NotImplementedError
 
     # END OF TO BE OVERRIDDEN #
 
