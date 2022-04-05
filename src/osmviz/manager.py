@@ -288,7 +288,7 @@ class OSMManager:
         (https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Python)
         """
         lat_rad = lat_deg * math.pi / 180.0
-        n = 2.0 ** zoom
+        n = 2.0**zoom
         xtile = int((lon_deg + 180.0) / 360.0 * n)
         ytile = int(
             (1.0 - math.log(math.tan(lat_rad) + (1 / math.cos(lat_rad))) / math.pi)
@@ -337,7 +337,7 @@ class OSMManager:
         left corner of the tile.
         """
         x_tile, y_tile = tile_coord
-        n = 2.0 ** zoom
+        n = 2.0**zoom
         lon_deg = x_tile / n * 360.0 - 180.0
         lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * y_tile / n)))
         lat_deg = lat_rad * 180.0 / math.pi
