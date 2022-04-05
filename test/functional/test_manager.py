@@ -8,7 +8,7 @@ def test_pil():
     osm = OSMManager(image_manager=image_manager)
     image, bounds = osm.create_osm_image((30, 31, -117, -116), 9)
     wh_ratio = float(image.size[0]) / image.size[1]
-    image2 = image.resize((int(800 * wh_ratio), 800), Image.ANTIALIAS)
+    image2 = image.resize((int(800 * wh_ratio), 800), Image.Resampling.LANCZOS)
     del image
     image2.show()
 
