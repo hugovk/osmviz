@@ -57,4 +57,4 @@ for i in range(num_trains):
 
 
 sim = Simulation(track_vizs, [], 0)
-sim.run(speed=1, refresh_rate=0.1, osmzoom=zoom)
+sim.run(speed=1, refresh_rate=0.1, osm_zoom=zoom)
