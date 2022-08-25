@@ -121,4 +121,4 @@ train = TiedTrain(denver, 5.0, 5.0, 60, (0, 600), "Denver Bound")
 lasso = LassoViz(train.get_loc_at_time, lambda t: denver)
 
 sim = Simulation([train], [lasso], 0)
-sim.run(refresh_rate=0.01, speed=1, osmzoom=7)
+sim.run(refresh_rate=0.01, speed=1, osm_zoom=7)
