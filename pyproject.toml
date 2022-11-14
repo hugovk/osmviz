@@ -42,6 +42,7 @@ tests = [
 ]
 
 [project.urls]
+Changelog = "https://github.com/hugovk/osmviz/releases"
 Documentation = "https://hugovk.github.io/osmviz/"
 Homepage = "https://github.com/hugovk/osmviz"
 Source = "https://github.com/hugovk/osmviz"
