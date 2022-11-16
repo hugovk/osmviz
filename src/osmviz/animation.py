@@ -69,7 +69,7 @@ class SimViz:
     subclassed (or at least replicated).
     """
 
-    def __init__(self, drawing_order=0):
+    def __init__(self, drawing_order: int = 0) -> None:
         """
         Base constructor for a SimViz.
         'drawingOrder' is used to specify the order in which this viz
@@ -155,8 +155,8 @@ class TrackingViz(SimViz):
         get_lat_lon_at_time_func,
         time_window,
         bounding_box,
-        drawing_order=0,
-    ):
+        drawing_order: int = 0,
+    ) -> None:
         """
         Constructs a TrackingViz.
         Arguments:
@@ -188,7 +188,7 @@ class TrackingViz(SimViz):
     def get_label(self):
         return self.label
 
-    def set_state(self, sim_time, get_xy):
+    def set_state(self, sim_time, get_xy) -> None:
         self.xy = None
         ll = self.get_location_at_time(sim_time)
         if ll is None:
@@ -196,7 +196,7 @@ class TrackingViz(SimViz):
         x, y = get_xy(*ll)
         self.xy = x, y
 
-    def draw_to_surface(self, surf):
+    def draw_to_surface(self, surf) -> None:
         if self.xy:
             x, y = self.xy
             w, h = self.width, self.height
@@ -218,7 +218,7 @@ class Simulation:
     method is provided which displays the simulation in a pygame window.
     """
 
-    def __init__(self, actor_vizs, scene_vizs, init_time=0):
+    def __init__(self, actor_vizs, scene_vizs, init_time: int = 0) -> None:
         """
         Given two collections of generic SimViz objects, and optionally an
         initial time, creates a Simulation object.
@@ -237,7 +237,7 @@ class Simulation:
         self.time = 10000
         self.set_time(init_time)
 
-    def __find_bounding_box(self):
+    def __find_bounding_box(self) -> None:
         """Finds the lat_lon box bounding all objects"""
         init_box = (Inf, -Inf, Inf, -Inf)
 
@@ -252,7 +252,7 @@ class Simulation:
 
         self.bounding_box = reduce(helper, self.actor_vizs, init_box)
 
-    def __find_time_window(self):
+    def __find_time_window(self) -> None:
         """Finds the min and max times over all routes"""
         init_window = (Inf, -Inf)
 
@@ -262,7 +262,7 @@ class Simulation:
 
         self.time_window = reduce(helper, self.actor_vizs, init_window)
 
-    def __sort_vizs(self):
+    def __sort_vizs(self) -> None:
         """Sorts tracked objects in order of Drawing Order"""
 
         def key_function(item):
@@ -270,13 +270,13 @@ class Simulation:
 
         self.all_vizs.sort(key=key_function)
 
-    def set_time(self, time):
+    def set_time(self, time) -> None:
         """
         Moves all bus tracks to the given time.
         """
         self.time = min(max(time, self.time_window[0]), self.time_window[1])
 
-    def print_time(self):
+    def print_time(self) -> None:
         hours = int(self.time / 3600)
         minutes = int((self.time % 3600) / 60)
         seconds = int(self.time % 60)
@@ -294,14 +294,14 @@ class Simulation:
 
     def run(
         self,
-        speed=0.0,
+        speed: float = 0.0,
         window_size=(1280, 800),
-        refresh_rate=1.0,
-        font="/Library/Frameworks/Python.framework/Versions/2.5/"
+        refresh_rate: float = 1.0,
+        font: str = "/Library/Frameworks/Python.framework/Versions/2.5/"
         "lib/python2.5/site-packages/pygame/freesansbold.ttf",
-        font_size=10,
-        osm_zoom=14,
-    ):
+        font_size: int = 10,
+        osm_zoom: int = 14,
+    ) -> None:
         """
         Pops up a window and displays the simulation on it.
         speed is advancement of sim in seconds/second.
