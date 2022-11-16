@@ -1,0 +1,58 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [
+  "hatch-vcs",
+  "hatchling",
+]
+
+[project]
+name = "osmviz"
+description = "OSMViz is a small set of Python tools for retrieving and using Mapnik tiles from a Slippy Map server (you may know these as OpenStreetMap images)."
+readme = "README.md"
+keywords = [
+  "osm openstreetmap tiles visualization",
+]
+license = {text = "MIT"}
+maintainers = [{name = "Hugo van Kemenade"}]
+authors = [{name = "Colin Bick and Contributors", email = "colin.bick@gmail.com"}]
+requires-python = ">=3.7"
+dynamic = [
+  "version",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Documentation",
+]
+[project.optional-dependencies]
+tests = [
+  "coverage",
+  "pillow>=9.1",
+  "pytest",
+  "pytest-cov",
+]
+
+[project.urls]
+Changelog = "https://github.com/hugovk/osmviz/releases"
+Documentation = "https://hugovk.github.io/osmviz/"
+Homepage = "https://github.com/hugovk/osmviz"
+Source = "https://github.com/hugovk/osmviz"
+
+
+[tool.hatch]
+version.source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"
+
+[tool.pytest.ini_options]
+addopts = "-W error::DeprecationWarning"
