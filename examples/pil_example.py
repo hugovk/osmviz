@@ -3,6 +3,8 @@ This example demonstrates how to create and show a PIL image
 of OSM tiles patched together.
 """
 
+from __future__ import annotations
+
 from PIL import Image
 
 from osmviz.manager import OSMManager, PILImageManager

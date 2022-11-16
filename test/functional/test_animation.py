@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from osmviz.animation import Simulation, TrackingViz
 
 Inf = float("inf")

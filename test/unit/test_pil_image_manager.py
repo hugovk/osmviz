@@ -1,6 +1,8 @@
 """
 Unit tests for PILImageManager
 """
+from __future__ import annotations
+
 import pytest
 
 from osmviz.manager import PILImageManager

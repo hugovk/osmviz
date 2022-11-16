@@ -3,6 +3,8 @@ This example demonstrates the animation of multiple icons
 on a map using TrackingViz objects.
 """
 
+from __future__ import annotations
+
 from osmviz.animation import Simulation, TrackingViz
 
 # The goal is to show 10 trains racing eastward across the US.
