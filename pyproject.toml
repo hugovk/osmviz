@@ -1,8 +1,8 @@
 [build-system]
-build-backend = "setuptools.build_meta"
+build-backend = "hatchling.build"
 requires = [
-  "setuptools>=61.2",
-  "setuptools-scm",
+  "hatch-vcs",
+  "hatchling",
 ]
 
 [project]
@@ -48,15 +48,11 @@ Homepage = "https://github.com/hugovk/osmviz"
 Source = "https://github.com/hugovk/osmviz"
 
 
+[tool.hatch]
+version.source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"
+
 [tool.pytest.ini_options]
 addopts = "-W error::DeprecationWarning"
-
-
-[tool.setuptools]
-include-package-data = true
-package-dir = {"" = "src"}
-license-files = ["LICENSE"]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-namespaces = false
