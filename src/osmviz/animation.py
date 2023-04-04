@@ -352,7 +352,6 @@ class Simulation:
 
         ready_to_exit = False
         while not ready_to_exit:
-
             # Check keyboard events
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
