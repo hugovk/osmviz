@@ -9,7 +9,6 @@ repos:
     rev: 23.3.0
     hooks:
       - id: black
-        args: [--target-version=py37]
         exclude: ^html/
 
   - repo: https://github.com/PyCQA/isort
@@ -32,8 +31,9 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
-      - id: check-json
+      - id: check-case-conflict
       - id: check-merge-conflict
+      - id: check-json
       - id: check-toml
       - id: check-yaml
       - id: end-of-file-fixer
@@ -49,11 +49,10 @@ repos:
     hooks:
       - id: validate-pyproject
 
-  # Skip whilst it strips comments
-  #  - repo: https://github.com/tox-dev/tox-ini-fmt
-  #    rev: 0.5.0
-  #    hooks:
-  #      - id: tox-ini-fmt
+  - repo: https://github.com/tox-dev/tox-ini-fmt
+    rev: 1.0.0
+    hooks:
+      - id: tox-ini-fmt
 
 ci:
   autoupdate_schedule: quarterly
