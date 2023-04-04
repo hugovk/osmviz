@@ -16,9 +16,6 @@ license = {text = "MIT"}
 maintainers = [{name = "Hugo van Kemenade"}]
 authors = [{name = "Colin Bick and Contributors", email = "colin.bick@gmail.com"}]
 requires-python = ">=3.7"
-dynamic = [
-  "version",
-]
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -33,6 +30,9 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Software Development :: Documentation",
 ]
+dynamic = [
+  "version",
+]
 [project.optional-dependencies]
 tests = [
   "coverage",
@@ -40,13 +40,11 @@ tests = [
   "pytest",
   "pytest-cov",
 ]
-
 [project.urls]
 Changelog = "https://github.com/hugovk/osmviz/releases"
 Documentation = "https://hugovk.github.io/osmviz/"
 Homepage = "https://github.com/hugovk/osmviz"
 Source = "https://github.com/hugovk/osmviz"
-
 
 [tool.hatch]
 version.source = "vcs"
