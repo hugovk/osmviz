@@ -55,5 +55,10 @@ repos:
     hooks:
       - id: tox-ini-fmt
 
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+
 ci:
   autoupdate_schedule: quarterly
