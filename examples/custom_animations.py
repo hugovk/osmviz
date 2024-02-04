@@ -5,6 +5,8 @@ if you want to do something besides just show icons moving
 on the map.
 """
 
+from __future__ import annotations
+
 import pygame
 
 from osmviz.animation import Simulation, SimViz, TrackingViz

@@ -33,6 +33,7 @@ Basic idea:
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+from __future__ import annotations
 
 import hashlib
 import math
@@ -88,7 +89,8 @@ class ImageManager:
         are those specified by width and height.
         """
         if self.image:
-            raise Exception("Image already prepared.")
+            msg = "Image already prepared."
+            raise Exception(msg)
         self.image = self.create_image(width, height)
 
     def destroy_image(self):
@@ -107,12 +109,14 @@ class ImageManager:
         of that image, pastes the image into this object's internal image.
         """
         if not self.image:
-            raise Exception("Image not prepared")
+            msg = "Image not prepared"
+            raise Exception(msg)
 
         try:
             img = self.load_image_file(image_file)
         except Exception as e:
-            raise Exception(f"Could not load image {image_file}\n{e}")
+            msg = f"Could not load image {image_file}\n{e}"
+            raise Exception(msg)
 
         self.paste_image(img, xy)
         del img
@@ -135,7 +139,8 @@ class PygameImageManager(ImageManager):
         try:
             import pygame
         except ImportError:
-            raise Exception("Pygame could not be imported!")
+            msg = "Pygame could not be imported!"
+            raise Exception(msg)
         self.pygame = pygame
 
     def create_image(self, width, height):
@@ -164,7 +169,8 @@ class PILImageManager(ImageManager):
         try:
             import PIL.Image
         except ImportError:
-            raise Exception("PIL could not be imported!")
+            msg = "PIL could not be imported!"
+            raise Exception(msg)
         self.PILImage = PIL.Image
 
     def create_image(self, width, height):
@@ -243,7 +249,8 @@ class OSMManager:
             print(f"WARNING: Using {self.cache} to cache map tiles.")
             if not os.access(self.cache, os.R_OK | os.W_OK):
                 print(f" ERROR: Insufficient access to {self.cache}.")
-                raise Exception("Unable to find/create/use map tile cache directory.")
+                msg = "Unable to find/create/use map tile cache directory."
+                raise Exception(msg)
 
         # Get URL template, which supports the following fields:
         #  * {z}: tile zoom level
@@ -279,7 +286,8 @@ class OSMManager:
         if mgr:  # Assume it's a valid manager
             self.manager = mgr
         else:
-            raise Exception("OSMManager.__init__ requires argument image_manager")
+            msg = "OSMManager.__init__ requires argument image_manager"
+            raise Exception(msg)
 
     def get_tile_coord(self, lon_deg, lat_deg, zoom):
         """
@@ -327,7 +335,8 @@ class OSMManager:
             try:
                 urlretrieve(url, filename=filename)
             except Exception as e:
-                raise Exception(f"Unable to retrieve URL: {url}\n{e}")
+                msg = f"Unable to retrieve URL: {url}\n{e}"
+                raise Exception(msg)
         return filename
 
     def tile_nw_lat_lon(self, tile_coord, zoom):
@@ -354,7 +363,8 @@ class OSMManager:
         """
         (min_lat, max_lat, min_lon, max_lon) = bounds
         if not self.manager:
-            raise Exception("No ImageManager was specified, cannot create image.")
+            msg = "No ImageManager was specified, cannot create image."
+            raise Exception(msg)
 
         topleft = min_x, min_y = self.get_tile_coord(min_lon, max_lat, zoom)
         max_x, max_y = self.get_tile_coord(max_lon, min_lat, zoom)
