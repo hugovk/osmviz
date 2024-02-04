@@ -29,6 +29,7 @@ The Simulation class just does the following:
 
 Keyboard input is accepted to control the speed of the simulation.
 """
+
 # Copyright (c) 2010 Colin Bick, Robert Damphousse
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -48,7 +49,7 @@ Keyboard input is accepted to control the speed of the simulation.
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
+from __future__ import annotations
 
 import time
 from functools import reduce

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import PIL.Image as Image
 
 from osmviz.manager import OSMManager, PILImageManager
