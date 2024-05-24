@@ -52,6 +52,9 @@ version.source = "vcs"
 [tool.hatch.version.raw-options]
 local_scheme = "no-local-version"
 
+[tool.ruff]
+fix = true
+
 [tool.ruff.lint]
 select = [
   "C4", # flake8-comprehensions
@@ -63,6 +66,7 @@ select = [
   "LOG", # flake8-logging
   "PGH", # pygrep-hooks
   "RUF100", # unused noqa (yesqa)
+  "RUF022", # unsorted-dunder-all
   "UP", # pyupgrade
   "W", # pycodestyle warnings
   "YTT", # flake8-2020
