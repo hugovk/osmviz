@@ -16,7 +16,7 @@ def osm_manager():
     yield osm_manager
 
 
-def test_get_tile_coord(osm_manager):
+def test_get_tile_coord(osm_manager) -> None:
     # Arrange
     lon_deg = 24.945831
     lat_deg = 60.192059
@@ -29,7 +29,7 @@ def test_get_tile_coord(osm_manager):
     assert coord == (18654, 9480)
 
 
-def test_get_tile_url(osm_manager):
+def test_get_tile_url(osm_manager) -> None:
     # Arrange
     tile_coord = (18654, 9480)
     zoom = 15
@@ -41,7 +41,7 @@ def test_get_tile_url(osm_manager):
     assert url == "https://tile.openstreetmap.org/15/18654/9480.png"
 
 
-def test_get_local_tile_filename(osm_manager):
+def test_get_local_tile_filename(osm_manager) -> None:
     # Arrange
     tile_coord = (18654, 9480)
     zoom = 15
@@ -53,7 +53,7 @@ def test_get_local_tile_filename(osm_manager):
     assert filename.endswith("-15_18654_9480.png")
 
 
-def test_retrieve_tile_image(osm_manager):
+def test_retrieve_tile_image(osm_manager) -> None:
     # Arrange
     tile_coord = (18654, 9480)
     zoom = 15
@@ -65,7 +65,7 @@ def test_retrieve_tile_image(osm_manager):
     assert filename.endswith("-15_18654_9480.png")
 
 
-def test_tile_nw_lat_lon(osm_manager):
+def test_tile_nw_lat_lon(osm_manager) -> None:
     # Arrange
     tile_coord = (18654, 9480)
     zoom = 15
@@ -77,7 +77,7 @@ def test_tile_nw_lat_lon(osm_manager):
     assert (lat_deg, lon_deg) == (60.19615576604439, 24.93896484375)
 
 
-def test_create_osm_image(osm_manager):
+def test_create_osm_image(osm_manager) -> None:
     # Arrange
     minlat = 59.9225115912
     maxlat = 60.297839409

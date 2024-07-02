@@ -54,7 +54,7 @@ class ImageManager:
     by an OSMManager object.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.image = None
 
     # TO BE OVERRIDDEN #
@@ -93,7 +93,7 @@ class ImageManager:
             raise Exception(msg)
         self.image = self.create_image(width, height)
 
-    def destroy_image(self):
+    def destroy_image(self) -> None:
         """
         Destroys internal representation of the image, if it was
         ever created.
@@ -134,7 +134,7 @@ class PygameImageManager(ImageManager):
     An ImageManager which works with Pygame images.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         ImageManager.__init__(self)
         try:
             import pygame
@@ -149,7 +149,7 @@ class PygameImageManager(ImageManager):
     def load_image_file(self, image_file):
         return self.pygame.image.load(image_file)
 
-    def paste_image(self, img, xy):
+    def paste_image(self, img, xy) -> None:
         self.get_image().blit(img, xy)
 
 
@@ -158,7 +158,7 @@ class PILImageManager(ImageManager):
     An ImageManager which works with PIL images.
     """
 
-    def __init__(self, mode):
+    def __init__(self, mode) -> None:
         """
         Constructs a PIL Image Manager.
         Arguments:
@@ -179,7 +179,7 @@ class PILImageManager(ImageManager):
     def load_image_file(self, image_file):
         return self.PILImage.open(image_file)
 
-    def paste_image(self, img, xy):
+    def paste_image(self, img, xy) -> None:
         self.get_image().paste(img, xy)
 
 
@@ -191,7 +191,7 @@ class OSMManager:
     into one big image.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         """
         Creates an OSMManager.
         Arguments:

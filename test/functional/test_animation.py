@@ -22,7 +22,7 @@ def find_bounds(route):
     return (min_time, max_time), (min_lat, max_lat, min_lon, max_lon)
 
 
-def test_sim(route, zoom, image="test/images/train.png"):
+def test_sim(route, zoom, image: str = "test/images/train.png") -> None:
     time_window, bbox = find_bounds(route)
 
     def get_ll(time):
@@ -45,7 +45,7 @@ def test_sim(route, zoom, image="test/images/train.png"):
     sim.run(speed=0, refresh_rate=0.1, osmzoom=zoom, windowsize=(600, 600))
 
 
-def test_sim_one():
+def test_sim_one() -> None:
     begin_ll = 45 + 46.0 / 60, -(68 + 39.0 / 60)
     end_ll = 30 + 3.0 / 60, -(118 + 15.0 / 60)
 
