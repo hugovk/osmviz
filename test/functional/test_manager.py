@@ -5,7 +5,7 @@ import PIL.Image as Image
 from osmviz.manager import OSMManager, PILImageManager
 
 
-def test_pil():
+def test_pil() -> None:
     image_manager = PILImageManager("RGB")
     osm = OSMManager(image_manager=image_manager)
     image, bounds = osm.create_osm_image((30, 31, -117, -116), 9)

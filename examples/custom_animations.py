@@ -26,9 +26,9 @@ class LassoViz(SimViz):
         get_loc_at_time1,
         get_loc_at_time2,
         line_color=red,
-        line_width=3,
-        drawing_order=0,
-    ):
+        line_width: int = 3,
+        drawing_order: int = 0,
+    ) -> None:
         """
         get_loc_at_time 1 and 2 represent the location of the 1st and 2nd
         endpoint of this lasso, respectively. They should take a single
@@ -42,11 +42,11 @@ class LassoViz(SimViz):
         self.get_loc1 = get_loc_at_time1
         self.get_loc2 = get_loc_at_time2
 
-    def set_state(self, sim_time, get_xy):
+    def set_state(self, sim_time, get_xy) -> None:
         self.xy1 = get_xy(*self.get_loc1(sim_time))
         self.xy2 = get_xy(*self.get_loc2(sim_time))
 
-    def draw_to_surface(self, surf):
+    def draw_to_surface(self, surf) -> None:
         pygame.draw.line(surf, self.line_color, self.xy1, self.xy2, self.line_width)
 
     # So long as we are passing LassoViz's in as part of the scene_viz
@@ -70,9 +70,9 @@ class TiedTrain(TrackingViz):
         frequency,
         time_window,
         label,
-        drawing_order=0,
-        image="images/train.png",
-    ):
+        drawing_order: int = 0,
+        image: str = "images/train.png",
+    ) -> None:
         self.clat, self.clon = tie_post
         self.lat_dist = lat_dist
         self.lon_dist = lon_dist

@@ -9,7 +9,7 @@ import pytest
 from osmviz.manager import ImageManager
 
 
-def test_unimplemented():
+def test_unimplemented() -> None:
     # Arrange
     image_manager = ImageManager()
     # Dummy parameters
