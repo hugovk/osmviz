@@ -12,9 +12,13 @@ readme = "README.md"
 keywords = [
   "osm openstreetmap tiles visualization",
 ]
-license = {text = "MIT"}
-maintainers = [{name = "Hugo van Kemenade"}]
-authors = [{name = "Colin Bick and Contributors", email = "colin.bick@gmail.com"}]
+license = { text = "MIT" }
+maintainers = [
+  { name = "Hugo van Kemenade" },
+]
+authors = [
+  { name = "Colin Bick and Contributors", email = "colin.bick@gmail.com" },
+]
 requires-python = ">=3.8"
 classifiers = [
   "Intended Audience :: Developers",
@@ -33,18 +37,16 @@ classifiers = [
 dynamic = [
   "version",
 ]
-[project.optional-dependencies]
-tests = [
+optional-dependencies.tests = [
   "coverage",
   "pillow>=9.1",
   "pytest",
   "pytest-cov",
 ]
-[project.urls]
-Changelog = "https://github.com/hugovk/osmviz/releases"
-Documentation = "https://hugovk.github.io/osmviz/"
-Homepage = "https://github.com/hugovk/osmviz"
-Source = "https://github.com/hugovk/osmviz"
+urls.Changelog = "https://github.com/hugovk/osmviz/releases"
+urls.Documentation = "https://hugovk.github.io/osmviz/"
+urls.Homepage = "https://github.com/hugovk/osmviz"
+urls.Source = "https://github.com/hugovk/osmviz"
 
 [tool.hatch]
 version.source = "vcs"
@@ -55,32 +57,36 @@ local_scheme = "no-local-version"
 [tool.ruff]
 fix = true
 
-[tool.ruff.lint]
-select = [
-  "C4", # flake8-comprehensions
-  "E", # pycodestyle errors
-  "EM", # flake8-errmsg
-  "F", # pyflakes errors
-  "I", # isort
-  "ISC", # flake8-implicit-str-concat
-  "LOG", # flake8-logging
-  "PGH", # pygrep-hooks
-  "RUF100", # unused noqa (yesqa)
+lint.select = [
+  "C4",     # flake8-comprehensions
+  "E",      # pycodestyle errors
+  "EM",     # flake8-errmsg
+  "F",      # pyflakes errors
+  "I",      # isort
+  "ISC",    # flake8-implicit-str-concat
+  "LOG",    # flake8-logging
+  "PGH",    # pygrep-hooks
   "RUF022", # unsorted-dunder-all
-  "UP", # pyupgrade
-  "W", # pycodestyle warnings
-  "YTT", # flake8-2020
+  "RUF100", # unused noqa (yesqa)
+  "UP",     # pyupgrade
+  "W",      # pycodestyle warnings
+  "YTT",    # flake8-2020
 ]
-extend-ignore = [
+lint.extend-ignore = [
   "E203", # Whitespace before ':'
   "E221", # Multiple spaces before operator
   "E226", # Missing whitespace around arithmetic operator
   "E241", # Multiple spaces after ','
 ]
+lint.isort.known-first-party = [
+  "osmviz",
+]
+lint.isort.required-imports = [
+  "from __future__ import annotations",
+]
 
-[tool.ruff.lint.isort]
-known-first-party = ["osmviz"]
-required-imports = ["from __future__ import annotations"]
+[tool.pyproject-fmt]
+max_supported_python = "3.13"
 
 [tool.pytest.ini_options]
 addopts = "-W error::DeprecationWarning"
