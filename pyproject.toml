@@ -13,18 +13,13 @@ keywords = [
   "osm openstreetmap tiles visualization",
 ]
 license = { text = "MIT" }
-maintainers = [
-  { name = "Hugo van Kemenade" },
-]
-authors = [
-  { name = "Colin Bick and Contributors", email = "colin.bick@gmail.com" },
-]
-requires-python = ">=3.8"
+maintainers = [ { name = "Hugo van Kemenade" } ]
+authors = [ { name = "Colin Bick and Contributors", email = "colin.bick@gmail.com" } ]
+requires-python = ">=3.9"
 classifiers = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -34,9 +29,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
   "Topic :: Software Development :: Documentation",
 ]
-dynamic = [
-  "version",
-]
+dynamic = [ "version" ]
 optional-dependencies.tests = [
   "coverage",
   "pillow>=9.1",
@@ -63,30 +56,35 @@ lint.select = [
   "EM",     # flake8-errmsg
   "F",      # pyflakes errors
   "I",      # isort
+  "ICN",    # flake8-import-conventions
   "ISC",    # flake8-implicit-str-concat
   "LOG",    # flake8-logging
   "PGH",    # pygrep-hooks
+  "PYI",    # flake8-pyi
   "RUF022", # unsorted-dunder-all
   "RUF100", # unused noqa (yesqa)
   "UP",     # pyupgrade
   "W",      # pycodestyle warnings
   "YTT",    # flake8-2020
 ]
-lint.extend-ignore = [
+lint.ignore = [
   "E203", # Whitespace before ':'
   "E221", # Multiple spaces before operator
   "E226", # Missing whitespace around arithmetic operator
   "E241", # Multiple spaces after ','
 ]
-lint.isort.known-first-party = [
-  "osmviz",
-]
-lint.isort.required-imports = [
-  "from __future__ import annotations",
-]
+lint.flake8-import-conventions.aliases.datetime = "dt"
+lint.flake8-import-conventions.banned-from = [ "datetime" ]
+lint.isort.known-first-party = [ "osmviz" ]
+lint.isort.required-imports = [ "from __future__ import annotations" ]
 
 [tool.pyproject-fmt]
 max_supported_python = "3.13"
 
 [tool.pytest.ini_options]
 addopts = "-W error::DeprecationWarning"
+filterwarnings = [
+  # Python <= 3.11
+  "ignore:sys.monitoring isn't available, using default core:coverage.exceptions.CoverageWarning",
+]
+testpaths = [ "tests" ]
