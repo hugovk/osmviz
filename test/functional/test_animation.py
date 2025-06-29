@@ -42,7 +42,7 @@ def test_sim(route, zoom, image: str = "test/images/train.png") -> None:
 
     viz = TrackingViz("Test Train", image, get_ll, time_window, bbox, 1)
     sim = Simulation([viz], [], 0)
-    sim.run(speed=0, refresh_rate=0.1, osmzoom=zoom, windowsize=(600, 600))
+    sim.run(speed=0, refresh_rate=0.1, osm_zoom=zoom, window_size=(600, 600))
 
 
 def test_sim_one() -> None:
