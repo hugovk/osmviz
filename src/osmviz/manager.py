@@ -45,7 +45,7 @@ from urllib.request import urlretrieve
 try:
     from tqdm import tqdm
 except ImportError:
-    tqdm = None
+    tqdm = None  # type: ignore[assignment,misc]
 
 
 class ImageManager:
@@ -375,7 +375,7 @@ class OSMManager:
         self.manager.prepare_image(pix_width, pix_height)
         total = (1 + max_x - min_x) * (1 + max_y - min_y)
 
-        if tqdm:
+        if tqdm:  # type: ignore[truthy-function]
             pbar = tqdm(desc="Fetching tiles", total=total, unit="tile")
         else:
             print(f"Fetching {total} tiles...")
@@ -386,9 +386,9 @@ class OSMManager:
                 x_off = self.tile_size * (x - min_x)
                 y_off = self.tile_size * (y - min_y)
                 self.manager.paste_image_file(f_name, (x_off, y_off))
-                if tqdm:
+                if tqdm:  # type: ignore[truthy-function]
                     pbar.update()
-        if tqdm:
+        if tqdm:  # type: ignore[truthy-function]
             pbar.close()
         else:
             print("... done.")
