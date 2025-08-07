@@ -2,7 +2,7 @@
 build-backend = "hatchling.build"
 requires = [
   "hatch-vcs",
-  "hatchling",
+  "hatchling>=1.27",
 ]
 
 [project]
@@ -12,13 +12,13 @@ readme = "README.md"
 keywords = [
   "osm openstreetmap tiles visualization",
 ]
-license = { text = "MIT" }
+license = "MIT"
+license-files = [ "LICENSE.txt" ]
 maintainers = [ { name = "Hugo van Kemenade" } ]
 authors = [ { name = "Colin Bick and Contributors", email = "colin.bick@gmail.com" } ]
 requires-python = ">=3.9"
 classifiers = [
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
