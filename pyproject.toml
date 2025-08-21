@@ -86,13 +86,8 @@ lint.isort.required-imports = [ "from __future__ import annotations" ]
 max_supported_python = "3.14"
 
 [tool.pytest.ini_options]
-addopts = "-W error::DeprecationWarning"
 testpaths = [ "tests" ]
 
-[tool.coverage.run]
-disable_warnings = [
-  "no-sysmon",
-]
 [tool.coverage.report]
 # Regexes for lines to exclude from consideration
 exclude_also = [

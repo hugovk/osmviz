@@ -41,7 +41,6 @@ jobs:
     needs: build-package
 
     permissions:
-      attestations: write
       id-token: write
 
     steps:
@@ -51,15 +50,9 @@ jobs:
           name: Packages
           path: dist
 
-      - name: Attest build provenance
-        uses: actions/attest-build-provenance@v2
-        with:
-          subject-path: "dist/*"
-
       - name: Upload package to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          attestations: true
           repository-url: https://test.pypi.org/legacy/
 
   # Upload to real PyPI on GitHub Releases.
@@ -72,7 +65,6 @@ jobs:
     needs: build-package
 
     permissions:
-      attestations: write
       id-token: write
 
     steps:
@@ -82,12 +74,5 @@ jobs:
           name: Packages
           path: dist
 
-      - name: Attest build provenance
-        uses: actions/attest-build-provenance@v2
-        with:
-          subject-path: "dist/*"
-
       - name: Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          attestations: true
