@@ -16,11 +16,10 @@ license = "MIT"
 license-files = [ "LICENSE.txt" ]
 maintainers = [ { name = "Hugo van Kemenade" } ]
 authors = [ { name = "Colin Bick and Contributors", email = "colin.bick@gmail.com" } ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
