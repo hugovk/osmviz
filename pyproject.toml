@@ -31,7 +31,6 @@ classifiers = [
 ]
 dynamic = [ "version" ]
 optional-dependencies.tests = [
-  "coverage",
   "pillow>=9.1",
   "pytest",
   "pytest-cov",
@@ -39,6 +38,7 @@ optional-dependencies.tests = [
 urls.Changelog = "https://github.com/hugovk/osmviz/releases"
 urls.Documentation = "https://hugovk.github.io/osmviz/"
 urls.Homepage = "https://github.com/hugovk/osmviz"
+urls."Issue tracker" = "https://github.com/hugovk/osmviz/issues"
 urls.Source = "https://github.com/hugovk/osmviz"
 
 [tool.hatch]
@@ -74,12 +74,12 @@ lint.ignore = [
   "E226",   # Missing whitespace around arithmetic operator
   "E241",   # Multiple spaces after ','
   "PIE790", # flake8-pie: unnecessary-placeholder
-  "UP038",  # Makes code slower and more verbose
 ]
 lint.flake8-import-conventions.aliases.datetime = "dt"
 lint.flake8-import-conventions.banned-from = [ "datetime" ]
 lint.isort.known-first-party = [ "osmviz" ]
 lint.isort.required-imports = [ "from __future__ import annotations" ]
+lint.future-annotations = true
 
 [tool.pyproject-fmt]
 max_supported_python = "3.14"
