@@ -35,7 +35,7 @@ classifiers = [
 dynamic = [ "version" ]
 optional-dependencies.tests = [
   "pillow>=9.1",
-  "pytest",
+  "pytest>=9",
   "pytest-cov",
 ]
 urls."Issue tracker" = "https://github.com/hugovk/osmviz/issues"
@@ -85,7 +85,8 @@ lint.future-annotations = true
 max_supported_python = "3.14"
 
 [tool.pytest]
-ini_options.testpaths = [ "tests" ]
+minversion = "9.0"
+testpaths = [ "tests" ]
 
 [tool.coverage]
 # Regexes for lines to exclude from consideration
