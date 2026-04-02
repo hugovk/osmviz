@@ -361,7 +361,7 @@ class OSMManager:
         and bounds is the (min_lat, max_lat, min_lon, max_lon) bounding box
         which the tiles cover.
         """
-        (min_lat, max_lat, min_lon, max_lon) = bounds
+        min_lat, max_lat, min_lon, max_lon = bounds
         if not self.manager:
             msg = "No ImageManager was specified, cannot create image."
             raise Exception(msg)
