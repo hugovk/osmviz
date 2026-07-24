@@ -51,23 +51,19 @@ version.raw-options.local_scheme = "no-local-version"
 
 [tool.ruff]
 fix = true
-lint.select = [
-  "C4",     # flake8-comprehensions
-  "E",      # pycodestyle errors
-  "EM",     # flake8-errmsg
-  "F",      # pyflakes
-  "I",      # isort
-  "ICN",    # flake8-import-conventions
-  "ISC",    # flake8-implicit-str-concat
-  "LOG",    # flake8-logging
-  "PGH",    # pygrep-hooks
-  "PIE",    # flake8-pie
-  "PYI",    # flake8-pyi
-  "RUF022", # unsorted-dunder-all
-  "RUF100", # unused noqa (yesqa)
-  "UP",     # pyupgrade
-  "W",      # pycodestyle warnings
-  "YTT",    # flake8-2020
+lint.extend-select = [
+  "C4",  # flake8-comprehensions
+  "E",   # pycodestyle errors
+  "EM",  # flake8-errmsg
+  "F",   # pyflakes
+  "I",   # isort
+  "ICN", # flake8-import-conventions
+  "ISC", # flake8-implicit-str-concat
+  "LOG", # flake8-logging
+  "PGH", # pygrep-hooks
+  "PYI", # flake8-pyi
+  "UP",  # pyupgrade
+  "W",   # pycodestyle warnings
 ]
 lint.ignore = [
   "E203",   # Whitespace before ':'

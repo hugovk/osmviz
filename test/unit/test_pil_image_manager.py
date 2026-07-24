@@ -35,7 +35,7 @@ def test_prepare_image__twice(image_manager) -> None:
     image_manager.prepare_image(width, height)
 
     # Assert
-    with pytest.raises(Exception):
+    with pytest.raises(RuntimeError):
         image_manager.prepare_image(width, height)
 
 
@@ -67,7 +67,7 @@ def test_paste_image_file__image_not_prepared(image_manager) -> None:
     xy = (0, 0)
 
     # Act / Assert
-    with pytest.raises(Exception):
+    with pytest.raises(RuntimeError):
         image_manager.paste_image_file(filename, xy)
 
 
@@ -80,7 +80,7 @@ def test_paste_image_file__could_not_load_image(image_manager) -> None:
     xy = (0, 0)
 
     # Act / Assert
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         image_manager.paste_image_file(filename, xy)
 
 
