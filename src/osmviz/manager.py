@@ -90,7 +90,7 @@ class ImageManager:
         """
         if self.image:
             msg = "Image already prepared."
-            raise Exception(msg)
+            raise RuntimeError(msg)
         self.image = self.create_image(width, height)
 
     def destroy_image(self) -> None:
@@ -110,13 +110,13 @@ class ImageManager:
         """
         if not self.image:
             msg = "Image not prepared"
-            raise Exception(msg)
+            raise RuntimeError(msg)
 
         try:
             img = self.load_image_file(image_file)
-        except Exception as e:
+        except (OSError, ValueError, RuntimeError) as e:
             msg = f"Could not load image {image_file}\n{e}"
-            raise Exception(msg)
+            raise ValueError(msg)
 
         self.paste_image(img, xy)
         del img
@@ -140,7 +140,7 @@ class PygameImageManager(ImageManager):
             import pygame
         except ImportError:
             msg = "Pygame could not be imported!"
-            raise Exception(msg)
+            raise ImportError(msg)
         self.pygame = pygame
 
     def create_image(self, width, height):
@@ -170,7 +170,7 @@ class PILImageManager(ImageManager):
             import PIL.Image
         except ImportError:
             msg = "PIL could not be imported!"
-            raise Exception(msg)
+            raise ImportError(msg)
         self.PILImage = PIL.Image
 
     def create_image(self, width, height):
@@ -235,7 +235,7 @@ class OSMManager:
                     os.makedirs(cache, 0o766)
                     self.cache = cache
                     print("WARNING: Created cache dir", cache)
-                except Exception:
+                except OSError:
                     print("Could not make cache dir", cache)
             elif not os.access(cache, os.R_OK | os.W_OK):
                 print("Insufficient privileges on cache dir", cache)
@@ -250,7 +250,7 @@ class OSMManager:
             if not os.access(self.cache, os.R_OK | os.W_OK):
                 print(f" ERROR: Insufficient access to {self.cache}.")
                 msg = "Unable to find/create/use map tile cache directory."
-                raise Exception(msg)
+                raise RuntimeError(msg)
 
         # Get URL template, which supports the following fields:
         #  * {z}: tile zoom level
@@ -287,7 +287,7 @@ class OSMManager:
             self.manager = mgr
         else:
             msg = "OSMManager.__init__ requires argument image_manager"
-            raise Exception(msg)
+            raise TypeError(msg)
 
     def get_tile_coord(self, lon_deg, lat_deg, zoom):
         """
@@ -334,9 +334,9 @@ class OSMManager:
             url = self.get_tile_url(tile_coord, zoom)
             try:
                 urlretrieve(url, filename=filename)
-            except Exception as e:
+            except OSError as e:
                 msg = f"Unable to retrieve URL: {url}\n{e}"
-                raise Exception(msg)
+                raise OSError(msg)
         return filename
 
     def tile_nw_lat_lon(self, tile_coord, zoom):
@@ -364,7 +364,7 @@ class OSMManager:
         min_lat, max_lat, min_lon, max_lon = bounds
         if not self.manager:
             msg = "No ImageManager was specified, cannot create image."
-            raise Exception(msg)
+            raise ValueError(msg)
 
         topleft = min_x, min_y = self.get_tile_coord(min_lon, max_lat, zoom)
         max_x, max_y = self.get_tile_coord(max_lon, min_lat, zoom)
