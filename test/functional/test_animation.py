@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import itertools
+
 from osmviz.animation import Simulation, TrackingViz
 
 Inf = float("inf")
@@ -31,7 +33,7 @@ def test_sim(route, zoom, image: str = "test/images/train.png") -> None:
         elif time > time_window[1]:
             return route[-1][:2]
 
-        for (lat1, lon1, time1), (lat2, lon2, time2) in zip(route[:-1], route[1:]):
+        for (lat1, lon1, time1), (lat2, lon2, time2) in itertools.pairwise(route):
             if time1 < time <= time2:
                 break
 
