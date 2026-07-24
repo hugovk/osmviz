@@ -38,8 +38,8 @@ from __future__ import annotations
 import hashlib
 import math
 import os
-import os.path as path
 import urllib.request
+from os import path
 from urllib.request import urlretrieve
 
 try:

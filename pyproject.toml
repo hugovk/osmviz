@@ -51,7 +51,7 @@ version.raw-options.local_scheme = "no-local-version"
 
 [tool.ruff]
 fix = true
-lint.select = [
+lint.extend-select = [
   "C4",     # flake8-comprehensions
   "E",      # pycodestyle errors
   "EM",     # flake8-errmsg

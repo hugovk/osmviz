@@ -131,7 +131,7 @@ class SimViz:
         viz object. Default behavior is to return None, meaning no
         label should ever be displayed.
         """
-        return None
+        return
 
     def mouse_intersect(self, mouse_x, mouse_y):
         """
