@@ -41,7 +41,7 @@ optional-dependencies.tests = [
 ]
 urls."Issue tracker" = "https://github.com/hugovk/osmviz/issues"
 urls.Changelog = "https://github.com/hugovk/osmviz/releases"
-urls.Documentation = "https://hugovk.github.io/osmviz/"
+urls.Documentation = "https://hugovk.dev/osmviz/"
 urls.Homepage = "https://github.com/hugovk/osmviz"
 urls.Source = "https://github.com/hugovk/osmviz"
 
