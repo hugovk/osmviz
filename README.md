@@ -49,4 +49,4 @@ Or just add the src directory to your PYTHONPATH.
 
 ## Help
 
-See [html/doc.html](https://hugovk.github.io/osmviz/html/doc.html)
+See [html/doc.html](https://hugovk.dev/osmviz/html/doc.html)
